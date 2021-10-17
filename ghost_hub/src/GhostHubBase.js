@@ -1,7 +1,6 @@
 import React from 'react'
-import axios from 'axios'
-// import ListCases from './components/ListCases.js'
-// import AddNewCase from './components/AddNew.js'
+import ListCases from './components/ListCases.js'
+import AddNewCase from './components/AddNewCase.js'
 
 
 
@@ -16,7 +15,7 @@ export default class GhostHubBase extends React.Component {
 
     displayPanel(){
 
-        active_display_panel={
+        let active_display_panel={
 
             "list_cases":<ListCases/>,
             "add_new_case":<AddNewCase/>
@@ -24,7 +23,7 @@ export default class GhostHubBase extends React.Component {
         }
 
 
-        return[list.state.displaying]
+        return active_display_panel[this.state.displaying]
     }
 
     render(){
