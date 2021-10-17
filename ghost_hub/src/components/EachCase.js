@@ -1,6 +1,6 @@
 import React from 'react'
 import axios from 'axios'
-export default class ListCases extends React.Component {
+export default class EachCase extends React.Component {
 
     url_api = "https://3002-peach-possum-1zbabb9y.ws-us17.gitpod.io/"
 
@@ -11,12 +11,13 @@ export default class ListCases extends React.Component {
     }
 
     async componentDidMount(){
-        let response = await axios.get(this.url_api + "cases")
+        let response = await axios.get(this.url_api + "case/"+this.props.each_case_id)
         this.setState({
             'api_data': response.data
         })
 
     }
+
 
 
     display_api_data(){
@@ -40,7 +41,7 @@ export default class ListCases extends React.Component {
                                 <li>{witness.age}</li>
                                 <li>{witness.display_name}</li>                                   
                             </ul>
-                            <button className="btn btn-success btn-sm" onClick={()=>{this.props.onEnterEachCase(each_case._id)}}>Continue...</button>
+                            <button className="btn btn-success btn-sm" onClick={this.props.onExitEachCase}>Back</button>
                         </div>
                     </React.Fragment>
 
@@ -61,10 +62,12 @@ export default class ListCases extends React.Component {
     }
 
 
+
     render() {
         return (<React.Fragment>
-            <h1>List Cases</h1>
-            {this.display_api_data()}
+            <h1>Each Case</h1>
+            <h2>Cased Number: {this.props.each_case_id}</h2>
+            {this.display_api_data}            
         </React.Fragment>)
     }
 

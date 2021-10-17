@@ -1,13 +1,15 @@
 import React from 'react'
 import ListCases from './components/ListCases.js'
 import AddNewCase from './components/AddNewCase.js'
+import EachCase from './components/EachCase.js'
 
 
 
 export default class GhostHubBase extends React.Component {
 
     state = {
-        "displaying": 'list_cases'
+        "displaying": 'list_cases',
+        "each_case_id":0
     }
 
 
@@ -17,7 +19,8 @@ export default class GhostHubBase extends React.Component {
 
         let active_display_panel={
 
-            "list_cases":<ListCases/>,
+            "list_cases":<ListCases onEnterEachCase={this.enterEachCase}/>,
+            "each_case":<EachCase onExitEachCase={this.exitEachCase} each_case_id={this.state.each_case_id}/>,
             "add_new_case":<AddNewCase/>
         
         }
@@ -25,6 +28,30 @@ export default class GhostHubBase extends React.Component {
 
         return active_display_panel[this.state.displaying]
     }
+
+
+    enterEachCase=(case_id)=>{
+        this.setState({
+
+            "displaying":"each_case",
+            "each_case_id":case_id
+
+        })
+
+
+    }
+
+    exitEachCase=()=>{
+        this.setState({
+
+            "displaying":"list_cases"
+
+
+        })
+
+
+    }
+
 
     render(){
         return(
