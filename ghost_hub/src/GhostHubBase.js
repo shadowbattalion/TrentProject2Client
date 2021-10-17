@@ -35,7 +35,7 @@ export default class GhostHubBase extends React.Component {
 
         let url_api= "https://3002-peach-possum-1zbabb9y.ws-us17.gitpod.io/"
         let response = await axios.get(url_api + "case/"+case_id) 
-        console.log(response.data)
+        
 
 
 
