@@ -23,10 +23,10 @@ export default class GhostHubBase extends React.Component {
         let active_display_panel={
 
             "list_cases":<ListCases onEnterEachCase={this.enterEachCase}/>,
-            "each_case":<EachCase onExitEachCase={this.exitEachCase} each_case_data={this.state.each_case_data}/>,
+            "each_case":<EachCase onExitEachCase={this.exitEachCase}  onEditEachCase={this.editEachCase} onDeleteEachCase={this.deleteEachCase} each_case_data={this.state.each_case_data}/>,
             "add_new_case":<AddNewCase/>,
-            "edit_each_case":<EditEachCase onEditEachCase={this.editEachCase}/>,
-            "delete_each_case":<DeleteEachCase onDeleteEachCase={this.deleteEachCase}/>,
+            "edit_each_case":<EditEachCase/>,
+            "delete_each_case":<DeleteEachCase />,
         
         }
 
