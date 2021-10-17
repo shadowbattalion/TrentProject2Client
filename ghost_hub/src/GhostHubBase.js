@@ -3,6 +3,8 @@ import axios from 'axios'
 import ListCases from './components/ListCases.js'
 import AddNewCase from './components/AddNewCase.js'
 import EachCase from './components/EachCase.js'
+import DeleteEachCase from './components/DeleteEachCase.js'
+import EditEachCase from './components/EditEachCase.js'
 
 
 
@@ -22,7 +24,9 @@ export default class GhostHubBase extends React.Component {
 
             "list_cases":<ListCases onEnterEachCase={this.enterEachCase}/>,
             "each_case":<EachCase onExitEachCase={this.exitEachCase} each_case_data={this.state.each_case_data}/>,
-            "add_new_case":<AddNewCase/>
+            "add_new_case":<AddNewCase/>,
+            "edit_each_case":<EditEachCase onEditEachCase={this.editEachCase}/>,
+            "delete_each_case":<DeleteEachCase onDeleteEachCase={this.deleteEachCase}/>,
         
         }
 
@@ -60,6 +64,27 @@ export default class GhostHubBase extends React.Component {
 
     }
 
+    editEachCase=()=>{
+        this.setState({
+
+            "displaying":"edit_each_case"
+
+
+        })
+
+
+    }
+
+    deleteEachCase=()=>{
+        this.setState({
+
+            "displaying":"delete_each_case"
+
+
+        })
+
+
+    }
 
     render(){
         return(

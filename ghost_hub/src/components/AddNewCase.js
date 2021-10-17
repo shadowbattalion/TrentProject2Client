@@ -13,11 +13,11 @@ export default class AddNewCase extends React.Component {
    }
 
 
-   delete_encounter = (temp_id) =>{
+   delete_encounter = (id) =>{
 
      let encounters_list=this.state.encounters
 
-     let index_to_delete = encounters_list.indexOf(temp_id)
+     let index_to_delete = encounters_list.findIndex(encounter=>encounter._id==id)
 
      let new_encounter_list=[...encounters_list.slice(0,index_to_delete), ...encounters_list.slice(index_to_delete+1)]
 
@@ -42,7 +42,7 @@ export default class AddNewCase extends React.Component {
                 <React.Fragment key={encounter.temp_id}>
                     <div>    
                         {encounter.sightings_description}
-                        <button className="btn btn-danger btn-sm mx-1" onClick={()=>{this.delete_encounter(encounter.temp_id)}}>Delete</button>
+                        <button className="btn btn-danger btn-sm mx-1" onClick={()=>{this.delete_encounter(encounter._id)}}>Delete</button>
                     </div>
                 </React.Fragment>)
 
@@ -66,7 +66,7 @@ export default class AddNewCase extends React.Component {
     add_encounter=()=>{
 
         let new_encounter={
-            "id":"front_end_id"+,
+            "_id":"front_end_id"+new Date().valueOf(),
             "sightings_description":this.state.new_sightings_description
 
         }
