@@ -18,6 +18,7 @@ export default class ListCases extends React.Component {
 
     }
 
+    
 
     display_api_data(){
     
@@ -62,6 +63,7 @@ export default class ListCases extends React.Component {
 
 
     render() {
+        
         return (<React.Fragment>
             <h1>List Cases</h1>
             {this.display_api_data()}

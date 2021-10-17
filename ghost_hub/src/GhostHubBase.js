@@ -1,4 +1,5 @@
 import React from 'react'
+import axios from 'axios'
 import ListCases from './components/ListCases.js'
 import AddNewCase from './components/AddNewCase.js'
 import EachCase from './components/EachCase.js'
@@ -9,7 +10,7 @@ export default class GhostHubBase extends React.Component {
 
     state = {
         "displaying": 'list_cases',
-        "each_case_id":0
+        "each_case_data":0
     }
 
 
@@ -20,7 +21,7 @@ export default class GhostHubBase extends React.Component {
         let active_display_panel={
 
             "list_cases":<ListCases onEnterEachCase={this.enterEachCase}/>,
-            "each_case":<EachCase onExitEachCase={this.exitEachCase} each_case_id={this.state.each_case_id}/>,
+            "each_case":<EachCase onExitEachCase={this.exitEachCase} each_case_data={this.state.each_case_data}/>,
             "add_new_case":<AddNewCase/>
         
         }
@@ -30,11 +31,18 @@ export default class GhostHubBase extends React.Component {
     }
 
 
-    enterEachCase=(case_id)=>{
+    enterEachCase= async (case_id)=>{
+
+        let url_api= "https://3002-peach-possum-1zbabb9y.ws-us17.gitpod.io/"
+        let response = await axios.get(url_api + "case/"+case_id) 
+        console.log(response.data)
+
+
+
         this.setState({
 
             "displaying":"each_case",
-            "each_case_id":case_id
+            "each_case_data":response.data
 
         })
 

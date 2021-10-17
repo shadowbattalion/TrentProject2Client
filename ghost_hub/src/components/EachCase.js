@@ -10,31 +10,26 @@ export default class EachCase extends React.Component {
         ]
     }
 
-    async componentDidMount(){
-        let response = await axios.get(this.url_api + "case/"+this.props.each_case_id)
-        console.log(this.props.each_case_id)
-        console.log(response.data)
-        this.setState({
-            'api_data': response.data
-        })
-
-    }
-
-
+   
 
     display_api_data(){
     
-        let cases_jsx=[]
-
-        let each_case = this.state.api_data[0]
-        let witness = this.state.api_data[1]
+        let each_case = this.props.each_case_data[0]
+        let witness = this.props.each_case_data[1]
         
 
         let each_case_jsx=(
             <React.Fragment>
                 <div>
                     <ul>
-                        <li>{each_case._id?each_case._id:"Nothing"}</li>
+                        <li>Title: {each_case.case_title}</li>
+                        <li>Description: {each_case.generic_description}</li>
+                        <li>Rating: {each_case.rating}</li>
+                        <li>Date: {each_case.date}</li>
+                        <li>{witness.occupation}</li>
+                        <li>{witness.gender}</li>
+                        <li>{witness.age}</li>
+                        <li>{witness.display_name}</li>
                                                           
                     </ul>
                     <button className="btn btn-success btn-sm" onClick={this.props.onExitEachCase}>Back</button>
@@ -56,6 +51,7 @@ export default class EachCase extends React.Component {
         return (<React.Fragment>
             <h1>Each Case</h1>
             <h2>Cased Number: {this.props.each_case_id}</h2>
+            
             {this.display_api_data()}            
         </React.Fragment>)
     }
