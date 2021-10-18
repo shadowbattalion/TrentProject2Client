@@ -11,8 +11,9 @@ import EditEachCase from './components/EditEachCase.js'
 export default class GhostHubBase extends React.Component {
 
     state = {
-        "displaying": 'list_cases',
-        "each_case_data":0
+        "displaying": "list_cases",
+        "each_case_data":0,
+        "entity_tags_list":[]
     }
 
 
@@ -24,7 +25,7 @@ export default class GhostHubBase extends React.Component {
 
             "list_cases":<ListCases onEnterEachCase={this.enterEachCase}/>,
             "each_case":<EachCase onExitEachCase={this.exitEachCase}  onEditEachCase={this.editEachCase} onDeleteEachCase={this.deleteEachCase} each_case_data={this.state.each_case_data}/>,
-            "add_new_case":<AddNewCase/>,
+            "add_new_case":<AddNewCase entity_tags_list={this.state.entity_tags_list}/>,
             "edit_each_case":<EditEachCase/>,
             "delete_each_case":<DeleteEachCase />,
         
@@ -86,15 +87,43 @@ export default class GhostHubBase extends React.Component {
 
     }
 
+
+    
+
+    listCases=()=>{
+
+        
+        this.setState({
+
+            "entity_tags_list":"list_cases"
+
+        })
+
+    }
+
+
+    addNewCase= async()=>{
+
+        let url_api= "https://3002-peach-possum-1zbabb9y.ws-us17.gitpod.io/"
+        let response = await axios.get(url_api + "list_entity_tags") 
+
+        this.setState({
+            "displaying":'add_new_case',
+            "entity_tags_list":response.data
+
+        })
+
+    }
+
     render(){
         return(
             <React.Fragment>
             <ul className="nav nav-tabs">
                 <li className="nav-item">
-                <button className={(this.state.displaying === 'list_cases') ? 'nav-link active' : 'nav-link'} onClick={()=>{this.setState({'displaying':'list_cases'})}}>List Cases</button>
+                <button className={(this.state.displaying === 'list_cases') ? 'nav-link active' : 'nav-link'} onClick={this.listCases}>List Cases</button>
                 </li>
                 <li className="nav-item">
-                <button className={(this.state.displaying === 'add_new_case') ? 'nav-link active' : 'nav-link'} onClick={()=>{this.setState({'displaying':'add_new_case'})}}>Add Case</button>
+                <button className={(this.state.displaying === 'add_new_case') ? 'nav-link active' : 'nav-link'} onClick={this.addNewCase}>Add Case</button>
                 </li>
                 <li className="nav-item">
                     <button className="nav-link">About Us</button>
