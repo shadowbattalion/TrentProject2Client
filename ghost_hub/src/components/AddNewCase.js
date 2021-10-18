@@ -5,7 +5,18 @@ export default class AddNewCase extends React.Component {
     url_api = ""
 
     state = {
-       "encounters":[
+        "email_address":"",
+        "display_name":"",
+        "occupation":"",
+        "age":"",
+        "company_name":"",
+        "case_title":"",
+        "generic_description":"",
+        "location":"",
+        "date":"",
+        "entity_tags":[],
+        "type_of_activity":"",
+        "encounters":[
                        
                    ],
         new_sightings_description:"",
@@ -13,6 +24,46 @@ export default class AddNewCase extends React.Component {
             "_id":0
         },
         edit_sightings_description:""
+
+   }
+
+   display_form_main(){
+
+    // console.log(this.props.entity_tags_list)
+
+    return(
+        <React.Fragment>
+            <main>
+                <h2>Witness Particulars</h2>
+                <div id="witness">
+                    <label>Display Name</label>
+                    <input type="text" name="display_name" className="form-control" value={this.state.display_name} onChange={this.update_encounter_field} />
+                    <label>Ocupation</label>
+                    <input type="text" name="occupation" className="form-control" value={this.state.occupation} onChange={this.update_encounter_field} />
+                    <label>Age</label>
+                    <input type="text" name="age" className="form-control" value={this.state.age} onChange={this.update_encounter_field} />
+                    <label>Company Name</label>
+                    <input type="text" name="company_name" className="form-control" value={this.state.company_name} onChange={this.update_encounter_field} />
+                    <label>Email address</label>
+                    <input type="text" name="email_address" className="form-control" value={this.state.email_address} onChange={this.update_encounter_field} />
+                </div>
+                <div id="case">
+                    <h2>Case Details</h2>
+                    <label>Title</label>
+                        <input type="text" name="case_title" className="form-control" value={this.state.case_title} onChange={this.update_encounter_field} />
+                    <label>Description</label>
+                        <input type="text" name="generic_description" className="form-control" value={this.state.generic_description} onChange={this.update_encounter_field} />
+                    <label>Location</label>
+                        <input type="text" name="location" className="form-control" value={this.state.location} onChange={this.update_encounter_field} />
+                    <label>Date Of Incident: </label>
+                        <input type="date" name="date" className="" value={this.state.date} onChange={this.update_encounter_field} />
+                    
+
+                </div>
+            </main>
+        </React.Fragment>
+
+    )
 
    }
 
@@ -31,7 +82,7 @@ export default class AddNewCase extends React.Component {
                 each_encounter = (
                     <React.Fragment key={encounter._id}>
                         <div>    
-                            {this.display_edit_form()}
+                            {this.display_edit_form_encounters()}
                         </div>
                     </React.Fragment>)
                 
@@ -60,7 +111,7 @@ export default class AddNewCase extends React.Component {
     }
 
 
-    display_edit_form(){
+    display_edit_form_encounters(){
 
         return(
 
@@ -78,9 +129,9 @@ export default class AddNewCase extends React.Component {
 
 
 
-    display_form(){
+    display_form_encounters(){
 
-        console.log(this.props.entity_tags_list)
+        
 
         return(
             <React.Fragment>
@@ -188,8 +239,9 @@ export default class AddNewCase extends React.Component {
     render() {
         return (<React.Fragment>
             <h1>Add a Case</h1>
+            {this.display_form_main()}
             {this.display_added_encounters()}
-            {this.display_form()}
+            {this.display_form_encounters()}
         </React.Fragment>)
     }
 
