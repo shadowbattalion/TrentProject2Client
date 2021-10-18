@@ -9,54 +9,11 @@ export default class AddNewCase extends React.Component {
                        
                    ],
         new_sightings_description:"",
-        edit_mode:{}
+        edit_mode:{},
+        edit_sightings_description:""
 
    }
 
-
-   delete_encounter = (id) =>{
-
-     let encounters_list=this.state.encounters
-
-     let index_to_delete = encounters_list.findIndex(encounter=>encounter._id==id)
-
-     let new_encounter_list=[...encounters_list.slice(0,index_to_delete), ...encounters_list.slice(index_to_delete+1)]
-
-     this.setState({
-
-        "encounters":new_encounter_list
-
-     })
-
-
-
-   }
-
-
-    display_added_encounters(){
-
-        let encounter_jsx=[]
-
-        
-        for(let encounter of this.state.encounters){
-            let each_encounter = (
-                <React.Fragment key={encounter.temp_id}>
-                    <div>    
-                        {encounter.sightings_description}
-                        <button className="btn btn-success btn-sm" onClick={()=>{this.edit_encounter(encounter._id)}}>Edit</button>
-                        <button className="btn btn-danger btn-sm mx-1" onClick={()=>{this.delete_encounter(encounter._id)}}>Delete</button>
-                    </div>
-                </React.Fragment>)
-
-            encounter_jsx.push(each_encounter)
-            
-        }
-
-
-
-        return encounter_jsx
-
-    }
 
 
     update_encounter_field=(e)=>{
@@ -81,6 +38,118 @@ export default class AddNewCase extends React.Component {
     }
 
 
+    delete_encounter = (encounter_delete) =>{
+
+        let encounters_list=this.state.encounters
+   
+        let index_to_delete = encounters_list.findIndex(encounter=>encounter._id==encounter_delete._id)
+   
+        let new_encounter_list=[...encounters_list.slice(0,index_to_delete), ...encounters_list.slice(index_to_delete+1)]
+   
+        this.setState({
+   
+           "encounters":new_encounter_list
+   
+        })
+   
+   
+   
+      }
+
+
+      edit_mode_activated=(encounter)=>{
+        this.setState({
+
+            edit_mode:encounter,
+            edit_sightings_description:encounter.sightings_description
+
+        })
+
+      }
+
+
+    // edit_counter = (encounter_edit) =>{
+
+
+    //     let encounters_list=this.state.encounters
+   
+    //     let index_to_delete = encounters_list.findIndex(encounter=>encounter._id==encounter_delete._id)
+   
+    //     let new_encounter_list=[...encounters_list.slice(0,index_to_delete), ...encounters_list.slice(index_to_delete+1)]
+   
+    //     this.setState({
+   
+    //        "encounters":new_encounter_list
+   
+    //     })
+
+
+
+    // }
+
+
+
+
+    
+    
+
+
+    display_added_encounters(){
+
+        let encounter_jsx=[]
+
+        
+        for(let encounter of this.state.encounters){
+
+            let each_encounter=""
+
+            if(encounter._id!=this.state.edit_mode._id || this.state.edit_mode._id!={}){
+
+                each_encounter = (
+                    <React.Fragment key={encounter._id}>
+                        <div>    
+                        {this.display_edit_form()}
+                        </div>
+                    </React.Fragment>)
+
+            }else{
+
+                each_encounter = (
+                    <React.Fragment key={encounter._id}>
+                        <div>    
+                            {encounter.sightings_description}
+                            <button className="btn btn-success btn-sm" onClick={()=>{this.edit_mode_activated(encounter)}}>Edit</button>
+                            <button className="btn btn-danger btn-sm mx-1" onClick={()=>{this.delete_encounter(encounter)}}>Delete</button>
+                        </div>
+                    </React.Fragment>)
+            }
+
+            encounter_jsx.push(each_encounter)
+            
+        }
+
+
+
+        return encounter_jsx
+
+    }
+
+
+    display_edit_form(){
+
+        return(
+
+            <React.Fragment>
+                    <label>Description</label>
+                    <input type="text" name="edit_sightings_description" className="form-control" value={this.state.edit_sightings_description} onChange={this.update_encounter_field} />
+                    {/* <button className="btn btn-success btn-sm" onClick={this.add_encounter}>Add!</button> */}
+
+
+            </React.Fragment>
+
+        )
+
+    }
 
 
     
