@@ -8,7 +8,8 @@ export default class AddNewCase extends React.Component {
        "encounters":[
                        
                    ],
-        new_sightings_description:""
+        new_sightings_description:"",
+        edit_mode:{}
 
    }
 
@@ -36,18 +37,19 @@ export default class AddNewCase extends React.Component {
 
         let encounter_jsx=[]
 
-        let i=0
+        
         for(let encounter of this.state.encounters){
             let each_encounter = (
                 <React.Fragment key={encounter.temp_id}>
                     <div>    
                         {encounter.sightings_description}
+                        <button className="btn btn-success btn-sm" onClick={()=>{this.edit_encounter(encounter._id)}}>Edit</button>
                         <button className="btn btn-danger btn-sm mx-1" onClick={()=>{this.delete_encounter(encounter._id)}}>Delete</button>
                     </div>
                 </React.Fragment>)
 
             encounter_jsx.push(each_encounter)
-            i++
+            
         }
 
 
@@ -66,7 +68,7 @@ export default class AddNewCase extends React.Component {
     add_encounter=()=>{
 
         let new_encounter={
-            "_id":"front_end_id"+new Date().valueOf(),
+            "_id":"front_end_id"+new Date().valueOf()+"/"+Math.floor(Math.random()*(10000-1000+1)+1000),
             "sightings_description":this.state.new_sightings_description
 
         }
@@ -77,6 +79,10 @@ export default class AddNewCase extends React.Component {
             'encounters': [...this.state.encounters, new_encounter]
         })
     }
+
+
+
+
     
     display_form(){
 
