@@ -27,9 +27,10 @@ export default class GhostHubBase extends React.Component {
 
             "list_cases":<ListCases onEnterEachCase={this.enterEachCase} url_api={this.url_api}/>,
             "each_case":<EachCase onExitEachCase={this.exitEachCase}  onEditEachCase={this.editEachCase} onDeleteEachCase={this.deleteEachCase} each_case_data={this.state.each_case_data} url_api={this.url_api}/>,
-            "add_new_case":<AddNewCase entity_tags_list={this.state.entity_tags_list} url_api={this.url_api} onListCases={this.listCases}/>,
-            "edit_each_case":<EditEachCase/>,
+            "edit_each_case":<EditEachCase entity_tags_list={this.state.entity_tags_list} each_case_data={this.state.each_case_data} url_api={this.url_api} />,
             "delete_each_case":<DeleteEachCase />,
+            "add_new_case":<AddNewCase entity_tags_list={this.state.entity_tags_list} url_api={this.url_api} onListCases={this.listCases}/>,
+               
         
         }
 
@@ -67,10 +68,16 @@ export default class GhostHubBase extends React.Component {
 
     }
 
-    editEachCase=()=>{
+    editEachCase= async(case_id)=>{
+
+        let response = await axios.get(this.url_api + "/case/"+case_id)
+        console.log(case_id) 
+        console.log(response.data)
+
         this.setState({
 
-            "displaying":"edit_each_case"
+            "displaying":"edit_each_case",
+            "each_case_data":response.data
 
 
         })

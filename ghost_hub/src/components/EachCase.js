@@ -31,7 +31,7 @@ export default class EachCase extends React.Component {
                                                           
                     </ul>
                     <button className="btn btn-success btn-sm" onClick={this.props.onExitEachCase}>Back</button>
-                    <button className="btn btn-success btn-sm" onClick={this.props.onEditEachCase}>Edit</button>
+                    <button className="btn btn-success btn-sm" onClick={()=>{this.props.onEditEachCase(each_case._id)}}>Edit</button>
                     <button className="btn btn-success btn-sm" onClick={this.props.onDeleteEachCase}>Delete</button>
                 </div>
             </React.Fragment>
