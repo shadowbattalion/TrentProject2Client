@@ -33,7 +33,7 @@ export default class AddNewCase extends React.Component {
         "edit_equipment_used":[],
         "edit_contact_type":[],
         "edit_number_of_entities":0,
-        "edit_time_of_encounter":"",
+        "edit_time_of_encounter":""
 
    }
 
@@ -43,7 +43,6 @@ export default class AddNewCase extends React.Component {
     let entity_tags_list_jsx = []
 
     for (let entity_tag of this.props.entity_tags_list){
-        console.log(entity_tag)
         entity_tags_list_jsx.push(<option value={entity_tag.entity}>{entity_tag.entity}</option>)
     }
 
@@ -124,7 +123,12 @@ export default class AddNewCase extends React.Component {
                 each_encounter = (
                     <React.Fragment key={encounter._id}>
                         <div>    
+                            {encounter.images}
                             {encounter.sightings_description}
+                            {encounter.equipment_used}
+                            {encounter.contact_type}
+                            {encounter.number_of_entities}
+                            {encounter.time_of_encounter}
                             <button className="btn btn-success btn-sm" onClick={()=>{this.edit_mode_activated(encounter)}}>Edit</button>
                             <button className="btn btn-danger btn-sm mx-1" onClick={()=>{this.delete_encounter(encounter)}}>Delete</button>
                         </div>
@@ -149,8 +153,42 @@ export default class AddNewCase extends React.Component {
         return(
 
             <React.Fragment>
-                    <label>Description</label>
-                    <input type="text" name="edit_sightings_description" className="form-control" value={this.state.edit_sightings_description} onChange={this.update_any_field} />
+                <label>Images</label>
+                <input type="text" name="edit_images" className="form-control" value={this.state.edit_images} onChange={this.update_any_field} />
+                <label>Description</label>
+                <input type="text" name="edit_sightings_description" className="form-control" value={this.state.edit_sightings_description} onChange={this.update_any_field} />
+                <label>Equipment Used</label>
+                <select onChange={this.update_multivalue_field}  value={this.state.edit_equipment_used} name="edit_equipment_used" className="form-select" multiple aria-label="multiple select example">   
+                        <option value="Phone Camera">Phone Camera</option>
+                        <option value="Camera (fixed)">Camera (fixed)</option>
+                        <option value="Camera (portable)">Camera (portable)</option>
+                        <option value="Voice Recorder">Voice Recorder</option>
+                        <option value="EMF Recorder">EMF Recorder</option>
+                        <option value="Thermal Camera">Thermal Camera</option>
+                        <option value="Spirit Box">Spirit Box</option> 
+                        <option value="Others">Others</option>
+                        <option value="None">None</option>
+                </select>
+                <label>Contact Type</label>
+                <select onChange={this.update_multivalue_field}  value={this.state.edit_contact_type} name="edit_contact_type" className="form-select" multiple aria-label="multiple select example">   
+                        <option value="Visual">Visual</option>
+                        <option value="Audio">Audio</option>
+                        <option value="Verbal">Verbal</option>
+                        <option value="Feel">Feel</option>
+                </select>
+                <label>Number of Entities Encountered</label>
+                <input type="text" name="edit_number_of_entities" className="form-control" value={this.state.edit_number_of_entities} onChange={this.update_any_field} />
+                <label>Time of Encounter</label>
+                <select onChange={this.update_any_field}  value={this.state.edit_time_of_encounter} name="edit_time_of_encounter" className="form-select" aria-label="Default select example">   
+                        <option value="Early Morning">Early Morning</option>
+                        <option value="Dawn">Dawn</option>
+                        <option value="Morning">Morning</option>
+                        <option value="Midday">Midday</option>
+                        <option value="Afternoon">Afternoon</option>
+                        <option value="Dusk">Dusk</option>
+                        <option value="Evening">Evening</option>
+                        <option value="Midnight">Midnight</option>
+                </select>
                     <button className="btn btn-success btn-sm" onClick={this.edit_encounter}>Done!</button>
 
 
@@ -207,18 +245,7 @@ export default class AddNewCase extends React.Component {
                 
                 <button className="btn btn-success btn-sm" onClick={this.add_encounter}>Add!</button>
 
-                
- 
-    {/* 
-    //                        
-    //                         "time_of_encounter":"midday" */}
-
-            </React.Fragment>
-
-        )
-
-
-
+            </React.Fragment>)
 
     }
 
@@ -271,7 +298,13 @@ export default class AddNewCase extends React.Component {
         this.state.new_sightings_description=""
         
         this.setState({
-            'encounters': [...this.state.encounters, new_encounter]
+            "encounters": [...this.state.encounters, new_encounter],
+            "new_images":[],
+            "new_sightings_description":"",
+            "new_equipment_used":[],
+            "new_contact_type":[],
+            "new_number_of_entities":0,
+            "new_time_of_encounter":""
         })
     }
 
@@ -298,8 +331,13 @@ export default class AddNewCase extends React.Component {
     edit_mode_activated=(encounter)=>{
         this.setState({
 
-            edit_mode:encounter,
-            edit_sightings_description:encounter.sightings_description
+            "edit_mode":encounter,
+            "edit_images":encounter.images,
+            "edit_sightings_description":encounter.sightings_description,  
+            "edit_equipment_used":encounter.equipment_used,
+            "edit_contact_type":encounter.contact_type,
+            "edit_number_of_entities":encounter.number_of_entities,
+            "edit_time_of_encounter":encounter.time_of_encounter
 
         })
 
@@ -331,7 +369,13 @@ export default class AddNewCase extends React.Component {
             "encounters": updated_encounters,
             'edit_mode':{
                 '_id':0
-            }
+            },
+            "edit_images":[],
+            "edit_sightings_description":"",
+            "edit_equipment_used":[],
+            "edit_contact_type":[],
+            "edit_number_of_entities":0,
+            "edit_time_of_encounter":""
         })
 
 
