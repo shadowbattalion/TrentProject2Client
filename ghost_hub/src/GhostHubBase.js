@@ -70,14 +70,17 @@ export default class GhostHubBase extends React.Component {
 
     editEachCase= async(case_id)=>{
 
-        let response = await axios.get(this.url_api + "/case/"+case_id)
+        let response_case = await axios.get(this.url_api + "/case/"+case_id)
         console.log(case_id) 
-        console.log(response.data)
+        console.log(response_case.data)
+        let response_entity_tags = await axios.get(this.url_api + "/list_entity_tags") 
+        
 
         this.setState({
 
             "displaying":"edit_each_case",
-            "each_case_data":response.data
+            "each_case_data":response_case.data,
+            "entity_tags_list":response_entity_tags.data
 
 
         })

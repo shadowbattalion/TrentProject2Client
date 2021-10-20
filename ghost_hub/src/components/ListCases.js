@@ -10,7 +10,7 @@ export default class ListCases extends React.Component {
         ]
     }
 
-    async componentDidMount(){
+    componentDidMount=async()=>{
         let response = await axios.get(this.url_api + "/cases")
         this.setState({
             'api_data': response.data

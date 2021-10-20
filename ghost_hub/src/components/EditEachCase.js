@@ -6,7 +6,7 @@ export default class EditEachCase extends React.Component {
 
     state = {
         "email_address":"",
-        "display_name":this.props.each_case_data.display_name,
+        "display_name":"",
         "occupation":"",
         "age":"",
         "company_name":"",
@@ -425,35 +425,40 @@ export default class EditEachCase extends React.Component {
 
 
     }
-
     
-    // state_initializer=()=>{
-    //     this.setState({
+        
 
-    //         "display_name":"test"
+      componentDidMount= async() => {
+        this.setState({
 
-    //         // this.props.each_case_data.display_name
+            
+            "email_address":this.props.each_case_data[1].email_address,
+            "display_name":this.props.each_case_data[1].display_name,
+            "occupation":this.props.each_case_data[1].occupation,
+            "age":this.props.each_case_data[1].age,
+            "company_name":this.props.each_case_data[1].company_name,
+            "case_title":this.props.each_case_data[0].case_title,
+            "generic_description":this.props.each_case_data[0].generic_description,
+            "location":this.props.each_case_data[0].location,
+            "date":this.props.each_case_data[0].date,
+            "entity_tags":this.props.each_case_data[0].entity_tags,
+            "type_of_activity":this.props.each_case_data[0].type_of_activity,
+            "encounters":this.props.each_case_data[0].encounters
+            
 
 
-    //     })
+        })
+    }
 
-
-    // }
-
+   
 
 
     render() {
               
         return (<React.Fragment>
-            {/* {this.state_initializer()}
-            {this.setState({
-
-                "display_name":"test"
-
-                    // this.props.each_case_data.display_name
-            })} */}
-            <h1>Add a Case</h1>
-            {console.log(this.props.each_case_data[0])}
+            
+            <h1>Edit Case</h1>
+            {/* {this.state_initializer()} */}
             {this.display_form_main()}
             {this.display_added_encounters()}
             {this.display_form_encounters()}
