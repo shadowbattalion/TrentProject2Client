@@ -2,7 +2,7 @@ import React from 'react'
 import axios from 'axios'
 export default class DeleteEachCase extends React.Component {
 
-    url_api = ""
+    url_api = this.props.url_api
 
     state = {
         'api_data': [

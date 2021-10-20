@@ -10,6 +10,8 @@ import EditEachCase from './components/EditEachCase.js'
 
 export default class GhostHubBase extends React.Component {
 
+    url_api = "https://3002-peach-possum-1zbabb9y.ws-us17.gitpod.io"
+
     state = {
         "displaying": "list_cases",
         "each_case_data":0,
@@ -23,9 +25,9 @@ export default class GhostHubBase extends React.Component {
 
         let active_display_panel={
 
-            "list_cases":<ListCases onEnterEachCase={this.enterEachCase}/>,
-            "each_case":<EachCase onExitEachCase={this.exitEachCase}  onEditEachCase={this.editEachCase} onDeleteEachCase={this.deleteEachCase} each_case_data={this.state.each_case_data}/>,
-            "add_new_case":<AddNewCase entity_tags_list={this.state.entity_tags_list}/>,
+            "list_cases":<ListCases onEnterEachCase={this.enterEachCase} url_api={this.url_api}/>,
+            "each_case":<EachCase onExitEachCase={this.exitEachCase}  onEditEachCase={this.editEachCase} onDeleteEachCase={this.deleteEachCase} each_case_data={this.state.each_case_data} url_api={this.url_api}/>,
+            "add_new_case":<AddNewCase entity_tags_list={this.state.entity_tags_list} url_api={this.url_api} onListCases={this.listCases}/>,
             "edit_each_case":<EditEachCase/>,
             "delete_each_case":<DeleteEachCase />,
         
@@ -38,8 +40,8 @@ export default class GhostHubBase extends React.Component {
 
     enterEachCase= async (case_id)=>{
 
-        let url_api= "https://3002-peach-possum-1zbabb9y.ws-us17.gitpod.io/"
-        let response = await axios.get(url_api + "case/"+case_id) 
+        
+        let response = await axios.get(this.url_api + "/case/"+case_id) 
         
 
 
@@ -95,7 +97,7 @@ export default class GhostHubBase extends React.Component {
         
         this.setState({
 
-            "entity_tags_list":"list_cases"
+            "displaying":"list_cases"
 
         })
 
@@ -104,8 +106,7 @@ export default class GhostHubBase extends React.Component {
 
     addNewCase= async()=>{
 
-        let url_api= "https://3002-peach-possum-1zbabb9y.ws-us17.gitpod.io/"
-        let response = await axios.get(url_api + "list_entity_tags") 
+        let response = await axios.get(this.url_api + "/list_entity_tags") 
 
         this.setState({
             "displaying":'add_new_case',

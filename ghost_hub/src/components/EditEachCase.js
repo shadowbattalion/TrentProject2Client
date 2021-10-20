@@ -2,7 +2,7 @@ import React from 'react'
 import axios from 'axios'
 export default class EditEachCase extends React.Component {
 
-    url_api = ""
+    url_api = this.props.url_api
 
     state = {
        "encounters":[

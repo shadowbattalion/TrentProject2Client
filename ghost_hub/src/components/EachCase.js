@@ -2,7 +2,7 @@ import React from 'react'
 import axios from 'axios'
 export default class EachCase extends React.Component {
 
-    url_api = "https://3002-peach-possum-1zbabb9y.ws-us17.gitpod.io/"
+    url_api = this.props.url_api
 
     state = {
         'api_data': [
@@ -24,10 +24,8 @@ export default class EachCase extends React.Component {
                     <ul>
                         <li>Title: {each_case.case_title}</li>
                         <li>Description: {each_case.generic_description}</li>
-                        <li>Rating: {each_case.rating}</li>
                         <li>Date: {each_case.date}</li>
                         <li>{witness.occupation}</li>
-                        <li>{witness.gender}</li>
                         <li>{witness.age}</li>
                         <li>{witness.display_name}</li>
                                                           

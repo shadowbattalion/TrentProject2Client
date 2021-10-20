@@ -2,7 +2,7 @@ import React from 'react'
 import axios from 'axios'
 export default class ListCases extends React.Component {
 
-    url_api = "https://3002-peach-possum-1zbabb9y.ws-us17.gitpod.io/"
+    url_api = this.props.url_api
 
     state = {
         'api_data': [
@@ -11,7 +11,7 @@ export default class ListCases extends React.Component {
     }
 
     async componentDidMount(){
-        let response = await axios.get(this.url_api + "cases")
+        let response = await axios.get(this.url_api + "/cases")
         this.setState({
             'api_data': response.data
         })

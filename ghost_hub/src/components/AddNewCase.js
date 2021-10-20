@@ -2,7 +2,7 @@ import React from 'react'
 import axios from 'axios'
 export default class AddNewCase extends React.Component {
 
-    url_api = ""
+    url_api = this.props.url_api
 
     state = {
         "email_address":"",
@@ -286,7 +286,7 @@ export default class AddNewCase extends React.Component {
 
         let new_encounter={
             "_id":"front_end_id"+new Date().valueOf()+"/"+Math.floor(Math.random()*(10000-1000+1)+1000),
-            "images":this.state.new_images,
+            "images":this.state.new_images.split(","),
             "sightings_description":this.state.new_sightings_description,
             "equipment_used":this.state.new_equipment_used,
             "contact_type":this.state.new_contact_type,
@@ -351,7 +351,7 @@ export default class AddNewCase extends React.Component {
         let edited_encounter = {
             
             "_id":this.state.edit_mode._id,
-            "images":this.state.edit_images,
+            "images":this.state.edit_images.split(","),
             "sightings_description":this.state.edit_sightings_description,
             "equipment_used":this.state.edit_equipment_used,
             "contact_type":this.state.edit_contact_type,
@@ -384,6 +384,33 @@ export default class AddNewCase extends React.Component {
 
 
 
+    submit= async ()=>{
+
+        let add_case = await axios.post(this.url_api + '/add_case', {
+            "witness":{
+                        "email_address":this.state.email_address,
+                        "display_name":this.state.display_name,
+                        "occupation":this.state.occupation,
+                        "age":this.state.age,
+                        "company_name":this.state.company_name
+                    },
+            "case": {
+                        "case_title":this.state.case_title,
+                        "generic_description":this.state.generic_description,
+                        "type_of_activity":this.state.type_of_activity,
+                        "location":this.state.location,
+                        "date":this.state.date,
+                        "entity_tags":this.state.entity_tags
+                    },
+            "encounters":this.state.encounters
+        })
+        
+        console.log("Submitted!")
+        this.props.onListCases()
+
+
+
+    }
 
     
     
@@ -396,6 +423,7 @@ export default class AddNewCase extends React.Component {
             {this.display_form_main()}
             {this.display_added_encounters()}
             {this.display_form_encounters()}
+            <button className="btn btn-success btn-sm" onClick={this.submit}>Submit Case!</button>
         </React.Fragment>)
     }
 
