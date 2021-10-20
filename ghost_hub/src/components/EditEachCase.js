@@ -117,21 +117,21 @@ export default class EditEachCase extends React.Component {
                     </React.Fragment>)
                 
             }else{
-
-                each_encounter = (
-                    <React.Fragment key={encounter._id}>
-                        <div>    
-                            {encounter.images}
-                            {encounter.sightings_description}
-                            {encounter.equipment_used}
-                            {encounter.contact_type}
-                            {encounter.number_of_entities}
-                            {encounter.time_of_encounter}
-                            <button className="btn btn-success btn-sm" onClick={()=>{this.edit_mode_activated(encounter)}}>Edit</button>
-                            <button className="btn btn-danger btn-sm mx-1" onClick={()=>{this.delete_encounter(encounter)}}>Delete</button>
-                        </div>
-                    </React.Fragment>)
-
+                if(Object.keys(encounter).length!=1){
+                    each_encounter = (
+                        <React.Fragment key={encounter._id}>
+                            <div>    
+                                {encounter.images}
+                                {encounter.sightings_description}
+                                {encounter.equipment_used}
+                                {encounter.contact_type}
+                                {encounter.number_of_entities}
+                                {encounter.time_of_encounter}
+                                <button className="btn btn-success btn-sm" onClick={()=>{this.edit_mode_activated(encounter)}}>Edit</button>
+                                <button className="btn btn-danger btn-sm mx-1" onClick={()=>{this.delete_encounter(encounter)}}>Delete</button>
+                            </div>
+                        </React.Fragment>)
+                }
 
             }
 
@@ -314,6 +314,7 @@ export default class EditEachCase extends React.Component {
         let index_to_delete = encounters_list.findIndex(encounter=>encounter._id==encounter_delete._id)
    
         let new_encounter_list=[...encounters_list.slice(0,index_to_delete), ...encounters_list.slice(index_to_delete+1)]
+        new_encounter_list=[...new_encounter_list, {"_id":encounter_delete._id}] // to indicate deleted encounter
    
         this.setState({
    
