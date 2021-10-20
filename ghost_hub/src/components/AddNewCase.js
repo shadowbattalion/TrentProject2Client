@@ -16,9 +16,7 @@ export default class AddNewCase extends React.Component {
         "date":"",
         "entity_tags":[],
         "type_of_activity":"others",
-        "encounters":[
-                       
-                   ],
+        "encounters":[],
         "new_images":[],
         "new_sightings_description":"",
         "new_equipment_used":[],
@@ -43,7 +41,7 @@ export default class AddNewCase extends React.Component {
     let entity_tags_list_jsx = []
 
     for (let entity_tag of this.props.entity_tags_list){
-        entity_tags_list_jsx.push(<option value={entity_tag.entity}>{entity_tag.entity}</option>)
+        entity_tags_list_jsx.push(<option value={entity_tag._id}>{entity_tag.entity}</option>)
     }
 
 
@@ -382,26 +380,42 @@ export default class AddNewCase extends React.Component {
 
     }
 
-
+    // "witness":{
+    //     "email_address":this.state.email_address,
+    //     "display_name":this.state.display_name,
+    //     "occupation":this.state.occupation,
+    //     "age":this.state.age,
+    //     "company_name":this.state.company_name
+    //     },
+    // "case": {
+    //         "case_title":this.state.case_title,
+    //         "generic_description":this.state.generic_description,
+    //         "type_of_activity":this.state.type_of_activity,
+    //         "location":this.state.location,
+    //         "date":this.state.date,
+    //         "entity_tags":this.state.entity_tags
+    //     },
+    // "encounters":this.state.encounters
 
     submit= async ()=>{
 
         let add_case = await axios.post(this.url_api + '/add_case', {
+
             "witness":{
-                        "email_address":this.state.email_address,
-                        "display_name":this.state.display_name,
-                        "occupation":this.state.occupation,
-                        "age":this.state.age,
-                        "company_name":this.state.company_name
-                    },
+                "email_address":this.state.email_address,
+                "display_name":this.state.display_name,
+                "occupation":this.state.occupation,
+                "age":this.state.age,
+                "company_name":this.state.company_name
+                },
             "case": {
-                        "case_title":this.state.case_title,
-                        "generic_description":this.state.generic_description,
-                        "type_of_activity":this.state.type_of_activity,
-                        "location":this.state.location,
-                        "date":this.state.date,
-                        "entity_tags":this.state.entity_tags
-                    },
+                "case_title":this.state.case_title,
+                "generic_description":this.state.generic_description,
+                "type_of_activity":this.state.type_of_activity,
+                "location":this.state.location,
+                "date":this.state.date,
+                "entity_tags":this.state.entity_tags
+                },
             "encounters":this.state.encounters
         })
         
