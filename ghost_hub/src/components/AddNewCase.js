@@ -182,23 +182,23 @@ export default class AddNewCase extends React.Component {
 
     update_multivalue_field=(e)=>{
 
-        let entity_tags_chosen=this.state[evt.target.name]
+        let entity_tags_chosen=this.state[e.target.name]
 
-        let cloned =[]
+        let updated_entity_tags_chosen = []
 
-        if(arrayToModify.includes(evt.target.value)){
+        if(entity_tags_chosen.includes(e.target.value)){
 
-            let indexToRemove = arrayToModify.indexOf(evt.target.value)
-            cloned = [...arrayToModify.slice(0,indexToRemove), ...arrayToModify.slice(indexToRemove+1)]
+            let unchosen_index = entity_tags_chosen.indexOf(e.target.value)
+            cloned = [...entity_tags_chosen.slice(0,unchosen_index), ...entity_tags_chosen.slice(unchosen_index+1)]
         } else {
 
-            cloned = [...arrayToModify, evt.target.value]
+            cloned = [...entity_tags_chosen, e.target.value]
         
         }
 
         this.setState({
 
-            [evt.target.name]:cloned
+            [e.target.name]:updated_entity_tags_chosen
 
         })
 
