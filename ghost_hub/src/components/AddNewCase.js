@@ -17,7 +17,7 @@ export default class AddNewCase extends React.Component {
         "entity_tags":[],
         "type_of_activity":"others",
         "encounters":[],
-        "new_images":[],
+        "new_image":"",
         "new_sightings_description":"",
         "new_equipment_used":[],
         "new_contact_type":[],
@@ -26,7 +26,7 @@ export default class AddNewCase extends React.Component {
         "edit_mode":{
             "_id":0
         },
-        "edit_images":[],
+        "edit_image":"",
         "edit_sightings_description":"",
         "edit_equipment_used":[],
         "edit_contact_type":[],
@@ -121,7 +121,7 @@ export default class AddNewCase extends React.Component {
                 each_encounter = (
                     <React.Fragment key={encounter._id}>
                         <div>    
-                            {encounter.images}
+                            {encounter.image}
                             {encounter.sightings_description}
                             {encounter.equipment_used}
                             {encounter.contact_type}
@@ -151,8 +151,8 @@ export default class AddNewCase extends React.Component {
         return(
 
             <React.Fragment>
-                <label>Images</label>
-                <input type="text" name="edit_images" className="form-control" value={this.state.edit_images} onChange={this.update_any_field} />
+                <label>Image</label>
+                <input type="text" name="edit_image" className="form-control" value={this.state.edit_image} onChange={this.update_any_field} />
                 <label>Description</label>
                 <input type="text" name="edit_sightings_description" className="form-control" value={this.state.edit_sightings_description} onChange={this.update_any_field} />
                 <label>Equipment Used</label>
@@ -204,8 +204,8 @@ export default class AddNewCase extends React.Component {
 
         return(
             <React.Fragment>
-                <label>Images</label>
-                <input type="text" name="new_images" className="form-control" value={this.state.new_images} onChange={this.update_any_field} />
+                <label>Image</label>
+                <input type="text" name="new_image" className="form-control" value={this.state.new_image} onChange={this.update_any_field} />
                 <label>Description</label>
                 <input type="text" name="new_sightings_description" className="form-control" value={this.state.new_sightings_description} onChange={this.update_any_field} />
                 <label>Equipment Used</label>
@@ -284,7 +284,7 @@ export default class AddNewCase extends React.Component {
 
         let new_encounter={
             "_id":"front_end_id"+new Date().valueOf()+"/"+Math.floor(Math.random()*(10000-1000+1)+1000),
-            "images":this.state.new_images.split(","),
+            "image":this.state.new_image,
             "sightings_description":this.state.new_sightings_description,
             "equipment_used":this.state.new_equipment_used,
             "contact_type":this.state.new_contact_type,
@@ -297,7 +297,7 @@ export default class AddNewCase extends React.Component {
         
         this.setState({
             "encounters": [...this.state.encounters, new_encounter],
-            "new_images":[],
+            "new_image":"",
             "new_sightings_description":"",
             "new_equipment_used":[],
             "new_contact_type":[],
@@ -330,7 +330,7 @@ export default class AddNewCase extends React.Component {
         this.setState({
 
             "edit_mode":encounter,
-            "edit_images":encounter.images,
+            "edit_image":encounter.image,
             "edit_sightings_description":encounter.sightings_description,  
             "edit_equipment_used":encounter.equipment_used,
             "edit_contact_type":encounter.contact_type,
@@ -349,7 +349,7 @@ export default class AddNewCase extends React.Component {
         let edited_encounter = {
             
             "_id":this.state.edit_mode._id,
-            "images":this.state.edit_images.split(","),
+            "image":this.state.edit_image,
             "sightings_description":this.state.edit_sightings_description,
             "equipment_used":this.state.edit_equipment_used,
             "contact_type":this.state.edit_contact_type,
@@ -368,7 +368,7 @@ export default class AddNewCase extends React.Component {
             'edit_mode':{
                 '_id':0
             },
-            "edit_images":[],
+            "edit_image":"",
             "edit_sightings_description":"",
             "edit_equipment_used":[],
             "edit_contact_type":[],
