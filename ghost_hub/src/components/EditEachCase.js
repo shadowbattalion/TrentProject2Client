@@ -187,7 +187,7 @@ export default class EditEachCase extends React.Component {
                         <option value="Evening">Evening</option>
                         <option value="Midnight">Midnight</option>
                 </select>
-                    <button className="btn btn-success btn-sm" onClick={this.edit_encounter}>Done!</button>
+                <button className="btn btn-success btn-sm" onClick={this.edit_encounter}>Done!</button>
 
 
             </React.Fragment>
