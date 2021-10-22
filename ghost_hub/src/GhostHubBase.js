@@ -5,7 +5,7 @@ import AddNewCase from './components/AddNewCase.js'
 import EachCase from './components/EachCase.js'
 import DeleteEachCase from './components/DeleteEachCase.js'
 import EditEachCase from './components/EditEachCase.js'
-
+import NotificationPanel from './components/NotificationPanel.js'
 
 
 export default class GhostHubBase extends React.Component {
@@ -14,7 +14,8 @@ export default class GhostHubBase extends React.Component {
 
     state = {
         "displaying": "list_cases",
-        "case_id":""
+        "case_id":"",
+        "notification_message":""
     }
 
 
@@ -27,6 +28,7 @@ export default class GhostHubBase extends React.Component {
             "edit_each_case":<EditEachCase onEnterEachCase={this.enterEachCase} url_api={this.url_api} case_id={this.state.case_id} />,
             "delete_each_case":<DeleteEachCase />,
             "add_new_case":<AddNewCase onListCases={this.listCases} url_api={this.url_api} />,
+            // "notification_panel":<NotificationPanel />
                
         
         }
@@ -42,7 +44,8 @@ export default class GhostHubBase extends React.Component {
         this.setState({
 
             "displaying":"each_case",
-            "case_id":case_id
+            "case_id":case_id,
+            "notification_message":"Each Case"
 
         })
 
@@ -107,9 +110,29 @@ export default class GhostHubBase extends React.Component {
 
     }
 
+
+
+    // panel= async(content,color)=>{
+
+    //     this.setState({
+    //         "displaying":'add_new_case',
+    //         "panel_content":content,
+    //         "panel_color":color
+    //     })
+
+    // }
+
+
+
     render(){
+
+        
+
+
+
         return(
             <React.Fragment>
+            <NotificationPanel message={this.state.notification_message}/>
             <ul className="nav nav-tabs">
                 <li className="nav-item">
                 <button className={(this.state.displaying === 'list_cases') ? 'nav-link active' : 'nav-link'} onClick={this.listCases}>List Cases</button>
