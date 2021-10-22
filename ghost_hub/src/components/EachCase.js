@@ -2,9 +2,10 @@ import React from 'react'
 import axios from 'axios'
 export default class EachCase extends React.Component {
 
-    url_api = this.props.url_api
 
     state = {
+        "case":{},
+        "witness":{},
         "comments":[],
         "new_content":"",
         "new_like":false,
@@ -15,28 +16,27 @@ export default class EachCase extends React.Component {
         "edit_like":false,
     }
 
-   
+    
 
     display_api_data(){
     
-        let each_case = this.props.each_case_data[0]
-        let witness = this.props.each_case_data[1]
         
+        console.log(this.state.case)
 
         let each_case_jsx=(
             <React.Fragment>
                 <div>
                     <ul>
-                        <li>Title: {each_case.case_title}</li>
-                        <li>Description: {each_case.generic_description}</li>
-                        <li>Date: {each_case.date}</li>
-                        <li>{witness.occupation}</li>
-                        <li>{witness.age}</li>
-                        <li>{witness.display_name}</li>
+                        <li>Title: {this.state.case.case_title}</li>
+                        <li>Description: {this.state.case.generic_description}</li>
+                        <li>Date: {this.state.case.date}</li>
+                        <li>{this.state.witness.occupation}</li>
+                        <li>{this.state.witness.age}</li>
+                        <li>{this.state.witness.display_name}</li>
                                                           
                     </ul>
                     <button className="btn btn-success btn-sm" onClick={this.props.onExitEachCase}>Back</button>
-                    <button className="btn btn-success btn-sm" onClick={()=>{this.props.onEditEachCase(each_case._id)}}>Edit</button>
+                    <button className="btn btn-success btn-sm" onClick={()=>{this.props.onEditEachCase(this.state.case._id)}}>Edit</button>
                     <button className="btn btn-success btn-sm" onClick={this.props.onDeleteEachCase}>Delete</button>
                 </div>
             </React.Fragment>
@@ -238,6 +238,18 @@ export default class EachCase extends React.Component {
 
 
     }
+
+
+    componentDidMount= async() => {
+
+        let response = await axios.get(this.props.url_api + "/case/"+this.props.case_id) 
+
+        this.setState({
+            "case":response.data[0],
+            "witness":response.data[1],
+        })
+    }
+
 
     render() {
         return (<React.Fragment>

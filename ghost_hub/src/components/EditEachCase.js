@@ -5,6 +5,7 @@ export default class EditEachCase extends React.Component {
     url_api = this.props.url_api
 
     state = {
+        "entity_tags_list":[],
         "email_address":"",
         "display_name":"",
         "occupation":"",
@@ -33,62 +34,52 @@ export default class EditEachCase extends React.Component {
         "edit_number_of_entities":0,
         "edit_time_of_encounter":""
 
-   }
-
-   display_form_main(){
-
-    
-    let entity_tags_list_jsx = []
-
-    for (let entity_tag of this.props.entity_tags_list){
-        entity_tags_list_jsx.push(<option value={entity_tag._id}>{entity_tag.entity}</option>)
     }
 
+    
 
-    return(
-        <React.Fragment>
-            <main>
-                <h2>Witness Particulars</h2>
-                <div id="witness">
-                    <label>Display Name</label>
-                    <input type="text" name="display_name" className="form-control" value={this.state.display_name} onChange={this.update_any_field} />
-                    <label>Ocupation</label>
-                    <input type="text" name="occupation" className="form-control" value={this.state.occupation} onChange={this.update_any_field} />
-                    <label>Age</label>
-                    <input type="text" name="age" className="form-control" value={this.state.age} onChange={this.update_any_field} />
-                    <label>Company Name</label>
-                    <input type="text" name="company_name" className="form-control" value={this.state.company_name} onChange={this.update_any_field} />
-                    <label>Email address</label>
-                    <input type="text" name="email_address" className="form-control" value={this.state.email_address} onChange={this.update_any_field} />
-                </div>
-                <div id="case">
-                    <h2>Case Details</h2>
-                    <label>Title</label>
-                        <input type="text" name="case_title" className="form-control" value={this.state.case_title} onChange={this.update_any_field} />
-                    <label>Description</label>
-                        <input type="text" name="generic_description" className="form-control" value={this.state.generic_description} onChange={this.update_any_field} />
-                    <label>Location</label>
-                        <input type="text" name="location" className="form-control" value={this.state.location} onChange={this.update_any_field} />
-                    <label>Date Of Incident: </label>
-                        <input type="date" name="date" className="" value={this.state.date} onChange={this.update_any_field} />
-                    <label>Activity:</label>
-                    <select onChange={this.update_any_field}  value={this.state.type_of_activity} name="type_of_activity" className="form-select" aria-label="Default select example">   
-                        <option value="accidental">Accidental</option>
-                        <option value="urbex">UrbEx</option>
-                        <option value="solo">Solo</option>
-                        <option value="paranormal_investigation">Paranormal Investigation</option>
-                        <option value="others">Others</option>
-                    </select>
-                    <label>Entity Tags:</label>
-                    <select onChange={this.update_multivalue_field}  value={this.state.entity_tags} name="entity_tags" className="form-select" multiple aria-label="multiple select example">
-                        {entity_tags_list_jsx}
-                    </select>
 
-                </div>
-            </main>
-        </React.Fragment>
+    display_form_main(){
 
-    )
+        
+        let entity_tags_list_jsx = []
+
+        for (let entity_tag of this.state.entity_tags_list){
+            entity_tags_list_jsx.push(<option value={entity_tag._id}>{entity_tag.entity}</option>)
+        }
+
+
+        return(
+            <React.Fragment>
+                <main>
+                    <div id="case">
+                        <h2>Case Details</h2>
+                        <label>Title</label>
+                            <input type="text" name="case_title" className="form-control" value={this.state.case_title} onChange={this.update_any_field} />
+                        <label>Description</label>
+                            <input type="text" name="generic_description" className="form-control" value={this.state.generic_description} onChange={this.update_any_field} />
+                        <label>Location</label>
+                            <input type="text" name="location" className="form-control" value={this.state.location} onChange={this.update_any_field} />
+                        <label>Date Of Incident: </label>
+                            <input type="date" name="date" className="" value={this.state.date} onChange={this.update_any_field} />
+                        <label>Activity:</label>
+                        <select onChange={this.update_any_field}  value={this.state.type_of_activity} name="type_of_activity" className="form-select" aria-label="Default select example">   
+                            <option value="accidental">Accidental</option>
+                            <option value="urbex">UrbEx</option>
+                            <option value="solo">Solo</option>
+                            <option value="paranormal_investigation">Paranormal Investigation</option>
+                            <option value="others">Others</option>
+                        </select>
+                        <label>Entity Tags:</label>
+                        <select onChange={this.update_multivalue_field}  value={this.state.entity_tags} name="entity_tags" className="form-select" multiple aria-label="multiple select example">
+                            {entity_tags_list_jsx}
+                        </select>
+
+                    </div>
+                </main>
+            </React.Fragment>
+
+        )
 
    }
 
@@ -414,7 +405,7 @@ export default class EditEachCase extends React.Component {
         })
         
         console.log("Submitted!")
-        this.props.onListCases()
+        this.props.onEnterEachCase(this.props.case_id)
 
 
 
@@ -422,27 +413,39 @@ export default class EditEachCase extends React.Component {
     
         
 
-      componentDidMount= async() => {
-          console.log(this.props.each_case_data[0].entity_tags.map(entity_tag=>entity_tag._id))
+    componentDidMount= async() => {
+
+        let response = await axios.get(this.props.url_api + "/case/"+this.props.case_id)
+        console.log(response.data[0])
         this.setState({
 
             
-            "email_address":this.props.each_case_data[1].email_address,
-            "display_name":this.props.each_case_data[1].display_name,
-            "occupation":this.props.each_case_data[1].occupation,
-            "age":this.props.each_case_data[1].age,
-            "company_name":this.props.each_case_data[1].company_name,
-            "case_title":this.props.each_case_data[0].case_title,
-            "generic_description":this.props.each_case_data[0].generic_description,
-            "location":this.props.each_case_data[0].location,
-            "date":this.props.each_case_data[0].date,
-            "entity_tags":this.props.each_case_data[0].entity_tags.map(entity_tag=>entity_tag._id),
-            "type_of_activity":this.props.each_case_data[0].type_of_activity,
-            "encounters":this.props.each_case_data[0].encounters
+            "email_address":response.data[1].email_address,
+            "display_name":response.data[1].display_name,
+            "occupation":response.data[1].occupation,
+            "age":response.data[1].age,
+            "company_name":response.data[1].company_name,
+            "case_title":response.data[0].case_title,
+            "generic_description":response.data[0].generic_description,
+            "location":response.data[0].location,
+            "date":response.data[0].date,
+            "entity_tags":response.data[0].entity_tags.map(entity_tag=>entity_tag._id),
+            "type_of_activity":response.data[0].type_of_activity,
+            "encounters":response.data[0].encounters
             
 
 
         })
+
+        let entity_tags = await axios.get(this.props.url_api + "/list_entity_tags") 
+        
+        this.setState({
+
+            "entity_tags_list":entity_tags.data
+
+
+        })
+
     }
 
    
@@ -451,9 +454,7 @@ export default class EditEachCase extends React.Component {
     render() {
         console.log(this.props.case_id)  
         return (<React.Fragment>
-            
             <h1>Edit Case</h1>
-            {/* {this.state_initializer()} */}
             {this.display_form_main()}
             {this.display_added_encounters()}
             {this.display_form_encounters()}
