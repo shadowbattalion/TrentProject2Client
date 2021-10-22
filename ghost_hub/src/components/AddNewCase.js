@@ -5,6 +5,7 @@ export default class AddNewCase extends React.Component {
     url_api = this.props.url_api
 
     state = {
+        "entity_tags_list":[],
         "email_address":"",
         "display_name":"",
         "occupation":"",
@@ -35,60 +36,59 @@ export default class AddNewCase extends React.Component {
 
    }
 
-   display_form_main(){
+
+    display_form_main(){
 
     
-    let entity_tags_list_jsx = []
+        let entity_tags_list_jsx = []
 
-    for (let entity_tag of this.props.entity_tags_list){
-        entity_tags_list_jsx.push(<option value={entity_tag._id}>{entity_tag.entity}</option>)
-    }
+        for (let entity_tag of this.state.entity_tags_list){
+            entity_tags_list_jsx.push(<option value={entity_tag._id}>{entity_tag.entity}</option>)
+        }
 
 
-    return(
-        <React.Fragment>
-            <main>
-                <h2>Witness Particulars</h2>
-                <div id="witness">
-                    <label>Display Name</label>
-                    <input type="text" name="display_name" className="form-control" value={this.state.display_name} onChange={this.update_any_field} />
-                    <label>Ocupation</label>
-                    <input type="text" name="occupation" className="form-control" value={this.state.occupation} onChange={this.update_any_field} />
-                    <label>Age</label>
-                    <input type="text" name="age" className="form-control" value={this.state.age} onChange={this.update_any_field} />
-                    <label>Company Name</label>
-                    <input type="text" name="company_name" className="form-control" value={this.state.company_name} onChange={this.update_any_field} />
-                    <label>Email address</label>
-                    <input type="text" name="email_address" className="form-control" value={this.state.email_address} onChange={this.update_any_field} />
-                </div>
-                <div id="case">
-                    <h2>Case Details</h2>
-                    <label>Title</label>
-                        <input type="text" name="case_title" className="form-control" value={this.state.case_title} onChange={this.update_any_field} />
-                    <label>Description</label>
-                        <input type="text" name="generic_description" className="form-control" value={this.state.generic_description} onChange={this.update_any_field} />
-                    <label>Location</label>
-                        <input type="text" name="location" className="form-control" value={this.state.location} onChange={this.update_any_field} />
-                    <label>Date Of Incident: </label>
-                        <input type="date" name="date" className="" value={this.state.date} onChange={this.update_any_field} />
-                    <label>Activity:</label>
-                    <select onChange={this.update_any_field}  value={this.state.type_of_activity} name="type_of_activity" className="form-select" aria-label="Default select example">   
-                        <option value="accidental">Accidental</option>
-                        <option value="urbex">UrbEx</option>
-                        <option value="solo">Solo</option>
-                        <option value="paranormal_investigation">Paranormal Investigation</option>
-                        <option value="others">Others</option>
-                    </select>
-                    <label>Entity Tags:</label>
-                    <select onChange={this.update_multivalue_field}  value={this.state.entity_tags} name="entity_tags" className="form-select" multiple aria-label="multiple select example">
-                        {entity_tags_list_jsx}
-                    </select>
+        return(
+            <React.Fragment>
+                <main>
+                    <h2>Witness Particulars</h2>
+                    <div id="witness">
+                        <label>Display Name</label>
+                        <input type="text" name="display_name" className="form-control" value={this.state.display_name} onChange={this.update_any_field} />
+                        <label>Ocupation</label>
+                        <input type="text" name="occupation" className="form-control" value={this.state.occupation} onChange={this.update_any_field} />
+                        <label>Age</label>
+                        <input type="text" name="age" className="form-control" value={this.state.age} onChange={this.update_any_field} />
+                        <label>Company Name</label>
+                        <input type="text" name="company_name" className="form-control" value={this.state.company_name} onChange={this.update_any_field} />
+                        <label>Email address</label>
+                        <input type="text" name="email_address" className="form-control" value={this.state.email_address} onChange={this.update_any_field} />
+                    </div>
+                    <div id="case">
+                        <h2>Case Details</h2>
+                        <label>Title</label>
+                            <input type="text" name="case_title" className="form-control" value={this.state.case_title} onChange={this.update_any_field} />
+                        <label>Description</label>
+                            <input type="text" name="generic_description" className="form-control" value={this.state.generic_description} onChange={this.update_any_field} />
+                        <label>Location</label>
+                            <input type="text" name="location" className="form-control" value={this.state.location} onChange={this.update_any_field} />
+                        <label>Date Of Incident: </label>
+                            <input type="date" name="date" className="" value={this.state.date} onChange={this.update_any_field} />
+                        <label>Activity:</label>
+                        <select onChange={this.update_any_field}  value={this.state.type_of_activity} name="type_of_activity" className="form-select" aria-label="Default select example">   
+                            <option value="accidental">Accidental</option>
+                            <option value="urbex">UrbEx</option>
+                            <option value="solo">Solo</option>
+                            <option value="paranormal_investigation">Paranormal Investigation</option>
+                            <option value="others">Others</option>
+                        </select>
+                        <label>Entity Tags:</label>
+                        <select onChange={this.update_multivalue_field}  value={this.state.entity_tags} name="entity_tags" className="form-select" multiple aria-label="multiple select example">
+                            {entity_tags_list_jsx}
+                        </select>
 
-                </div>
-            </main>
-        </React.Fragment>
-
-    )
+                    </div>
+                </main>
+            </React.Fragment>)
 
    }
 
@@ -360,7 +360,6 @@ export default class AddNewCase extends React.Component {
         
         let index_to_edit = this.state.encounters.findIndex( encounter => encounter._id == edited_encounter._id);
         
-        
         let updated_encounters = [...this.state.encounters.slice(0, index_to_edit), edited_encounter, ...this.state.encounters.slice(index_to_edit+1)]
 
         this.setState({
@@ -426,7 +425,18 @@ export default class AddNewCase extends React.Component {
 
     }
 
-    
+    componentDidMount= async() => {
+
+        let entity_tags = await axios.get(this.props.url_api + "/list_entity_tags") 
+        
+        this.setState({
+
+            "entity_tags_list":entity_tags.data
+
+
+        })
+    }
+
     
 
 
