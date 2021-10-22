@@ -5,20 +5,34 @@ export default class ListCases extends React.Component {
     url_api = this.props.url_api
 
     state = {
-        'api_data': [
-           
-        ]
+        "page_loaded":false,
+        "api_data": []
     }
 
     componentDidMount=async()=>{
+        this.setState({
+            "page_loaded":true
+        })
         let response = await axios.get(this.url_api + "/cases")
         this.setState({
-            'api_data': response.data
+            'api_data': response.data,
+            "page_loaded":false
         })
 
     }
 
-    
+    display_loading_page(){
+
+        return(
+            <React.Fragment>
+                <h1>LOADING PAGE.</h1>
+                <h2>Please Wait...</h2>
+
+            </React.Fragment>
+        )
+
+
+    }
 
     display_api_data(){
     
@@ -66,7 +80,7 @@ export default class ListCases extends React.Component {
         
         return (<React.Fragment>
             <h1>List Cases</h1>
-            {this.display_api_data()}
+            {this.state.page_loaded?this.display_loading_page():this.display_api_data()}
         </React.Fragment>)
     }
 

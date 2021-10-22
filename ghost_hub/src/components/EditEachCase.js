@@ -5,6 +5,7 @@ export default class EditEachCase extends React.Component {
     url_api = this.props.url_api
 
     state = {
+        "page_loaded":false,
         "entity_tags_list":[],
         "email_address":"",
         "display_name":"",
@@ -37,6 +38,18 @@ export default class EditEachCase extends React.Component {
     }
 
     
+    display_loading_page(){
+
+        return(
+            <React.Fragment>
+                <h1>LOADING PAGE.</h1>
+                <h2>Please Wait...</h2>
+
+            </React.Fragment>
+        )
+
+
+    }
 
 
     display_form_main(){
@@ -414,12 +427,11 @@ export default class EditEachCase extends React.Component {
         
 
     componentDidMount= async() => {
-
+        this.setState({"page_loaded":true})
         let response = await axios.get(this.props.url_api + "/case/"+this.props.case_id)
-        console.log(response.data[0])
         this.setState({
 
-            
+            "page_loaded":false,
             "email_address":response.data[1].email_address,
             "display_name":response.data[1].display_name,
             "occupation":response.data[1].occupation,
@@ -451,14 +463,26 @@ export default class EditEachCase extends React.Component {
    
 
 
-    render() {
-        console.log(this.props.case_id)  
+    render() { 
+
+        let render_items=""
+        if(this.state.page_loaded){
+            render_items=(<React.Fragment>{this.display_loading_page()}</React.Fragment>)
+            
+        }else{
+            render_items=(<React.Fragment>
+                {this.display_form_main()}
+                {this.display_added_encounters()}
+                {this.display_form_encounters()}
+                <button className="btn btn-success btn-sm" onClick={this.submit}>Submit Case!</button>
+                </React.Fragment>)
+            
+        }
+
+
         return (<React.Fragment>
             <h1>Edit Case</h1>
-            {this.display_form_main()}
-            {this.display_added_encounters()}
-            {this.display_form_encounters()}
-            <button className="btn btn-success btn-sm" onClick={this.submit}>Submit Case!</button>
+            {render_items}            
         </React.Fragment>)
     }
 

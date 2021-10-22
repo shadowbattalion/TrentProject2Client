@@ -4,6 +4,7 @@ export default class EachCase extends React.Component {
 
 
     state = {
+        "page_loaded":false,
         "case":{},
         "witness":{},
         "comments":[],
@@ -16,6 +17,19 @@ export default class EachCase extends React.Component {
         "edit_like":false,
     }
 
+
+    display_loading_page(){
+
+        return(
+            <React.Fragment>
+                <h1>LOADING PAGE.</h1>
+                <h2>Please Wait...</h2>
+
+            </React.Fragment>
+        )
+
+
+    }
     
 
     display_api_data(){
@@ -242,21 +256,35 @@ export default class EachCase extends React.Component {
 
     componentDidMount= async() => {
 
+        this.setState({
+            "page_loaded":true
+        })
         let response = await axios.get(this.props.url_api + "/case/"+this.props.case_id) 
 
         this.setState({
             "case":response.data[0],
             "witness":response.data[1],
+            "page_loaded":false
         })
     }
 
 
     render() {
+        let render_items=""
+        if(this.state.page_loaded){
+            render_items=(<React.Fragment>{this.display_loading_page()}</React.Fragment>)
+            
+        }else{
+            render_items=(<React.Fragment>
+                <h2>Cased Number: {this.props.each_case_id}</h2>
+                {this.display_api_data()}
+                {this.display_comments()}
+                </React.Fragment>)
+            
+        }
         return (<React.Fragment>
             <h1>Each Case</h1>
-            <h2>Cased Number: {this.props.each_case_id}</h2>
-            {this.display_api_data()}
-            {this.display_comments()}
+            {render_items}
         </React.Fragment>)
     }
 
