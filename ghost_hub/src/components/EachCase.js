@@ -9,14 +9,28 @@ export default class EachCase extends React.Component {
         "witness":{},
         "comments":[],
         "new_content":"",
-        "new_like":false,
+        "new_like":0,
         "edit_mode":{
             "_id":0
         },
         "edit_content":"",
-        "edit_like":false,
+        "edit_like":0,
     }
 
+    componentDidMount= async() => {
+
+        this.setState({
+            "page_loaded":true
+        })
+        let response = await axios.get(this.props.url_api + "/case/"+this.props.case_id) 
+
+        this.setState({
+            "case":response.data[0],
+            "comments":response.data[0].comments,
+            "witness":response.data[1],
+            "page_loaded":false
+        })
+    }
 
     display_loading_page(){
 
@@ -66,7 +80,7 @@ export default class EachCase extends React.Component {
 
 
 
-    display_comments=()=>{
+    display_added_comments=()=>{
 
         let comment_jsx=[]
 
@@ -90,7 +104,6 @@ export default class EachCase extends React.Component {
                     </React.Fragment>)
                 
             }else{
-
                 each_comment = (
                     <React.Fragment key={comment._id}>
                         <div>    
@@ -123,13 +136,30 @@ export default class EachCase extends React.Component {
 
 
     display_edit_form_comments(){
+        
+        let value=""
+        if(this.state.edit_like=="1"){
+ 
+            value="0"
 
+
+        }else if(this.state.edit_like=="0"){
+
+            value="1"
+
+
+        }
+        
         return(
-
+            
             <React.Fragment>
                 <label>Enter your comments</label>
                 <input type="text" name="edit_content" className="form-control" value={this.state.edit_content} onChange={this.update_any_field} /> 
-                <button className="btn btn-success btn-sm" onClick={this.edit_encounter}>Done!</button>
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" name="edit_like" value={value} onChange={this.update_any_field} checked={this.state.edit_like=="1"}/>
+                    <label class="form-check-label" for="flexSwitchCheckChecked">Like</label>
+                </div>
+                <button className="btn btn-success btn-sm" onClick={this.edit_comment}>Done!</button>
             </React.Fragment>
 
         )
@@ -140,13 +170,29 @@ export default class EachCase extends React.Component {
 
     display_form_comments(){
 
+        let value=""
+        if(this.state.new_like=="1"){
+ 
+            value="0"
+
+
+        }else if(this.state.new_like=="0"){
+
+            value="1"
+
+
+        }
         
 
         return(
             <React.Fragment>
                 <label>Enter your comments</label>
                 <input type="text" name="new_content" className="form-control" value={this.state.new_content} onChange={this.update_any_field} /> 
-                <button className="btn btn-success btn-sm" onClick={this.add_encounter}>Add!</button>
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" name="new_like" value={value} onChange={this.update_any_field} checked={this.state.new_like=="1"}/>
+                    <label class="form-check-label" for="flexSwitchCheckChecked">Like</label>
+                </div>
+                <button className="btn btn-success btn-sm" onClick={this.add_comment}>Add!</button>
             </React.Fragment>)
 
     }
@@ -159,15 +205,16 @@ export default class EachCase extends React.Component {
     }
 
 
-    add_comment=()=>{
+    add_comment= async ()=>{
 
         let new_comment={
-            "content":"",
-            "like":false,
+            "_id":"front_end_id"+new Date().valueOf()+"/"+Math.floor(Math.random()*(10000-1000+1)+1000),
+            "content":this.state.new_content,
+            "like":this.state.new_like
         
         }
         
-        this.state.new_sightings_description=""
+        // this.state.new_sightings_description=""
         
         this.setState({
             "comments": [...this.state.comments, new_comment],
@@ -175,11 +222,18 @@ export default class EachCase extends React.Component {
             "new_like":false,
         })
 
+        let outcome = await axios.post(this.props.url_api + "/post_comment",{
+            "case_id":this.props.case_id,
+            "content":new_comment.content,
+            "like":new_comment.like
+
+        }) 
+        console.log(outcome)
         
     }
 
 
-    delete_comment = (comment_delete) =>{
+    delete_comment = async (comment_delete) =>{
 
         let comments_list=this.state.comments
    
@@ -193,8 +247,9 @@ export default class EachCase extends React.Component {
            "comments":new_comment_list
    
         })
-   
-   
+        console.log(comment_delete._id)
+        let outcome = await axios.delete(this.props.url_api + "/delete_comment/"+comment_delete._id) 
+        console.log(outcome)
    
     }
 
@@ -203,12 +258,8 @@ export default class EachCase extends React.Component {
         this.setState({
 
             "edit_mode":comment,
-            "edit_image":comment.image,
-            "edit_sightings_description":comment.sightings_description,  
-            "edit_equipment_used":comment.equipment_used,
-            "edit_contact_type":comment.contact_type,
-            "edit_number_of_entities":comment.number_of_entities,
-            "edit_time_of_comment":comment.time_of_comment
+            "edit_content":comment.content,
+            "edit_like":comment.like
 
         })
 
@@ -216,18 +267,14 @@ export default class EachCase extends React.Component {
 
       
 
-    edit_comment = () =>{
+    edit_comment = async () =>{
 
 
         let edited_comment = {
             
             "_id":this.state.edit_mode._id,
-            "image":this.state.edit_image,
-            "sightings_description":this.state.edit_sightings_description,
-            "equipment_used":this.state.edit_equipment_used,
-            "contact_type":this.state.edit_contact_type,
-            "number_of_entities":this.state.edit_number_of_entities,
-            "time_of_comment":this.state.edit_time_of_comment
+            "content":this.state.edit_content,
+            "like":this.state.edit_like
 
         }
         
@@ -241,32 +288,20 @@ export default class EachCase extends React.Component {
             'edit_mode':{
                 '_id':0
             },
-            "edit_image":"",
-            "edit_sightings_description":"",
-            "edit_equipment_used":[],
-            "edit_contact_type":[],
-            "edit_number_of_entities":0,
-            "edit_time_of_comment":""
+            "edit_content":"",
+            "edit_like":false
         })
 
-
+        let outcome = await axios.put(this.props.url_api + "/edit_comment/"+edited_comment._id,{
+            "content":edited_comment.content,
+            "like":edited_comment.like
+        }) 
+        console.log(outcome)
 
     }
 
 
-    componentDidMount= async() => {
-
-        this.setState({
-            "page_loaded":true
-        })
-        let response = await axios.get(this.props.url_api + "/case/"+this.props.case_id) 
-
-        this.setState({
-            "case":response.data[0],
-            "witness":response.data[1],
-            "page_loaded":false
-        })
-    }
+    
 
 
     render() {
@@ -278,7 +313,8 @@ export default class EachCase extends React.Component {
             render_items=(<React.Fragment>
                 <h2>Cased Number: {this.props.each_case_id}</h2>
                 {this.display_api_data()}
-                {this.display_comments()}
+                {this.display_added_comments()}
+                {this.display_form_comments()}
                 </React.Fragment>)
             
         }

@@ -297,7 +297,7 @@ export default class EditEachCase extends React.Component {
 
         }
         
-        this.state.new_sightings_description=""
+        this.state.new_sightings_description=""//check
         
         this.setState({
             "encounters": [...this.state.encounters, new_encounter],
