@@ -418,7 +418,14 @@ export default class EditEachCase extends React.Component {
         })
         
         console.log("Submitted!")
-        this.props.onEnterEachCase(this.props.case_id)
+
+        let notification_content ={
+            validation:true,
+            message:"Case Edited",
+            color:"Green"
+
+        }
+        this.props.onEnterEachCase(notification_content,this.props.case_id)
 
 
 
@@ -475,6 +482,7 @@ export default class EditEachCase extends React.Component {
                 {this.display_added_encounters()}
                 {this.display_form_encounters()}
                 <button className="btn btn-success btn-sm" onClick={this.submit}>Submit Case!</button>
+                <button className="btn btn-success btn-sm" onClick={()=>{this.props.onEnterEachCase({},this.props.case_id)}}>Back</button>
                 </React.Fragment>)
             
         }

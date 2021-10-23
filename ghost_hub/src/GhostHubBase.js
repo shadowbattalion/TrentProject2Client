@@ -17,7 +17,8 @@ export default class GhostHubBase extends React.Component {
         "displaying": "list_cases",
         "case_id":"",
         "notification_message":"",
-        "notification_message_color":""
+        "notification_message_color":"",
+        "reveal":""
     }
 
 
@@ -29,8 +30,8 @@ export default class GhostHubBase extends React.Component {
             "each_case":<EachCase onListCases={this.listCases} onEditEachCase={this.editEachCase} onDeleteEachCase={this.deleteEachCase} url_api={this.url_api} case_id={this.state.case_id} />,
             "edit_each_case":<EditEachCase onEnterEachCase={this.enterEachCase} url_api={this.url_api} case_id={this.state.case_id} />,
             "delete_each_case":<DeleteEachCase />,
-            "add_new_case":<AddNewCase onListCases={this.listCases} url_api={this.url_api} />,
-            // "notification_panel":<NotificationPanel />
+            "add_new_case":<AddNewCase onListCases={this.listCases} url_api={this.url_api} />
+            
                
         
         }
@@ -40,30 +41,45 @@ export default class GhostHubBase extends React.Component {
     }
 
 
-    enterEachCase= async (case_id)=>{
+    enterEachCase= async (notification_content, case_id)=>{
 
     
-        this.setState({
+        if (Object.keys(notification_content).length==0){
 
-            "displaying":"each_case",
-            "case_id":case_id,
+            this.setState({
 
-        })
+                "displaying":"each_case",
+                "case_id":case_id,
+
+            })
+
+
+        }else{
+            if(notification_content.validation){
+                this.setState({
+
+                    "displaying":"each_case",
+                    "case_id":case_id,
+                    "notification_message":notification_content.message,
+                    "notification_message_color":notification_content.color,
+                    "reveal":"alert-reveal"
+
+                })
+            }else{
+                this.setState({
+
+                    "notification_message":notification_content.message,
+                    "notification_message_color":notification_content.color,
+                    "reveal":"alert-reveal"
+
+                })
+            }
+        }
 
 
     }
     
 
-    exitEachCase=()=>{
-        this.setState({
-
-            "displaying":"list_cases"
-
-
-        })
-
-
-    }
 
     editEachCase= async(case_id)=>{
 
@@ -108,14 +124,16 @@ export default class GhostHubBase extends React.Component {
 
                     "displaying":"list_cases",
                     "notification_message":notification_content.message,
-                    "notification_message_color":notification_content.color
+                    "notification_message_color":notification_content.color,
+                    "reveal":"alert-reveal"
 
                 })
             }else{
                 this.setState({
 
                     "notification_message":notification_content.message,
-                    "notification_message_color":notification_content.color
+                    "notification_message_color":notification_content.color,
+                    "reveal":"alert-reveal"
 
                 })
             }
@@ -133,33 +151,27 @@ export default class GhostHubBase extends React.Component {
     }
 
 
+    notification_panel_dissapear=()=>{
 
+        this.setState({
+            "reveal":""
+        })
+
+    }
     
 
 
 
     render(){
 
-        let i = 234324
-
-        let reveal = ""
-        if(i==0){
-            
-            reveal="alert-reveal"
-            
-        }else{
-            reveal=""
-        }
-
-        console.log(reveal)
-
+        
 
         return(
             <React.Fragment>
-            <NotificationPanel className_reveal={reveal} message={this.state.notification_message} color={this.state.notification_message_color}/>
+            <NotificationPanel className_reveal={this.state.reveal} message={this.state.notification_message} color={this.state.notification_message_color} onClickPanelDissappear={this.notification_panel_dissapear}/>
             <ul className="nav nav-tabs">
                 <li className="nav-item">
-                <button className={(this.state.displaying === 'list_cases') ? 'nav-link active' : 'nav-link'} onClick={this.listCases}>List Cases</button>
+                <button className={(this.state.displaying === 'list_cases') ? 'nav-link active' : 'nav-link'} onClick={()=>{this.listCases({})}}>List Cases</button>
                 </li>
                 <li className="nav-item">
                 <button className={(this.state.displaying === 'add_new_case') ? 'nav-link active' : 'nav-link'} onClick={this.addNewCase}>Add Case</button>

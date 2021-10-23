@@ -55,7 +55,7 @@ export default class ListCases extends React.Component {
                                 <li>{witness.age}</li>
                                 <li>{witness.display_name}</li>                                   
                             </ul>
-                            <button className="btn btn-success btn-sm" onClick={()=>{this.props.onEnterEachCase(each_case._id)}}>Continue...</button>
+                            <button className="btn btn-success btn-sm" onClick={()=>{this.props.onEnterEachCase({},each_case._id)}}>Continue...</button>
                         </div>
                     </React.Fragment>
 

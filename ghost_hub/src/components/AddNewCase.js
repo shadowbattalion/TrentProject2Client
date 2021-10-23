@@ -456,6 +456,7 @@ export default class AddNewCase extends React.Component {
             {this.display_added_encounters()}
             {this.display_form_encounters()}
             <button className="btn btn-success btn-sm" onClick={this.submit}>Submit Case!</button>
+            <button className="btn btn-success btn-sm" onClick={()=>{this.props.onListCases({})}}>Back</button>
         </React.Fragment>)
     }
 

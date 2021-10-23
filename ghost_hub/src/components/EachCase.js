@@ -49,7 +49,7 @@ export default class EachCase extends React.Component {
                         <li>{this.state.witness.display_name}</li>
                                                           
                     </ul>
-                    <button className="btn btn-success btn-sm" onClick={this.props.onExitEachCase}>Back</button>
+                    <button className="btn btn-success btn-sm" onClick={()=>{this.props.onListCases({})}}>Back</button>
                     <button className="btn btn-success btn-sm" onClick={()=>{this.props.onEditEachCase(this.state.case._id)}}>Edit</button>
                     <button className="btn btn-success btn-sm" onClick={this.props.onDeleteEachCase}>Delete</button>
                 </div>
