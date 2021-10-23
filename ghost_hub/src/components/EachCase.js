@@ -48,9 +48,6 @@ export default class EachCase extends React.Component {
 
     display_api_data(){
     
-        
-        console.log(this.state.case)
-
         let each_case_jsx=(
             <React.Fragment>
                 <div>
@@ -104,16 +101,17 @@ export default class EachCase extends React.Component {
                     </React.Fragment>)
                 
             }else{
-                each_comment = (
-                    <React.Fragment key={comment._id}>
-                        <div>    
-                            {comment.content}
-                            {comment.like}
-                            <button className="btn btn-success btn-sm" onClick={()=>{this.edit_mode_activated(comment)}}>Edit</button>
-                            <button className="btn btn-danger btn-sm mx-1" onClick={()=>{this.delete_comment(comment)}}>Delete</button>
-                        </div>
-                    </React.Fragment>)
-
+                if(Object.keys(comment).length!=1){
+                    each_comment = (
+                        <React.Fragment key={comment._id}>
+                            <div>    
+                                {comment.content}
+                                {comment.like}
+                                <button className="btn btn-success btn-sm" onClick={()=>{this.edit_mode_activated(comment)}}>Edit</button>
+                                <button className="btn btn-danger btn-sm mx-1" onClick={()=>{this.delete_comment(comment)}}>Delete</button>
+                            </div>
+                        </React.Fragment>)
+                }
 
             }
 
@@ -207,14 +205,23 @@ export default class EachCase extends React.Component {
 
     add_comment= async ()=>{
 
+        let outcome = await axios.post(this.props.url_api + "/post_comment",{
+            "case_id":this.props.case_id,
+            "content":this.state.new_content,
+            "like":this.state.new_like
+
+        }) 
+
+        let new_comment_id=outcome.data.new_comment_inserted.insertedId
+        console.log(new_comment_id)
+
         let new_comment={
-            "_id":"front_end_id"+new Date().valueOf()+"/"+Math.floor(Math.random()*(10000-1000+1)+1000),
+            "_id":new_comment_id,
             "content":this.state.new_content,
             "like":this.state.new_like
         
         }
         
-        // this.state.new_sightings_description=""
         
         this.setState({
             "comments": [...this.state.comments, new_comment],
@@ -222,18 +229,16 @@ export default class EachCase extends React.Component {
             "new_like":false,
         })
 
-        let outcome = await axios.post(this.props.url_api + "/post_comment",{
-            "case_id":this.props.case_id,
-            "content":new_comment.content,
-            "like":new_comment.like
-
-        }) 
-        console.log(outcome)
+        
         
     }
 
 
     delete_comment = async (comment_delete) =>{
+
+        let outcome = await axios.delete(this.props.url_api + "/delete_comment/"+comment_delete._id) 
+        console.log(outcome)
+
 
         let comments_list=this.state.comments
    
@@ -248,8 +253,10 @@ export default class EachCase extends React.Component {
    
         })
         console.log(comment_delete._id)
-        let outcome = await axios.delete(this.props.url_api + "/delete_comment/"+comment_delete._id) 
-        console.log(outcome)
+
+        
+        
+        
    
     }
 
@@ -268,6 +275,13 @@ export default class EachCase extends React.Component {
       
 
     edit_comment = async () =>{
+
+
+        let outcome = await axios.put(this.props.url_api + "/edit_comment/"+this.state.edit_mode._id,{
+            "content":this.state.edit_content,
+            "like":this.state.edit_like
+        }) 
+        console.log(outcome)
 
 
         let edited_comment = {
@@ -292,11 +306,7 @@ export default class EachCase extends React.Component {
             "edit_like":false
         })
 
-        let outcome = await axios.put(this.props.url_api + "/edit_comment/"+edited_comment._id,{
-            "content":edited_comment.content,
-            "like":edited_comment.like
-        }) 
-        console.log(outcome)
+        
 
     }
 
