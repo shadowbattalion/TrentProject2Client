@@ -3,7 +3,6 @@ import axios from 'axios'
 import ListCases from './components/ListCases.js'
 import AddNewCase from './components/AddNewCase.js'
 import EachCase from './components/EachCase.js'
-import DeleteEachCase from './components/DeleteEachCase.js'
 import EditEachCase from './components/EditEachCase.js'
 import NotificationPanel from './components/NotificationPanel.js'
 
@@ -27,9 +26,8 @@ export default class GhostHubBase extends React.Component {
         let active_display_panel={
 
             "list_cases":<ListCases onEnterEachCase={this.enterEachCase} url_api={this.url_api}/>,
-            "each_case":<EachCase onListCases={this.listCases} onEditEachCase={this.editEachCase} onDeleteEachCase={this.deleteEachCase} onComment={this.comment_notification} url_api={this.url_api} case_id={this.state.case_id} />,
+            "each_case":<EachCase onListCases={this.listCases} onEditEachCase={this.editEachCase} onComment={this.comment_notification} url_api={this.url_api} case_id={this.state.case_id} />,
             "edit_each_case":<EditEachCase onEnterEachCase={this.enterEachCase} url_api={this.url_api} case_id={this.state.case_id} />,
-            "delete_each_case":<DeleteEachCase />,
             "add_new_case":<AddNewCase onListCases={this.listCases} url_api={this.url_api} />
             
                
@@ -40,6 +38,7 @@ export default class GhostHubBase extends React.Component {
         return active_display_panel[this.state.displaying]
     }
 
+    
 
 
 
@@ -97,16 +96,7 @@ export default class GhostHubBase extends React.Component {
 
     }
 
-    deleteEachCase=()=>{
-        this.setState({
-
-            "displaying":"delete_each_case"
-
-
-        })
-
-
-    }
+   
 
 
     listCases=(notification_content)=>{

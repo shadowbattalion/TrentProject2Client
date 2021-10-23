@@ -5,6 +5,7 @@ export default class EachCase extends React.Component {
 
     state = {
         "page_loaded":false,
+        "delete_mode":false,
         "case":{},
         "witness":{},
         "comments":[],
@@ -14,7 +15,7 @@ export default class EachCase extends React.Component {
             "_id":0
         },
         "edit_content":"",
-        "edit_like":0,
+        "edit_like":0
     }
 
     componentDidMount= async() => {
@@ -47,7 +48,7 @@ export default class EachCase extends React.Component {
     
 
     display_api_data(){
-    
+            
         let each_case_jsx=(
             <React.Fragment>
                 <div>
@@ -62,7 +63,7 @@ export default class EachCase extends React.Component {
                     </ul>
                     <button className="btn btn-success btn-sm" onClick={()=>{this.props.onListCases({})}}>Back</button>
                     <button className="btn btn-success btn-sm" onClick={()=>{this.props.onEditEachCase(this.state.case._id)}}>Edit</button>
-                    <button className="btn btn-success btn-sm" onClick={this.props.onDeleteEachCase}>Delete</button>
+                    <button className="btn btn-success btn-sm" onClick={this.delete_mode_activated}>Delete</button>
                 </div>
             </React.Fragment>
 
@@ -194,6 +195,67 @@ export default class EachCase extends React.Component {
             </React.Fragment>)
 
     }
+
+
+    delete_form(){
+        return(
+            <React.Fragment>
+                <div style={{border:"10px solid black"}}>
+                    <button className="btn btn-success btn-sm" onClick={this.delete_mode_cancelled}>Cancel</button>
+                    <button className="btn btn-danger btn-sm" onClick={this.add_comment}>Confirm!</button>  
+                </div>
+            </React.Fragment>
+        )
+        
+    }
+
+    delete_mode_activated=()=>{
+
+        this.setState({
+
+            "delete_mode":true
+
+        })
+        
+
+
+
+    }
+
+
+
+    delete_mode_cancelled=()=>{
+
+        this.setState({
+
+            "delete_mode":false
+
+        })
+        
+
+
+
+    }
+
+
+    
+
+    confirm_delete=()=>{
+
+
+
+
+
+
+
+
+
+
+    }
+
+    
+
+
 
 
     update_any_field=(e)=>{
@@ -347,6 +409,7 @@ export default class EachCase extends React.Component {
                 {this.display_api_data()}
                 {this.display_added_comments()}
                 {this.display_form_comments()}
+                {this.state.delete_mode?this.delete_form():""}
                 </React.Fragment>)
             
         }
