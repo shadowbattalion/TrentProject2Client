@@ -202,7 +202,7 @@ export default class EachCase extends React.Component {
             <React.Fragment>
                 <div style={{border:"10px solid black"}}>
                     <button className="btn btn-success btn-sm" onClick={this.delete_mode_cancelled}>Cancel</button>
-                    <button className="btn btn-danger btn-sm" onClick={this.add_comment}>Confirm!</button>  
+                    <button className="btn btn-danger btn-sm" onClick={this.confirm_delete}>Confirm!</button>  
                 </div>
             </React.Fragment>
         )
@@ -238,16 +238,21 @@ export default class EachCase extends React.Component {
     }
 
 
-    
-
-    confirm_delete=()=>{
 
 
+    confirm_delete= async()=>{
 
+        console.log(this.props.case_id)
+        let outcome = await axios.delete(this.props.url_api + "/delete_case/"+this.props.case_id)
 
+        console.log(outcome)
 
-
-
+        let notification_content ={
+            validation:true,
+            message:"Case Deleted",
+            color:"Green"
+        }
+        this.props.onListCases(notification_content)
 
 
 
