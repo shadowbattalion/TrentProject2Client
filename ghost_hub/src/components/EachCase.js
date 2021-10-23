@@ -230,6 +230,17 @@ export default class EachCase extends React.Component {
         })
 
         
+
+
+
+        let notification_content ={
+            validation:true,
+            message:"Comment Added",
+            color:"Green"
+        }
+        this.props.onComment(notification_content)
+
+
         
     }
 
@@ -255,7 +266,12 @@ export default class EachCase extends React.Component {
         console.log(comment_delete._id)
 
         
-        
+        let notification_content ={
+            validation:true,
+            message:"Comment Deleted",
+            color:"Green"
+        }
+        this.props.onComment(notification_content)
         
    
     }
@@ -307,6 +323,12 @@ export default class EachCase extends React.Component {
         })
 
         
+        let notification_content ={
+            validation:true,
+            message:"Comment Edited",
+            color:"Green"
+        }
+        this.props.onComment(notification_content)
 
     }
 

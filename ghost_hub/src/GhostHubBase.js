@@ -27,7 +27,7 @@ export default class GhostHubBase extends React.Component {
         let active_display_panel={
 
             "list_cases":<ListCases onEnterEachCase={this.enterEachCase} url_api={this.url_api}/>,
-            "each_case":<EachCase onListCases={this.listCases} onEditEachCase={this.editEachCase} onDeleteEachCase={this.deleteEachCase} url_api={this.url_api} case_id={this.state.case_id} />,
+            "each_case":<EachCase onListCases={this.listCases} onEditEachCase={this.editEachCase} onDeleteEachCase={this.deleteEachCase} onComment={this.comment_notification} url_api={this.url_api} case_id={this.state.case_id} />,
             "edit_each_case":<EditEachCase onEnterEachCase={this.enterEachCase} url_api={this.url_api} case_id={this.state.case_id} />,
             "delete_each_case":<DeleteEachCase />,
             "add_new_case":<AddNewCase onListCases={this.listCases} url_api={this.url_api} />
@@ -39,6 +39,8 @@ export default class GhostHubBase extends React.Component {
 
         return active_display_panel[this.state.displaying]
     }
+
+
 
 
     enterEachCase= (notification_content, case_id)=>{
@@ -147,6 +149,25 @@ export default class GhostHubBase extends React.Component {
         this.setState({
             "displaying":'add_new_case'
         })
+
+    }
+
+
+    comment_notification=(notification_content)=>{
+
+        
+        if(notification_content.validation){
+            this.setState({
+
+                "notification_message":notification_content.message,
+                "notification_message_color":notification_content.color,
+                "reveal":"alert-reveal"
+
+                })
+        }
+          
+
+
 
     }
 
