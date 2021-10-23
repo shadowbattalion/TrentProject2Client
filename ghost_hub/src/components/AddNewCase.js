@@ -419,7 +419,15 @@ export default class AddNewCase extends React.Component {
         })
         
         console.log("Submitted!")
-        this.props.onListCases()
+
+        let notification_content={
+            validation:false,
+            message:"Input Error",
+            color:"red"
+
+        }
+
+        this.props.onListCases(notification_content)
 
 
 

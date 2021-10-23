@@ -10,12 +10,14 @@ import NotificationPanel from './components/NotificationPanel.js'
 
 export default class GhostHubBase extends React.Component {
 
-    url_api = "https://3002-peach-possum-1zbabb9y.ws-us18.gitpod.io"
+    url_api = "https://3002-peach-possum-1zbabb9y.ws-us17.gitpod.io"
+              
 
     state = {
         "displaying": "list_cases",
         "case_id":"",
-        "notification_message":""
+        "notification_message":"",
+        "notification_message_color":""
     }
 
 
@@ -24,7 +26,7 @@ export default class GhostHubBase extends React.Component {
         let active_display_panel={
 
             "list_cases":<ListCases onEnterEachCase={this.enterEachCase} url_api={this.url_api}/>,
-            "each_case":<EachCase onExitEachCase={this.exitEachCase}  onEditEachCase={this.editEachCase} onDeleteEachCase={this.deleteEachCase} url_api={this.url_api} case_id={this.state.case_id} />,
+            "each_case":<EachCase onListCases={this.listCases} onEditEachCase={this.editEachCase} onDeleteEachCase={this.deleteEachCase} url_api={this.url_api} case_id={this.state.case_id} />,
             "edit_each_case":<EditEachCase onEnterEachCase={this.enterEachCase} url_api={this.url_api} case_id={this.state.case_id} />,
             "delete_each_case":<DeleteEachCase />,
             "add_new_case":<AddNewCase onListCases={this.listCases} url_api={this.url_api} />,
@@ -45,7 +47,6 @@ export default class GhostHubBase extends React.Component {
 
             "displaying":"each_case",
             "case_id":case_id,
-            "notification_message":"Each Case"
 
         })
 
@@ -90,14 +91,35 @@ export default class GhostHubBase extends React.Component {
     }
 
 
-    listCases=()=>{
+    listCases=(notification_content)=>{
 
-        
-        this.setState({
+        if (Object.keys(notification_content).length==0){
 
-            "displaying":"list_cases"
+            this.setState({
 
-        })
+                "displaying":"list_cases"
+
+            })
+
+
+        }else{
+            if(notification_content.validation){
+                this.setState({
+
+                    "displaying":"list_cases",
+                    "notification_message":notification_content.message,
+                    "notification_message_color":notification_content.color
+
+                })
+            }else{
+                this.setState({
+
+                    "notification_message":notification_content.message,
+                    "notification_message_color":notification_content.color
+
+                })
+            }
+        }
 
     }
 
@@ -112,27 +134,29 @@ export default class GhostHubBase extends React.Component {
 
 
 
-    // panel= async(content,color)=>{
-
-    //     this.setState({
-    //         "displaying":'add_new_case',
-    //         "panel_content":content,
-    //         "panel_color":color
-    //     })
-
-    // }
+    
 
 
 
     render(){
 
-        
+        let i = 234324
 
+        let reveal = ""
+        if(i==0){
+            
+            reveal="alert-reveal"
+            
+        }else{
+            reveal=""
+        }
+
+        console.log(reveal)
 
 
         return(
             <React.Fragment>
-            <NotificationPanel message={this.state.notification_message}/>
+            <NotificationPanel className_reveal={reveal} message={this.state.notification_message} color={this.state.notification_message_color}/>
             <ul className="nav nav-tabs">
                 <li className="nav-item">
                 <button className={(this.state.displaying === 'list_cases') ? 'nav-link active' : 'nav-link'} onClick={this.listCases}>List Cases</button>
