@@ -41,7 +41,7 @@ export default class GhostHubBase extends React.Component {
     }
 
 
-    enterEachCase= async (notification_content, case_id)=>{
+    enterEachCase= (notification_content, case_id)=>{
 
     
         if (Object.keys(notification_content).length==0){
@@ -81,7 +81,7 @@ export default class GhostHubBase extends React.Component {
     
 
 
-    editEachCase= async(case_id)=>{
+    editEachCase= (case_id)=>{
 
      
         this.setState({
@@ -142,7 +142,7 @@ export default class GhostHubBase extends React.Component {
     }
 
 
-    addNewCase= async()=>{
+    addNewCase= ()=>{
 
         this.setState({
             "displaying":'add_new_case'
