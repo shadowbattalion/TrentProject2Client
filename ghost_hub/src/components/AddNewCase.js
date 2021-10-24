@@ -36,6 +36,19 @@ export default class AddNewCase extends React.Component {
 
    }
 
+    componentDidMount= async() => {
+
+        let entity_tags = await axios.get(this.props.url_api + "/list_entity_tags") 
+        
+        this.setState({
+
+            "entity_tags_list":entity_tags.data
+
+
+        })
+    }
+
+
 
     display_form_main(){
 
@@ -396,54 +409,110 @@ export default class AddNewCase extends React.Component {
     //     },
     // "encounters":this.state.encounters
 
-    submit= async ()=>{
 
-        let add_case = await axios.post(this.url_api + '/add_case', {
+    front_end_validation=()=>{
 
-            "witness":{
-                "email_address":this.state.email_address,
-                "display_name":this.state.display_name,
-                "occupation":this.state.occupation,
-                "age":this.state.age,
-                "company_name":this.state.company_name
-                },
-            "case": {
-                "case_title":this.state.case_title,
-                "generic_description":this.state.generic_description,
-                "type_of_activity":this.state.type_of_activity,
-                "location":this.state.location,
-                "date":this.state.date,
-                "entity_tags":this.state.entity_tags
-                },
-            "encounters":this.state.encounters
-        })
-        
-        console.log("Submitted!")
+       let  display_name=false
+        if(this.state.display_name){
 
-        let notification_content={
-            validation:false,
-            message:"Input Error",
-            color:"red"
+            display_name=true
 
         }
 
-        this.props.onListCases(notification_content)
+        let company_name=false
+        if(this.state.company_name){
+
+            company_name=true
+
+        }
+
+        let email_address=false
+        if(this.state.email_address && this.state.email_address.includes("@")){
+
+            email_address=true
+
+        }
 
 
+        let case_title=false
+        if(this.state.case_title){
 
-    }
+            case_title=true
 
-    componentDidMount= async() => {
+        }
 
-        let entity_tags = await axios.get(this.props.url_api + "/list_entity_tags") 
+        let location=false
+        if(this.state.location){
+
+            location=true
+
+        }
+
+        let date=false
+        if(this.state.date){
+
+            date=true
+
+        }
+
         
-        this.setState({
-
-            "entity_tags_list":entity_tags.data
 
 
-        })
+
+        return ((display_name && !company_name)||(!display_name && company_name)) && email_address && case_title && location && date?true:false
     }
+
+
+    submit= async ()=>{
+
+        // let add_case = await axios.post(this.url_api + '/add_case', {
+
+        //     "witness":{
+        //         "email_address":this.state.email_address,
+        //         "display_name":this.state.display_name,
+        //         "occupation":this.state.occupation,
+        //         "age":this.state.age,
+        //         "company_name":this.state.company_name
+        //         },
+        //     "case": {
+        //         "case_title":this.state.case_title,
+        //         "generic_description":this.state.generic_description,
+        //         "type_of_activity":this.state.type_of_activity,
+        //         "location":this.state.location,
+        //         "date":this.state.date,
+        //         "entity_tags":this.state.entity_tags
+        //         },
+        //     "encounters":this.state.encounters
+        // })
+        
+        // console.log("Submitted!")
+
+
+        
+        if (this.front_end_validation()){
+            
+            let notification_content={
+                validation:true,
+                message:"Case Added",
+                color:"green"
+
+            }
+            this.props.onListCases(notification_content)
+
+        }else{
+            let notification_content={
+                validation:false,
+                message:"Input Error",
+                color:"red"
+
+            }
+            this.props.onListCases(notification_content)
+        }
+
+
+    }
+
+    
 
     
 
