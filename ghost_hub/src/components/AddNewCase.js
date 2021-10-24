@@ -16,14 +16,14 @@ export default class AddNewCase extends React.Component {
         "location":"",
         "date":"",
         "entity_tags":[],
-        "type_of_activity":"",
+        "type_of_activity":"Others",
         "encounters":[],
         "new_image":"",
         "new_sightings_description":"",
         "new_equipment_used":[],
         "new_contact_type":[],
         "new_number_of_entities":"",
-        "new_time_of_encounter":"",
+        "new_time_of_encounter":"Early Morning",
         "edit_mode":{
             "_id":0
         },
@@ -200,6 +200,7 @@ export default class AddNewCase extends React.Component {
                         <option value="Evening">Evening</option>
                         <option value="Midnight">Midnight</option>
                 </select>
+                <button className="btn btn-success btn-sm" onClick={this.edit_mode_cancelled}>Cancel</button>
                 <button className="btn btn-success btn-sm" onClick={this.edit_encounter}>Done!</button>
 
 
@@ -520,6 +521,26 @@ export default class AddNewCase extends React.Component {
             "edit_time_of_encounter":encounter.time_of_encounter
 
         })
+
+    }
+
+    edit_mode_cancelled=()=>{
+
+        this.setState({
+
+            "edit_mode":{
+                "_id":0
+            },
+            "edit_image":"",
+            "edit_sightings_description":"",
+            "edit_equipment_used":[],
+            "edit_contact_type":[],
+            "edit_number_of_entities":0,
+            "edit_time_of_encounter":""
+
+        })
+
+
 
     }
 
@@ -973,7 +994,7 @@ export default class AddNewCase extends React.Component {
 
                 let notification_content={
                     validation:true,
-                    message:"Case Edited",
+                    message:"Case Added",
                     color:"green"
 
                 }
@@ -990,10 +1011,10 @@ export default class AddNewCase extends React.Component {
             }
 
         } catch (e) {
-            console.log("TEST")
+            
             let notification_content={
                 validation:false,
-                message:"Malformed input sent to server. Please contact the administrator",
+                message:"Server Error. Please contact the administrator",
                 color:"black"
 
             }

@@ -158,7 +158,8 @@ export default class EachCase extends React.Component {
                     <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" name="edit_like" value={value} onChange={this.update_any_field} checked={this.state.edit_like=="1"}/>
                     <label class="form-check-label" for="flexSwitchCheckChecked">Like</label>
                 </div>
-                <button className="btn btn-success btn-sm" onClick={this.edit_comment}>Done!</button>
+                <button className="btn btn-success btn-sm" onClick={this.edit_mode_cancelled}>Cancel</button>
+                <button className="btn btn-success btn-sm" onClick={this.edit_comment}>Done!</button>                
             </React.Fragment>
 
         )
@@ -300,62 +301,73 @@ export default class EachCase extends React.Component {
 
     add_comment= async ()=>{
 
+        try{
+            let [validation, error_messages]=this.add_comment_validation()
+
+            let formated_error_messages= error_messages.map((error_message)=>{return(<React.Fragment><div>{error_message}</div></React.Fragment>)}) 
+            console.log(error_messages[0])
+            if (validation){
+                let outcome = await axios.post(this.props.url_api + "/post_comment",{
+                    "case_id":this.props.case_id,
+                    "content":this.state.new_content,
+                    "like":this.state.new_like
+
+                }) 
+
+                
+                let new_comment_id=outcome.data.insertedId
+                console.log(new_comment_id)
+
+                let new_comment={
+                    "_id":new_comment_id,
+                    "content":this.state.new_content,
+                    "like":this.state.new_like
+                
+                }
+                
+                
+                this.setState({
+                    "comments": [...this.state.comments, new_comment],
+                    "new_content":"",
+                    "new_like":false,
+                })
+
+                
+
+
+
+                let notification_content ={
+                    validation:true,
+                    message:"Comment Added",
+                    color:"Green"
+                }
+                this.props.onComment(notification_content)
+
+            }else{
+
+                
+                let notification_content={
+                    validation:false,
+                    message:formated_error_messages,
+                    color:"red"
+
+                }
+                this.props.onComment(notification_content)
+
+
+
+
+            }
         
-        let [validation, error_messages]=this.add_comment_validation()
-
-        let formated_error_messages= error_messages.map((error_message)=>{return(<React.Fragment><div>{error_message}</div></React.Fragment>)}) 
-        console.log(error_messages[0])
-        if (validation){
-            let outcome = await axios.post(this.props.url_api + "/post_comment",{
-                "case_id":this.props.case_id,
-                "content":this.state.new_content,
-                "like":this.state.new_like
-
-            }) 
-
-            
-            let new_comment_id=outcome.data.insertedId
-            console.log(new_comment_id)
-
-            let new_comment={
-                "_id":new_comment_id,
-                "content":this.state.new_content,
-                "like":this.state.new_like
-            
-            }
-            
-            
-            this.setState({
-                "comments": [...this.state.comments, new_comment],
-                "new_content":"",
-                "new_like":false,
-            })
-
-            
-
-
-
-            let notification_content ={
-                validation:true,
-                message:"Comment Added",
-                color:"Green"
-            }
-            this.props.onComment(notification_content)
-
-        }else{
-
+        } catch (e) {
             
             let notification_content={
                 validation:false,
-                message:formated_error_messages,
-                color:"red"
+                message:"Server Error. Please contact the administrator",
+                color:"black"
 
             }
-            this.props.onComment(notification_content)
-
-
-
-
+            this.props.onListCases(notification_content)         
         }
         
     }
@@ -393,6 +405,9 @@ export default class EachCase extends React.Component {
     }
 
 
+    
+
+
     edit_mode_activated=(comment)=>{
         this.setState({
 
@@ -404,47 +419,122 @@ export default class EachCase extends React.Component {
 
     }
 
+
+    edit_mode_cancelled=()=>{
+        this.setState({
+
+            "edit_mode":{
+                "_id":0
+            },
+            "edit_content":"",
+            "edit_like":0
+
+        })
+
+    }
+
       
+    edit_comment_validation = () =>{
+
+        let error_message=[]
+
+        let  content=false
+        if(this.state.edit_content){
+
+            content=true
+
+        } else {
+
+            error_message.push((<React.Fragment>
+
+                <div>Enter a comment</div>
+
+            </React.Fragment>))
+
+
+        }
+
+
+       
+
+
+        return [content?true:false, error_message]
+
+
+    }
 
     edit_comment = async () =>{
 
+        try{
+            let [validation, error_messages]=this.edit_comment_validation()
 
-        let outcome = await axios.put(this.props.url_api + "/edit_comment/"+this.state.edit_mode._id,{
-            "content":this.state.edit_content,
-            "like":this.state.edit_like
-        }) 
-        console.log(outcome)
+            let formated_error_messages= error_messages.map((error_message)=>{return(<React.Fragment><div>{error_message}</div></React.Fragment>)}) 
+            console.log(error_messages[0])
+            if (validation){
+                let outcome = await axios.put(this.props.url_api + "/edit_comment/"+this.state.edit_mode._id,{
+                    "content":this.state.edit_content,
+                    "like":this.state.edit_like
+                }) 
+                
 
-
-        let edited_comment = {
+                
+                let edited_comment = {
             
-            "_id":this.state.edit_mode._id,
-            "content":this.state.edit_content,
-            "like":this.state.edit_like
+                    "_id":this.state.edit_mode._id,
+                    "content":this.state.edit_content,
+                    "like":this.state.edit_like
+        
+                }
+                
+                let index_to_edit = this.state.comments.findIndex( comment => comment._id == edited_comment._id);
+                
+                let updated_comments = [...this.state.comments.slice(0, index_to_edit), edited_comment, ...this.state.comments.slice(index_to_edit+1)]
+        
+                this.setState({
+                    "comments": updated_comments,
+                    'edit_mode':{
+                        '_id':0
+                    },
+                    "edit_content":"",
+                    "edit_like":false
+                })
+        
+                
+                let notification_content ={
+                    validation:true,
+                    message:"Comment Edited",
+                    color:"Green"
+                }
+                this.props.onComment(notification_content)
 
+            }else{
+
+                
+                let notification_content={
+                    validation:false,
+                    message:formated_error_messages,
+                    color:"red"
+
+                }
+                this.props.onComment(notification_content)
+
+
+
+
+            }
+        
+        } catch (e) {
+            
+            let notification_content={
+                validation:false,
+                message:"Server Error. Please contact the administrator",
+                color:"black"
+
+            }
+            this.props.onListCases(notification_content)         
         }
-        
-        let index_to_edit = this.state.comments.findIndex( comment => comment._id == edited_comment._id);
-        
-        
-        let updated_comments = [...this.state.comments.slice(0, index_to_edit), edited_comment, ...this.state.comments.slice(index_to_edit+1)]
-
-        this.setState({
-            "comments": updated_comments,
-            'edit_mode':{
-                '_id':0
-            },
-            "edit_content":"",
-            "edit_like":false
-        })
 
         
-        let notification_content ={
-            validation:true,
-            message:"Comment Edited",
-            color:"Green"
-        }
-        this.props.onComment(notification_content)
 
     }
 

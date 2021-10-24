@@ -224,6 +224,7 @@ export default class EditEachCase extends React.Component {
                         <option value="Evening">Evening</option>
                         <option value="Midnight">Midnight</option>
                 </select>
+                <button className="btn btn-success btn-sm" onClick={this.edit_mode_cancelled}>Cancel</button>
                 <button className="btn btn-success btn-sm" onClick={this.edit_encounter}>Done!</button>
 
 
@@ -546,6 +547,26 @@ export default class EditEachCase extends React.Component {
         })
 
     }
+
+    edit_mode_cancelled=()=>{
+
+        this.setState({
+
+            "edit_mode":{
+                "_id":0
+            },
+            "edit_image":"",
+            "edit_sightings_description":"",
+            "edit_equipment_used":[],
+            "edit_contact_type":[],
+            "edit_number_of_entities":0,
+            "edit_time_of_encounter":""
+
+        })
+
+
+    }
+
 
     edit_encounter_validation=()=>{
 
@@ -1021,7 +1042,7 @@ export default class EditEachCase extends React.Component {
         } catch (e) {
             let notification_content={
                 validation:false,
-                message:"Malformed input sent to server. Please contact the administrator",
+                message:"Server Error. Please contact the administrator",
                 color:"light blue"
 
             }
