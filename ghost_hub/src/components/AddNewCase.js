@@ -453,7 +453,7 @@ export default class AddNewCase extends React.Component {
 
         let [validation, error_messages]=this.encounter_validation()
 
-        let formated_error_messages= error_messages.map((error_message)=>{return(<React.Fragment><div>{error_message}</div></React.Fragment>)})
+        let formated_error_messages= error_messages.map((error_message)=>{return(<React.Fragment><div>Encounter: {error_message}</div></React.Fragment>)})
         console.log(validation)
         if (validation){
             
@@ -771,52 +771,67 @@ export default class AddNewCase extends React.Component {
     }
 
 
+
+
+
     submit= async ()=>{
 
-        // let add_case = await axios.post(this.url_api + '/add_case', {
+        try{
+            let [validation, error_messages]=this.front_end_validation()
 
-        //     "witness":{
-        //         "email_address":this.state.email_address,
-        //         "display_name":this.state.display_name,
-        //         "occupation":this.state.occupation,
-        //         "age":this.state.age,
-        //         "company_name":this.state.company_name
-        //         },
-        //     "case": {
-        //         "case_title":this.state.case_title,
-        //         "generic_description":this.state.generic_description,
-        //         "type_of_activity":this.state.type_of_activity,
-        //         "location":this.state.location,
-        //         "date":this.state.date,
-        //         "entity_tags":this.state.entity_tags
-        //         },
-        //     "encounters":this.state.encounters
-        // })
-        
-        // console.log("Submitted!")
+            let formated_error_messages= error_messages.map((error_message)=>{return(<React.Fragment><div>{error_message}</div></React.Fragment>)})
+            console.log(validation)
+            if (validation){
+                
+                let add_case = await axios.post(this.url_api + '/add_case', {
 
-        let [validation, error_messages]=this.front_end_validation()
+                    "witness":{
+                        "email_address":this.state.email_address,
+                        "display_name":this.state.display_name,
+                        "occupation":this.state.occupation,
+                        "age":this.state.age,
+                        "company_name":this.state.company_name
+                        },
+                    "case": {
+                        "case_title":this.state.case_title,
+                        "generic_description":this.state.generic_description,
+                        "type_of_activity":this.state.type_of_activity,
+                        "location":this.state.location,
+                        "date":this.state.date,
+                        "entity_tags":this.state.entity_tags
+                        },
+                    "encounters":this.state.encounters
+                })
+                
+                console.log(add_case)
 
-        let formated_error_messages= error_messages.map((error_message)=>{return(<React.Fragment><div>{error_message}</div></React.Fragment>)})
-        console.log(validation)
-        if (validation){
-            
-            let notification_content={
-                validation:true,
-                message:"Case Added",
-                color:"green"
 
+                let notification_content={
+                    validation:true,
+                    message:"Case Added",
+                    color:"green"
+
+                }
+                this.props.onListCases(notification_content)
+
+            }else{
+                let notification_content={
+                    validation:false,
+                    message:formated_error_messages,
+                    color:"red"
+
+                }
+                this.props.onListCases(notification_content)
             }
-            this.props.onListCases(notification_content)
 
-        }else{
+        } catch (e) {
             let notification_content={
                 validation:false,
-                message:formated_error_messages,
-                color:"red"
+                message:"Malformed input sent to server. Please contact the administrator",
+                color:"light blue"
 
             }
-            this.props.onListCases(notification_content)
+            this.props.onListCases(notification_content)         
         }
 
 
