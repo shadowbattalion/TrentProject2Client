@@ -474,19 +474,38 @@ export default class AddNewCase extends React.Component {
 
         }
         
-        let  age=false
-        if(parseInt(this.state.age<10) || parseInt(this.state.age>120)){ //age must not be alphabet check
+        let age=false
+        console.log(/\d/.test(this.state.age))
+        
+        if(this.state.age && /\d/.test(this.state.age) && (parseInt(this.state.age)>=10 && parseInt(this.state.age)<=120)){ //age must not be alphabet check
 
             age=true
 
         } else {
+            if(!this.state.age){
 
-            error_message.push((<React.Fragment>
+                error_message.push((<React.Fragment>
 
-                <div>Insert a proper age</div>
+                    <div>The age is missing</div>
+    
+                </React.Fragment>))
 
-            </React.Fragment>))
+            }else if(!/\d/.test(this.state.age)){
 
+                error_message.push((<React.Fragment>
+
+                    <div>Age must be a number</div>
+
+                </React.Fragment>))
+
+
+            }else if (!(parseInt(this.state.age)>=10 && parseInt(this.state.age)<=120)){
+                error_message.push((<React.Fragment>
+
+                    <div>Insert a proper age</div>
+
+                </React.Fragment>))
+            }
 
         }
 
