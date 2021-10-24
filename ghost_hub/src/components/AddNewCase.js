@@ -306,7 +306,7 @@ export default class AddNewCase extends React.Component {
 
         }
         
-        if(new_encounter.image && !new_encounter.image.includes("https")){
+        if(new_encounter.image && new_encounter.image.includes("https")){
 
             this.setState({
                 "encounters": [...this.state.encounters, new_encounter],
@@ -331,7 +331,7 @@ export default class AddNewCase extends React.Component {
     
                 </React.Fragment>)
 
-            }else if(new_encounter.image.includes("https")){
+            }else if(!new_encounter.image.includes("https")){
 
                 error_message= (<React.Fragment>
 
