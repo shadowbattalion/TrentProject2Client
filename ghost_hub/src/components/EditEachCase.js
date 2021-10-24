@@ -38,36 +38,48 @@ export default class EditEachCase extends React.Component {
     }
 
     componentDidMount= async() => {
-        this.setState({"page_loaded":true})
-        let response = await axios.get(this.props.url_api + "/case/"+this.props.case_id)
-        this.setState({
+        try{
+            this.setState({"page_loaded":true})
+            let response = await axios.get(this.props.url_api + "/case/"+this.props.case_id)
+            this.setState({
 
-            "page_loaded":false,
-            "email_address":response.data[1].email_address,
-            "display_name":response.data[1].display_name,
-            "occupation":response.data[1].occupation,
-            "age":response.data[1].age,
-            "company_name":response.data[1].company_name,
-            "case_title":response.data[0].case_title,
-            "generic_description":response.data[0].generic_description,
-            "location":response.data[0].location,
-            "date":response.data[0].date,
-            "entity_tags":response.data[0].entity_tags.map(entity_tag=>entity_tag._id),
-            "type_of_activity":response.data[0].type_of_activity,
-            "encounters":response.data[0].encounters
+                "page_loaded":false,
+                "email_address":response.data[1].email_address,
+                "display_name":response.data[1].display_name,
+                "occupation":response.data[1].occupation,
+                "age":response.data[1].age,
+                "company_name":response.data[1].company_name,
+                "case_title":response.data[0].case_title,
+                "generic_description":response.data[0].generic_description,
+                "location":response.data[0].location,
+                "date":response.data[0].date,
+                "entity_tags":response.data[0].entity_tags.map(entity_tag=>entity_tag._id),
+                "type_of_activity":response.data[0].type_of_activity,
+                "encounters":response.data[0].encounters
+                
+
+
+            })
+
+            let entity_tags = await axios.get(this.props.url_api + "/list_entity_tags") 
             
+            this.setState({
+
+                "entity_tags_list":entity_tags.data
 
 
-        })
+            })
 
-        let entity_tags = await axios.get(this.props.url_api + "/list_entity_tags") 
-        
-        this.setState({
+        } catch(e){
 
-            "entity_tags_list":entity_tags.data
+            let notification_content={
+                validation:false,
+                message:"Server Error. Please contact the administrator"
 
+            }
+            this.props.onServerError(notification_content)
 
-        })
+        }
 
     }
     
@@ -1023,8 +1035,7 @@ export default class EditEachCase extends React.Component {
 
                 let notification_content={
                     validation:true,
-                    message:"Case Added",
-                    color:"green"
+                    message:"Case Added"
 
                 }
                 this.props.onEnterEachCase(notification_content,this.props.case_id) 
@@ -1040,13 +1051,16 @@ export default class EditEachCase extends React.Component {
             }
 
         } catch (e) {
+        
+
             let notification_content={
                 validation:false,
-                message:"Server Error. Please contact the administrator",
-                color:"light blue"
+                message:"Server Error. Please contact the administrator"
 
             }
-            this.props.onEnterEachCase(notification_content,this.props.case_id)         
+            this.props.onServerError(notification_content)
+
+                
         }
 
 

@@ -1008,8 +1008,7 @@ export default class AddNewCase extends React.Component {
 
                 let notification_content={
                     validation:true,
-                    message:"Case Added",
-                    color:"green"
+                    message:"Case Added"
 
                 }
                 this.props.onListCases(notification_content)
@@ -1026,13 +1025,16 @@ export default class AddNewCase extends React.Component {
 
         } catch (e) {
             
+     
+
             let notification_content={
                 validation:false,
-                message:"Server Error. Please contact the administrator",
-                color:"black"
+                message:"Server Error. Please contact the administrator"
 
             }
-            this.props.onListCases(notification_content)         
+            this.props.onServerError(notification_content)
+
+       
         }
 
 

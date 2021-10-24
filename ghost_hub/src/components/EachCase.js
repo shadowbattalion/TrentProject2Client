@@ -263,14 +263,22 @@ export default class EachCase extends React.Component {
 
             let notification_content ={
                 validation:true,
-                message:"Case Deleted",
-                color:"Green"
+                message:"Case Deleted"
             }
             this.props.onListCases(notification_content)
 
         }catch(e){
 
+       
 
+            let notification_content={
+                validation:false,
+                message:"Server Error. Please contact the administrator"
+
+            }
+            this.props.onServerError(notification_content)
+
+        
 
 
         }
@@ -358,8 +366,7 @@ export default class EachCase extends React.Component {
 
                 let notification_content ={
                     validation:true,
-                    message:"Comment Added",
-                    color:"Green"
+                    message:"Comment Added"
                 }
                 this.props.onComment(notification_content)
 
@@ -368,9 +375,7 @@ export default class EachCase extends React.Component {
                 
                 let notification_content={
                     validation:false,
-                    message:formated_error_messages,
-                    color:"red"
-
+                    message:formated_error_messages
                 }
                 this.props.onComment(notification_content)
 
@@ -381,13 +386,18 @@ export default class EachCase extends React.Component {
         
         } catch (e) {
             
+        
+
             let notification_content={
                 validation:false,
-                message:"Server Error. Please contact the administrator",
-                color:"black"
+                message:"Server Error. Please contact the administrator"
 
             }
-            this.props.onListCases(notification_content)         
+            this.props.onServerError(notification_content)
+
+        
+
+               
         }
         
     }
@@ -416,8 +426,7 @@ export default class EachCase extends React.Component {
         
         let notification_content ={
             validation:true,
-            message:"Comment Deleted",
-            color:"Green"
+            message:"Comment Deleted"
         }
         this.props.onComment(notification_content)
         
@@ -522,8 +531,7 @@ export default class EachCase extends React.Component {
                 
                 let notification_content ={
                     validation:true,
-                    message:"Comment Edited",
-                    color:"Green"
+                    message:"Comment Edited"
                 }
                 this.props.onComment(notification_content)
 
@@ -532,9 +540,7 @@ export default class EachCase extends React.Component {
                 
                 let notification_content={
                     validation:false,
-                    message:formated_error_messages,
-                    color:"red"
-
+                    message:formated_error_messages
                 }
                 this.props.onComment(notification_content)
 
