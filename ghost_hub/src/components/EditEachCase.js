@@ -17,14 +17,14 @@ export default class EditEachCase extends React.Component {
         "location":"",
         "date":"",
         "entity_tags":[],
-        "type_of_activity":"others",
+        "type_of_activity":"Accidental",
         "encounters":[],
         "new_image":"",
         "new_sightings_description":"",
         "new_equipment_used":[],
         "new_contact_type":[],
         "new_number_of_entities":0,
-        "new_time_of_encounter":"",
+        "new_time_of_encounter":"Early Morning",
         "edit_mode":{
             "_id":0
         },

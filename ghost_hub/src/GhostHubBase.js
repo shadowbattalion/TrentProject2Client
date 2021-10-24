@@ -25,10 +25,10 @@ export default class GhostHubBase extends React.Component {
 
         let active_display_panel={
 
-            "list_cases":<ListCases onEnterEachCase={this.enterEachCase} url_api={this.url_api}/>,
+            "list_cases":<ListCases onEnterEachCase={this.enterEachCase} onServerError={this.server_error} url_api={this.url_api}/>,
             "each_case":<EachCase onListCases={this.listCases} onEditEachCase={this.editEachCase} onComment={this.comment_notification} url_api={this.url_api} case_id={this.state.case_id} />,
             "edit_each_case":<EditEachCase onEnterEachCase={this.enterEachCase} url_api={this.url_api} case_id={this.state.case_id} />,
-            "add_new_case":<AddNewCase onListCases={this.listCases} url_api={this.url_api} />
+            "add_new_case":<AddNewCase onListCases={this.listCases} onServerError={this.server_error} url_api={this.url_api} />
             
                
         
@@ -150,7 +150,7 @@ export default class GhostHubBase extends React.Component {
             this.setState({
 
                 "notification_message":notification_content.message,
-                "notification_message_color":notification_content.color,
+                "notification_message_color":"green",
                 "reveal":"alert-reveal"
 
                 })
@@ -160,7 +160,7 @@ export default class GhostHubBase extends React.Component {
             this.setState({
 
                 "notification_message":notification_content.message,
-                "notification_message_color":notification_content.color,
+                "notification_message_color":"red",
                 "reveal":"alert-reveal"
 
                 })
@@ -173,6 +173,7 @@ export default class GhostHubBase extends React.Component {
 
     }
 
+    
 
     notification_panel_dissapear=()=>{
 
@@ -183,6 +184,21 @@ export default class GhostHubBase extends React.Component {
     }
     
 
+    server_error=(notification_content)=>{
+
+
+        if(!notification_content.validation){
+            this.setState({
+
+                "notification_message":notification_content.message,
+                "notification_message_color":"light blue",
+                "reveal":"alert-reveal"
+
+                })
+        
+        }
+          
+    }
 
 
     render(){

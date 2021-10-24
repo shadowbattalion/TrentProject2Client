@@ -20,17 +20,29 @@ export default class EachCase extends React.Component {
 
     componentDidMount= async() => {
 
-        this.setState({
-            "page_loaded":true
-        })
-        let response = await axios.get(this.props.url_api + "/case/"+this.props.case_id) 
+        try{
+            this.setState({
+                "page_loaded":true
+            })
+            let response = await axios.get(this.props.url_api + "/case/"+this.props.case_id) 
 
-        this.setState({
-            "case":response.data[0],
-            "comments":response.data[0].comments,
-            "witness":response.data[1],
-            "page_loaded":false
-        })
+            this.setState({
+                "case":response.data[0],
+                "comments":response.data[0].comments,
+                "witness":response.data[1],
+                "page_loaded":false
+            })
+
+        }catch(e){
+
+            let notification_content={
+                validation:false,
+                message:"Server Error. Please contact the administrator"
+
+            }
+            this.props.onServerError(notification_content)
+
+        }
     }
 
     display_loading_page(){
@@ -243,17 +255,25 @@ export default class EachCase extends React.Component {
 
     confirm_delete= async()=>{
 
-        console.log(this.props.case_id)
-        let outcome = await axios.delete(this.props.url_api + "/delete_case/"+this.props.case_id)
+        try{
+            console.log(this.props.case_id)
+            let outcome = await axios.delete(this.props.url_api + "/delete_case/"+this.props.case_id)
 
-        console.log(outcome)
+            console.log(outcome)
 
-        let notification_content ={
-            validation:true,
-            message:"Case Deleted",
-            color:"Green"
+            let notification_content ={
+                validation:true,
+                message:"Case Deleted",
+                color:"Green"
+            }
+            this.props.onListCases(notification_content)
+
+        }catch(e){
+
+
+
+
         }
-        this.props.onListCases(notification_content)
 
 
 

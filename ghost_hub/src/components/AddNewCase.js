@@ -16,7 +16,7 @@ export default class AddNewCase extends React.Component {
         "location":"",
         "date":"",
         "entity_tags":[],
-        "type_of_activity":"Others",
+        "type_of_activity":"Accidental",
         "encounters":[],
         "new_image":"",
         "new_sightings_description":"",
@@ -38,14 +38,28 @@ export default class AddNewCase extends React.Component {
 
     componentDidMount= async() => {
 
-        let entity_tags = await axios.get(this.props.url_api + "/list_entity_tags") 
-        
-        this.setState({
+        try{
+            let entity_tags = await axios.get(this.props.url_api + "/list_entity_tags") 
+            
+            this.setState({
 
-            "entity_tags_list":entity_tags.data
+                "entity_tags_list":entity_tags.data
 
 
-        })
+            })
+
+        }catch(e){
+
+
+            let notification_content={
+                validation:false,
+                message:"Server Error. Please contact the administrator"
+
+            }
+            this.props.onServerError(notification_content)
+
+
+        }
     }
 
 

@@ -10,14 +10,27 @@ export default class ListCases extends React.Component {
     }
 
     componentDidMount=async()=>{
-        this.setState({
-            "page_loaded":true
-        })
-        let response = await axios.get(this.url_api + "/cases")
-        this.setState({
-            'api_data': response.data,
-            "page_loaded":false
-        })
+        try{
+            this.setState({
+                "page_loaded":true
+            })
+            let response = await axios.get(this.url_api + "/cases")
+            this.setState({
+                'api_data': response.data,
+                "page_loaded":false
+            })
+        }catch(e){
+
+
+            let notification_content={
+                validation:false,
+                message:"Server Error. Please contact the administrator"
+
+            }
+            this.props.onServerError(notification_content)
+
+
+        }
 
     }
 
