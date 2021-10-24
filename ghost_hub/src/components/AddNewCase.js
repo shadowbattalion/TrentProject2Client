@@ -22,7 +22,7 @@ export default class AddNewCase extends React.Component {
         "new_sightings_description":"",
         "new_equipment_used":[],
         "new_contact_type":[],
-        "new_number_of_entities":0,
+        "new_number_of_entities":"",
         "new_time_of_encounter":"",
         "edit_mode":{
             "_id":0
@@ -293,6 +293,148 @@ export default class AddNewCase extends React.Component {
     }
 
 
+    encounter_validation=()=>{
+
+        let error_message=[]
+
+
+        let image=false
+        if(this.state.new_image && this.state.new_image.includes("https")){
+
+            image=true
+
+        } else {
+
+            
+
+            if(!this.new_image){
+
+                error_message.push((<React.Fragment>
+
+                    <div>Image name is missing</div>
+    
+                </React.Fragment>))
+
+            }else if(!this.new_image.includes("https")){
+
+                error_message.push((<React.Fragment>
+
+                    <div>Image must have URL name</div>
+    
+                </React.Fragment>))
+
+
+
+            }
+
+
+        }
+
+
+        let equipment_used=false
+        if(this.state.new_equipment_used.length>0){
+
+            equipment_used=true
+
+        } else {
+
+            error_message.push((<React.Fragment>
+
+                <div>Select at least one equipment</div>
+
+            </React.Fragment>))
+
+        }
+
+
+
+        let contact_type=false
+        if(this.state.new_contact_type.length>0){
+
+            contact_type=true
+
+        } else {
+
+            error_message.push((<React.Fragment>
+
+                <div>Select at least one contact type</div>
+
+            </React.Fragment>))
+
+        }
+
+
+
+        let time_of_encounter=false
+        if(this.state.new_time_of_encounter){
+
+            time_of_encounter=true
+
+        } else {
+
+            error_message.push((<React.Fragment>
+
+                <div>Select at least one time of encounter</div>
+
+            </React.Fragment>))
+
+        }
+
+
+
+
+
+
+        let number_of_entities=false
+        if(this.state.new_number_of_entities && /\d/.test(this.state.new_number_of_entities) && parseInt(this.state.new_number_of_entities)>=1){
+
+            number_of_entities=true
+
+        } else {
+
+            
+
+            if(!this.state.new_number_of_entities){
+
+                error_message.push((<React.Fragment>
+
+                    <div>Number of entities is missing</div>
+    
+                </React.Fragment>))
+
+            }else if(!/\d/.test(this.state.new_number_of_entities)){
+
+                error_message.push((<React.Fragment>
+
+                    <div>Number of entities must be in numbers</div>
+    
+                </React.Fragment>))
+
+
+
+            }else if(!parseInt(this.state.new_number_of_entities)>=1){
+
+                error_message.push((<React.Fragment>
+
+                    <div>There should be at least 1 entity</div>
+    
+                </React.Fragment>))
+
+
+
+            }
+
+
+        }
+
+        
+
+
+
+        return [image && number_of_entities && equipment_used && contact_type && time_of_encounter?true:false, error_message]
+    }
+
+
     add_encounter=()=>{
 
         let new_encounter={
@@ -306,8 +448,15 @@ export default class AddNewCase extends React.Component {
 
         }
         
-        if(new_encounter.image && new_encounter.image.includes("https")){
 
+
+
+        let [validation, error_messages]=this.encounter_validation()
+
+        let formated_error_messages= error_messages.map((error_message)=>{return(<React.Fragment><div>{error_message}</div></React.Fragment>)})
+        console.log(validation)
+        if (validation){
+            
             this.setState({
                 "encounters": [...this.state.encounters, new_encounter],
                 "new_image":"",
@@ -319,48 +468,24 @@ export default class AddNewCase extends React.Component {
             })
 
 
-        } else {
-
-            let error_message=""
-
-            if(!new_encounter.image){
-
-                error_message= (<React.Fragment>
-
-                    <div>Image name is missing</div>
-    
-                </React.Fragment>)
-
-            }else if(!new_encounter.image.includes("https")){
-
-                error_message= (<React.Fragment>
-
-                    <div>Image must have URL name</div>
-    
-                </React.Fragment>)
-
-
-
-            }
-
-
-        
-
+        }else{
             let notification_content={
                 validation:false,
-                message:error_message,
+                message:formated_error_messages,
                 color:"red"
 
             }
             this.props.onListCases(notification_content)
-            
-            
-
-
         }
-        
-        
+
+     
+            
+
+
     }
+        
+        
+    
 
 
     delete_encounter = (encounter_delete) =>{
@@ -475,7 +600,7 @@ export default class AddNewCase extends React.Component {
         }
         
         let age=false
-        console.log(/\d/.test(this.state.age))
+        
         
         if(this.state.age && /\d/.test(this.state.age) && (parseInt(this.state.age)>=10 && parseInt(this.state.age)<=120)){ //age must not be alphabet check
 
@@ -502,28 +627,14 @@ export default class AddNewCase extends React.Component {
             }else if (!(parseInt(this.state.age)>=10 && parseInt(this.state.age)<=120)){
                 error_message.push((<React.Fragment>
 
-                    <div>Insert a proper age</div>
+                    <div>Insert a proper age from 10 to 120</div>
 
                 </React.Fragment>))
             }
 
         }
 
-        let company_name=false
-        if(this.state.company_name){
-
-            company_name=true
-
-        } else {
-
-            error_message.push((<React.Fragment>
-
-                <div>The company name is missing</div>
-
-            </React.Fragment>))
-
-
-        }
+        
 
         let email_address=false
         if(this.state.email_address && this.state.email_address.includes("@")){
@@ -541,7 +652,7 @@ export default class AddNewCase extends React.Component {
             } else {
                 error_message.push((<React.Fragment>
 
-                    <div>The email address is inapprpriate format</div>
+                    <div>The email address is inappropriate format</div>
     
                 </React.Fragment>))
 
@@ -620,7 +731,7 @@ export default class AddNewCase extends React.Component {
 
 
 
-        return ((display_name && !company_name)||(!display_name && company_name)) && email_address && case_title && location && date && encounters?true:false, error_message
+        return [display_name && email_address && case_title && location && date && encounters?true:false, error_message]
     }
 
 
@@ -648,10 +759,10 @@ export default class AddNewCase extends React.Component {
         
         // console.log("Submitted!")
 
-        let validation, error_messages=this.front_end_validation()
+        let [validation, error_messages]=this.front_end_validation()
 
         let formated_error_messages= error_messages.map((error_message)=>{return(<React.Fragment><div>{error_message}</div></React.Fragment>)})
-        
+        console.log(validation)
         if (validation){
             
             let notification_content={
