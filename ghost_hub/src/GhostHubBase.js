@@ -154,6 +154,18 @@ export default class GhostHubBase extends React.Component {
                 "reveal":"alert-reveal"
 
                 })
+        
+        }else{
+
+            this.setState({
+
+                "notification_message":notification_content.message,
+                "notification_message_color":notification_content.color,
+                "reveal":"alert-reveal"
+
+                })
+
+
         }
           
 

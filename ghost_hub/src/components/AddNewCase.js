@@ -752,7 +752,6 @@ export default class AddNewCase extends React.Component {
         
         let age=false
         
-        
         if(this.state.age && /\d/.test(this.state.age) && (parseInt(this.state.age)>=10 && parseInt(this.state.age)<=120)){ 
 
             age=true

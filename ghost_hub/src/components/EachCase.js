@@ -269,20 +269,42 @@ export default class EachCase extends React.Component {
         })
     }
 
-    add_comment_validation = async()=>{
+    add_comment_validation = ()=>{
+
+        let error_message=[]
+
+        let  content=false
+        if(this.state.new_content){
+
+            content=true
+
+        } else {
+
+            error_message.push((<React.Fragment>
+
+                <div>Enter a comment</div>
+
+            </React.Fragment>))
 
 
+        }
+
+
+       
+
+
+        return [content?true:false, error_message]
 
 
     }
 
     add_comment= async ()=>{
 
+        
+        let [validation, error_messages]=this.add_comment_validation()
 
-        let [validation, error_messages]=this.add_comment_validation
-
-        let formated_error_messages= error_messages.map((error_message)=>{return(<React.Fragment><div>{error_message}</div></React.Fragment>)})
-
+        let formated_error_messages= error_messages.map((error_message)=>{return(<React.Fragment><div>{error_message}</div></React.Fragment>)}) 
+        console.log(error_messages[0])
         if (validation){
             let outcome = await axios.post(this.props.url_api + "/post_comment",{
                 "case_id":this.props.case_id,
@@ -291,7 +313,8 @@ export default class EachCase extends React.Component {
 
             }) 
 
-            let new_comment_id=outcome.data.new_comment_inserted.insertedId
+            
+            let new_comment_id=outcome.data.insertedId
             console.log(new_comment_id)
 
             let new_comment={
@@ -321,7 +344,7 @@ export default class EachCase extends React.Component {
 
         }else{
 
-
+            
             let notification_content={
                 validation:false,
                 message:formated_error_messages,
