@@ -946,7 +946,7 @@ export default class AddNewCase extends React.Component {
             let [validation, error_messages]=this.front_end_validation()
 
             let formated_error_messages= error_messages.map((error_message)=>{return(<React.Fragment><div>{error_message}</div></React.Fragment>)})
-            console.log(validation)
+            
             if (validation){
                 
                 let add_case = await axios.post(this.url_api + '/add_case', {
@@ -974,7 +974,7 @@ export default class AddNewCase extends React.Component {
 
                 let notification_content={
                     validation:true,
-                    message:"Case Added",
+                    message:"Case Edited",
                     color:"green"
 
                 }

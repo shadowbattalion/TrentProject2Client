@@ -269,45 +269,71 @@ export default class EachCase extends React.Component {
         })
     }
 
+    add_comment_validation = async()=>{
+
+
+
+
+    }
 
     add_comment= async ()=>{
 
-        let outcome = await axios.post(this.props.url_api + "/post_comment",{
-            "case_id":this.props.case_id,
-            "content":this.state.new_content,
-            "like":this.state.new_like
 
-        }) 
+        let [validation, error_messages]=this.add_comment_validation
 
-        let new_comment_id=outcome.data.new_comment_inserted.insertedId
-        console.log(new_comment_id)
+        let formated_error_messages= error_messages.map((error_message)=>{return(<React.Fragment><div>{error_message}</div></React.Fragment>)})
 
-        let new_comment={
-            "_id":new_comment_id,
-            "content":this.state.new_content,
-            "like":this.state.new_like
-        
+        if (validation){
+            let outcome = await axios.post(this.props.url_api + "/post_comment",{
+                "case_id":this.props.case_id,
+                "content":this.state.new_content,
+                "like":this.state.new_like
+
+            }) 
+
+            let new_comment_id=outcome.data.new_comment_inserted.insertedId
+            console.log(new_comment_id)
+
+            let new_comment={
+                "_id":new_comment_id,
+                "content":this.state.new_content,
+                "like":this.state.new_like
+            
+            }
+            
+            
+            this.setState({
+                "comments": [...this.state.comments, new_comment],
+                "new_content":"",
+                "new_like":false,
+            })
+
+            
+
+
+
+            let notification_content ={
+                validation:true,
+                message:"Comment Added",
+                color:"Green"
+            }
+            this.props.onComment(notification_content)
+
+        }else{
+
+
+            let notification_content={
+                validation:false,
+                message:formated_error_messages,
+                color:"red"
+
+            }
+            this.props.onComment(notification_content)
+
+
+
+
         }
-        
-        
-        this.setState({
-            "comments": [...this.state.comments, new_comment],
-            "new_content":"",
-            "new_like":false,
-        })
-
-        
-
-
-
-        let notification_content ={
-            validation:true,
-            message:"Comment Added",
-            color:"Green"
-        }
-        this.props.onComment(notification_content)
-
-
         
     }
 
