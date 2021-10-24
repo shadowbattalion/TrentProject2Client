@@ -16,7 +16,7 @@ export default class AddNewCase extends React.Component {
         "location":"",
         "date":"",
         "entity_tags":[],
-        "type_of_activity":"others",
+        "type_of_activity":"",
         "encounters":[],
         "new_image":"",
         "new_sightings_description":"",
