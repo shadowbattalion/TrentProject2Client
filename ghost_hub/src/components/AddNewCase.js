@@ -306,17 +306,60 @@ export default class AddNewCase extends React.Component {
 
         }
         
-        this.state.new_sightings_description=""
+        if(new_encounter.image && !new_encounter.image.includes("https")){
+
+            this.setState({
+                "encounters": [...this.state.encounters, new_encounter],
+                "new_image":"",
+                "new_sightings_description":"",
+                "new_equipment_used":[],
+                "new_contact_type":[],
+                "new_number_of_entities":0,
+                "new_time_of_encounter":""
+            })
+
+
+        } else {
+
+            let error_message=""
+
+            if(!new_encounter.image){
+
+                error_message= (<React.Fragment>
+
+                    <div>Image name is missing</div>
+    
+                </React.Fragment>)
+
+            }else if(new_encounter.image.includes("https")){
+
+                error_message= (<React.Fragment>
+
+                    <div>Image must have URL name</div>
+    
+                </React.Fragment>)
+
+
+
+            }
+
+
         
-        this.setState({
-            "encounters": [...this.state.encounters, new_encounter],
-            "new_image":"",
-            "new_sightings_description":"",
-            "new_equipment_used":[],
-            "new_contact_type":[],
-            "new_number_of_entities":0,
-            "new_time_of_encounter":""
-        })
+
+            let notification_content={
+                validation:false,
+                message:error_message,
+                color:"red"
+
+            }
+            this.props.onListCases(notification_content)
+            
+            
+
+
+        }
+        
+        
     }
 
 
@@ -412,10 +455,38 @@ export default class AddNewCase extends React.Component {
 
     front_end_validation=()=>{
 
-       let  display_name=false
+
+        let error_message=[]
+
+        let  display_name=false
         if(this.state.display_name){
 
             display_name=true
+
+        } else {
+
+            error_message.push((<React.Fragment>
+
+                <div>The display name is missing</div>
+
+            </React.Fragment>))
+
+
+        }
+        
+        let  age=false
+        if(parseInt(this.state.age<10) || parseInt(this.state.age>120)){ //age must not be alphabet check
+
+            age=true
+
+        } else {
+
+            error_message.push((<React.Fragment>
+
+                <div>Insert a proper age</div>
+
+            </React.Fragment>))
+
 
         }
 
@@ -424,12 +495,40 @@ export default class AddNewCase extends React.Component {
 
             company_name=true
 
+        } else {
+
+            error_message.push((<React.Fragment>
+
+                <div>The company name is missing</div>
+
+            </React.Fragment>))
+
+
         }
 
         let email_address=false
         if(this.state.email_address && this.state.email_address.includes("@")){
 
             email_address=true
+
+        } else {
+
+            if(!this.state.email_address){
+                error_message.push((<React.Fragment>
+
+                    <div>The email address is missing</div>
+    
+                </React.Fragment>))
+            } else {
+                error_message.push((<React.Fragment>
+
+                    <div>The email address is inapprpriate format</div>
+    
+                </React.Fragment>))
+
+
+            }
+
 
         }
 
@@ -439,12 +538,29 @@ export default class AddNewCase extends React.Component {
 
             case_title=true
 
+        } else {
+
+            error_message.push((<React.Fragment>
+
+                <div>The case title is missing</div>
+
+            </React.Fragment>))
+
         }
+
 
         let location=false
         if(this.state.location){
 
             location=true
+
+        } else {
+
+            error_message.push((<React.Fragment>
+
+                <div>The location is missing</div>
+
+            </React.Fragment>))
 
         }
 
@@ -453,13 +569,39 @@ export default class AddNewCase extends React.Component {
 
             date=true
 
+        } else {
+
+            error_message.push((<React.Fragment>
+
+                <div>The date is missing</div>
+
+            </React.Fragment>))
+
+
+        }
+
+        
+        
+        let encounters=false
+        if(this.state.encounters.length>0){
+
+            encounters=true
+
+        } else {
+
+            error_message.push((<React.Fragment>
+
+                <div>At least 1 encounter is needed</div>
+
+            </React.Fragment>))
+
         }
 
         
 
 
 
-        return ((display_name && !company_name)||(!display_name && company_name)) && email_address && case_title && location && date?true:false
+        return ((display_name && !company_name)||(!display_name && company_name)) && email_address && case_title && location && date && encounters?true:false, error_message
     }
 
 
@@ -487,9 +629,11 @@ export default class AddNewCase extends React.Component {
         
         // console.log("Submitted!")
 
+        let validation, error_messages=this.front_end_validation()
 
+        let formated_error_messages= error_messages.map((error_message)=>{return(<React.Fragment><div>{error_message}</div></React.Fragment>)})
         
-        if (this.front_end_validation()){
+        if (validation){
             
             let notification_content={
                 validation:true,
@@ -502,7 +646,7 @@ export default class AddNewCase extends React.Component {
         }else{
             let notification_content={
                 validation:false,
-                message:"Input Error",
+                message:formated_error_messages,
                 color:"red"
 
             }
