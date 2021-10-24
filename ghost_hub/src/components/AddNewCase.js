@@ -293,7 +293,9 @@ export default class AddNewCase extends React.Component {
     }
 
 
-    encounter_validation=()=>{
+
+
+    add_encounter_validation=()=>{
 
         let error_message=[]
 
@@ -437,25 +439,24 @@ export default class AddNewCase extends React.Component {
 
     add_encounter=()=>{
 
-        let new_encounter={
-            "_id":"front_end_id"+new Date().valueOf()+"/"+Math.floor(Math.random()*(10000-1000+1)+1000),
-            "image":this.state.new_image,
-            "sightings_description":this.state.new_sightings_description,
-            "equipment_used":this.state.new_equipment_used,
-            "contact_type":this.state.new_contact_type,
-            "number_of_entities":this.state.new_number_of_entities,
-            "time_of_encounter":this.state.new_time_of_encounter
-
-        }
         
-
-
-
-        let [validation, error_messages]=this.encounter_validation()
+        let [validation, error_messages]=this.add_encounter_validation()
 
         let formated_error_messages= error_messages.map((error_message)=>{return(<React.Fragment><div>Encounter: {error_message}</div></React.Fragment>)})
-        console.log(validation)
+        
+
         if (validation){
+
+            let new_encounter={
+                "_id":"front_end_id"+new Date().valueOf()+"/"+Math.floor(Math.random()*(10000-1000+1)+1000),
+                "image":this.state.new_image,
+                "sightings_description":this.state.new_sightings_description,
+                "equipment_used":this.state.new_equipment_used,
+                "contact_type":this.state.new_contact_type,
+                "number_of_entities":this.state.new_number_of_entities,
+                "time_of_encounter":this.state.new_time_of_encounter
+    
+            }
             
             this.setState({
                 "encounters": [...this.state.encounters, new_encounter],
@@ -522,61 +523,211 @@ export default class AddNewCase extends React.Component {
 
     }
 
-      
+
+    edit_encounter_validation=()=>{
+
+        let error_message=[]
+
+
+        let image=false
+        
+        if(this.state.edit_image && this.state.edit_image.includes("https")){
+
+            image=true
+
+        } else {
+
+            
+            if(!this.state.edit_image.includes("https")){
+
+                error_message.push((<React.Fragment>
+
+                    <div>Image must have URL name</div>
+    
+                </React.Fragment>))
+
+
+
+            } else if(!this.state.edit_image){
+
+                error_message.push((<React.Fragment>
+
+                    <div>Image name is missing</div>
+    
+                </React.Fragment>))
+
+            }
+
+
+        }
+
+
+        let equipment_used=false
+        if(this.state.edit_equipment_used.length>0){
+
+            equipment_used=true
+
+        } else {
+
+            error_message.push((<React.Fragment>
+
+                <div>Select at least one equipment</div>
+
+            </React.Fragment>))
+
+        }
+
+
+
+        let contact_type=false
+        if(this.state.edit_contact_type.length>0){
+
+            contact_type=true
+
+        } else {
+
+            error_message.push((<React.Fragment>
+
+                <div>Select at least 1 contact type</div>
+
+            </React.Fragment>))
+
+        }
+
+
+
+        let time_of_encounter=false
+        if(this.state.edit_time_of_encounter){
+
+            time_of_encounter=true
+
+        } else {
+
+            error_message.push((<React.Fragment>
+
+                <div>Select 1 time of encounter</div>
+
+            </React.Fragment>))
+
+        }
+
+
+
+
+
+
+        let number_of_entities=false
+        if(this.state.edit_number_of_entities && /\d/.test(this.state.edit_number_of_entities) && parseInt(this.state.edit_number_of_entities)>=1){
+
+            number_of_entities=true
+
+        } else {
+
+            
+
+            if(!this.state.edit_number_of_entities){
+
+                error_message.push((<React.Fragment>
+
+                    <div>Number of entities is missing</div>
+    
+                </React.Fragment>))
+
+            }else if(!/\d/.test(this.state.edit_number_of_entities)){
+
+                error_message.push((<React.Fragment>
+
+                    <div>Number of entities must be in numbers</div>
+    
+                </React.Fragment>))
+
+
+
+            }else if(!parseInt(this.state.edit_number_of_entities)>=1){
+
+                error_message.push((<React.Fragment>
+
+                    <div>There should be at least 1 entity</div>
+    
+                </React.Fragment>))
+
+
+
+            }
+
+
+        }
+
+        
+
+
+
+        return [image && number_of_entities && equipment_used && contact_type && time_of_encounter?true:false, error_message]
+    }
 
     edit_encounter = () =>{
 
 
-        let edited_encounter = {
+        let [validation, error_messages]=this.edit_encounter_validation()
+
+        let formated_error_messages = error_messages.map((error_message)=>{return(<React.Fragment><div>Encounter: {error_message}</div></React.Fragment>)})
+
+        if (validation){
+
+
+            let edited_encounter = {
+                
+                "_id":this.state.edit_mode._id,
+                "image":this.state.edit_image,
+                "sightings_description":this.state.edit_sightings_description,
+                "equipment_used":this.state.edit_equipment_used,
+                "contact_type":this.state.edit_contact_type,
+                "number_of_entities":this.state.edit_number_of_entities,
+                "time_of_encounter":this.state.edit_time_of_encounter
+
+            }
             
-            "_id":this.state.edit_mode._id,
-            "image":this.state.edit_image,
-            "sightings_description":this.state.edit_sightings_description,
-            "equipment_used":this.state.edit_equipment_used,
-            "contact_type":this.state.edit_contact_type,
-            "number_of_entities":this.state.edit_number_of_entities,
-            "time_of_encounter":this.state.edit_time_of_encounter
 
+
+
+
+            let index_to_edit = this.state.encounters.findIndex( encounter => encounter._id == edited_encounter._id);
+            
+            let updated_encounters = [...this.state.encounters.slice(0, index_to_edit), edited_encounter, ...this.state.encounters.slice(index_to_edit+1)]
+
+            this.setState({
+                "encounters": updated_encounters,
+                'edit_mode':{
+                    '_id':0
+                },
+                "edit_image":"",
+                "edit_sightings_description":"",
+                "edit_equipment_used":[],
+                "edit_contact_type":[],
+                "edit_number_of_entities":0,
+                "edit_time_of_encounter":""
+            })
+
+
+
+
+        
+    
+
+        }else{
+            let notification_content={
+                validation:false,
+                message:formated_error_messages,
+                color:"red"
+
+            }
+            this.props.onListCases(notification_content)
         }
-        
-        let index_to_edit = this.state.encounters.findIndex( encounter => encounter._id == edited_encounter._id);
-        
-        let updated_encounters = [...this.state.encounters.slice(0, index_to_edit), edited_encounter, ...this.state.encounters.slice(index_to_edit+1)]
-
-        this.setState({
-            "encounters": updated_encounters,
-            'edit_mode':{
-                '_id':0
-            },
-            "edit_image":"",
-            "edit_sightings_description":"",
-            "edit_equipment_used":[],
-            "edit_contact_type":[],
-            "edit_number_of_entities":0,
-            "edit_time_of_encounter":""
-        })
-
 
 
     }
 
-    // "witness":{
-    //     "email_address":this.state.email_address,
-    //     "display_name":this.state.display_name,
-    //     "occupation":this.state.occupation,
-    //     "age":this.state.age,
-    //     "company_name":this.state.company_name
-    //     },
-    // "case": {
-    //         "case_title":this.state.case_title,
-    //         "generic_description":this.state.generic_description,
-    //         "type_of_activity":this.state.type_of_activity,
-    //         "location":this.state.location,
-    //         "date":this.state.date,
-    //         "entity_tags":this.state.entity_tags
-    //     },
-    // "encounters":this.state.encounters
-
+    
 
     front_end_validation=()=>{
 
@@ -771,7 +922,22 @@ export default class AddNewCase extends React.Component {
     }
 
 
-
+    // "witness":{
+    //     "email_address":this.state.email_address,
+    //     "display_name":this.state.display_name,
+    //     "occupation":this.state.occupation,
+    //     "age":this.state.age,
+    //     "company_name":this.state.company_name
+    //     },
+    // "case": {
+    //         "case_title":this.state.case_title,
+    //         "generic_description":this.state.generic_description,
+    //         "type_of_activity":this.state.type_of_activity,
+    //         "location":this.state.location,
+    //         "date":this.state.date,
+    //         "entity_tags":this.state.entity_tags
+    //     },
+    // "encounters":this.state.encounters
 
 
     submit= async ()=>{

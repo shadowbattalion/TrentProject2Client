@@ -37,6 +37,39 @@ export default class EditEachCase extends React.Component {
 
     }
 
+    componentDidMount= async() => {
+        this.setState({"page_loaded":true})
+        let response = await axios.get(this.props.url_api + "/case/"+this.props.case_id)
+        this.setState({
+
+            "page_loaded":false,
+            "email_address":response.data[1].email_address,
+            "display_name":response.data[1].display_name,
+            "occupation":response.data[1].occupation,
+            "age":response.data[1].age,
+            "company_name":response.data[1].company_name,
+            "case_title":response.data[0].case_title,
+            "generic_description":response.data[0].generic_description,
+            "location":response.data[0].location,
+            "date":response.data[0].date,
+            "entity_tags":response.data[0].entity_tags.map(entity_tag=>entity_tag._id),
+            "type_of_activity":response.data[0].type_of_activity,
+            "encounters":response.data[0].encounters
+            
+
+
+        })
+
+        let entity_tags = await axios.get(this.props.url_api + "/list_entity_tags") 
+        
+        this.setState({
+
+            "entity_tags_list":entity_tags.data
+
+
+        })
+
+    }
     
     display_loading_page(){
 
@@ -283,32 +316,200 @@ export default class EditEachCase extends React.Component {
 
     }
 
+    add_encounter_validation=()=>{
+
+        let error_message=[]
+
+
+        let image=false
+        
+        if(this.state.new_image && this.state.new_image.includes("https")){
+
+            image=true
+
+        } else {
+
+            
+            if(!this.state.new_image.includes("https")){
+
+                error_message.push((<React.Fragment>
+
+                    <div>Image must have URL name</div>
+    
+                </React.Fragment>))
+
+
+
+            } else if(!this.state.new_image){
+
+                error_message.push((<React.Fragment>
+
+                    <div>Image name is missing</div>
+    
+                </React.Fragment>))
+
+            }
+
+
+        }
+
+
+        let equipment_used=false
+        if(this.state.new_equipment_used.length>0){
+
+            equipment_used=true
+
+        } else {
+
+            error_message.push((<React.Fragment>
+
+                <div>Select at least one equipment</div>
+
+            </React.Fragment>))
+
+        }
+
+
+
+        let contact_type=false
+        if(this.state.new_contact_type.length>0){
+
+            contact_type=true
+
+        } else {
+
+            error_message.push((<React.Fragment>
+
+                <div>Select at least 1 contact type</div>
+
+            </React.Fragment>))
+
+        }
+
+
+
+        let time_of_encounter=false
+        if(this.state.new_time_of_encounter){
+
+            time_of_encounter=true
+
+        } else {
+
+            error_message.push((<React.Fragment>
+
+                <div>Select 1 time of encounter</div>
+
+            </React.Fragment>))
+
+        }
+
+
+
+
+
+
+        let number_of_entities=false
+        if(this.state.new_number_of_entities && /\d/.test(this.state.new_number_of_entities) && parseInt(this.state.new_number_of_entities)>=1){
+
+            number_of_entities=true
+
+        } else {
+
+            
+
+            if(!this.state.new_number_of_entities){
+
+                error_message.push((<React.Fragment>
+
+                    <div>Number of entities is missing</div>
+    
+                </React.Fragment>))
+
+            }else if(!/\d/.test(this.state.new_number_of_entities)){
+
+                error_message.push((<React.Fragment>
+
+                    <div>Number of entities must be in numbers</div>
+    
+                </React.Fragment>))
+
+
+
+            }else if(!parseInt(this.state.new_number_of_entities)>=1){
+
+                error_message.push((<React.Fragment>
+
+                    <div>There should be at least 1 entity</div>
+    
+                </React.Fragment>))
+
+
+
+            }
+
+
+        }
+
+        
+
+
+
+        return [image && number_of_entities && equipment_used && contact_type && time_of_encounter?true:false, error_message]
+    }
+
+
+
 
     add_encounter=()=>{
 
-        let new_encounter={
-            "_id":"front_end_id"+new Date().valueOf()+"/"+Math.floor(Math.random()*(10000-1000+1)+1000),
-            "image":this.state.new_image,
-            "sightings_description":this.state.new_sightings_description,
-            "equipment_used":this.state.new_equipment_used,
-            "contact_type":this.state.new_contact_type,
-            "number_of_entities":this.state.new_number_of_entities,
-            "time_of_encounter":this.state.new_time_of_encounter
+        
+        let [validation, error_messages]=this.add_encounter_validation()
 
+        let formated_error_messages= error_messages.map((error_message)=>{return(<React.Fragment><div>Encounter: {error_message}</div></React.Fragment>)})
+        
+
+        if (validation){
+
+            let new_encounter={
+                "_id":"front_end_id"+new Date().valueOf()+"/"+Math.floor(Math.random()*(10000-1000+1)+1000),
+                "image":this.state.new_image,
+                "sightings_description":this.state.new_sightings_description,
+                "equipment_used":this.state.new_equipment_used,
+                "contact_type":this.state.new_contact_type,
+                "number_of_entities":this.state.new_number_of_entities,
+                "time_of_encounter":this.state.new_time_of_encounter
+    
+            }
+            
+            this.setState({
+                "encounters": [...this.state.encounters, new_encounter],
+                "new_image":"",
+                "new_sightings_description":"",
+                "new_equipment_used":[],
+                "new_contact_type":[],
+                "new_number_of_entities":0,
+                "new_time_of_encounter":""
+            })
+
+
+        }else{
+            let notification_content={
+                validation:false,
+                message:formated_error_messages,
+                color:"red"
+
+            }
+            this.props.onListCases(notification_content)
         }
-        
-        this.state.new_sightings_description=""//check
-        
-        this.setState({
-            "encounters": [...this.state.encounters, new_encounter],
-            "new_image":"",
-            "new_sightings_description":"",
-            "new_equipment_used":[],
-            "new_contact_type":[],
-            "new_number_of_entities":0,
-            "new_time_of_encounter":""
-        })
+
+     
+            
+
+
     }
+
+
+
 
 
     delete_encounter = (encounter_delete) =>{
@@ -346,44 +547,404 @@ export default class EditEachCase extends React.Component {
 
     }
 
-      
+    edit_encounter_validation=()=>{
+
+        let error_message=[]
+
+
+        let image=false
+        
+        if(this.state.edit_image && this.state.edit_image.includes("https")){
+
+            image=true
+
+        } else {
+
+            
+            if(!this.state.edit_image.includes("https")){
+
+                error_message.push((<React.Fragment>
+
+                    <div>Image must have URL name</div>
+    
+                </React.Fragment>))
+
+
+
+            } else if(!this.state.edit_image){
+
+                error_message.push((<React.Fragment>
+
+                    <div>Image name is missing</div>
+    
+                </React.Fragment>))
+
+            }
+
+
+        }
+
+
+        let equipment_used=false
+        if(this.state.edit_equipment_used.length>0){
+
+            equipment_used=true
+
+        } else {
+
+            error_message.push((<React.Fragment>
+
+                <div>Select at least one equipment</div>
+
+            </React.Fragment>))
+
+        }
+
+
+
+        let contact_type=false
+        if(this.state.edit_contact_type.length>0){
+
+            contact_type=true
+
+        } else {
+
+            error_message.push((<React.Fragment>
+
+                <div>Select at least 1 contact type</div>
+
+            </React.Fragment>))
+
+        }
+
+
+
+        let time_of_encounter=false
+        if(this.state.edit_time_of_encounter){
+
+            time_of_encounter=true
+
+        } else {
+
+            error_message.push((<React.Fragment>
+
+                <div>Select 1 time of encounter</div>
+
+            </React.Fragment>))
+
+        }
+
+
+
+
+
+
+        let number_of_entities=false
+        if(this.state.edit_number_of_entities && /\d/.test(this.state.edit_number_of_entities) && parseInt(this.state.edit_number_of_entities)>=1){
+
+            number_of_entities=true
+
+        } else {
+
+            
+
+            if(!this.state.edit_number_of_entities){
+
+                error_message.push((<React.Fragment>
+
+                    <div>Number of entities is missing</div>
+    
+                </React.Fragment>))
+
+            }else if(!/\d/.test(this.state.edit_number_of_entities)){
+
+                error_message.push((<React.Fragment>
+
+                    <div>Number of entities must be in numbers</div>
+    
+                </React.Fragment>))
+
+
+
+            }else if(!parseInt(this.state.edit_number_of_entities)>=1){
+
+                error_message.push((<React.Fragment>
+
+                    <div>There should be at least 1 entity</div>
+    
+                </React.Fragment>))
+
+
+
+            }
+
+
+        }
+
+        
+
+
+
+        return [image && number_of_entities && equipment_used && contact_type && time_of_encounter?true:false, error_message]
+    }
 
     edit_encounter = () =>{
 
 
-        let edited_encounter = {
+        let [validation, error_messages]=this.edit_encounter_validation()
+
+        let formated_error_messages = error_messages.map((error_message)=>{return(<React.Fragment><div>Encounter: {error_message}</div></React.Fragment>)})
+
+        if (validation){
+
+
+            let edited_encounter = {
+                
+                "_id":this.state.edit_mode._id,
+                "image":this.state.edit_image,
+                "sightings_description":this.state.edit_sightings_description,
+                "equipment_used":this.state.edit_equipment_used,
+                "contact_type":this.state.edit_contact_type,
+                "number_of_entities":this.state.edit_number_of_entities,
+                "time_of_encounter":this.state.edit_time_of_encounter
+
+            }
             
-            "_id":this.state.edit_mode._id,
-            "image":this.state.edit_image,
-            "sightings_description":this.state.edit_sightings_description,
-            "equipment_used":this.state.edit_equipment_used,
-            "contact_type":this.state.edit_contact_type,
-            "number_of_entities":this.state.edit_number_of_entities,
-            "time_of_encounter":this.state.edit_time_of_encounter
 
+
+
+
+            let index_to_edit = this.state.encounters.findIndex( encounter => encounter._id == edited_encounter._id);
+            
+            let updated_encounters = [...this.state.encounters.slice(0, index_to_edit), edited_encounter, ...this.state.encounters.slice(index_to_edit+1)]
+
+            this.setState({
+                "encounters": updated_encounters,
+                'edit_mode':{
+                    '_id':0
+                },
+                "edit_image":"",
+                "edit_sightings_description":"",
+                "edit_equipment_used":[],
+                "edit_contact_type":[],
+                "edit_number_of_entities":0,
+                "edit_time_of_encounter":""
+            })
+
+
+
+
+        
+    
+
+        }else{
+            let notification_content={
+                validation:false,
+                message:formated_error_messages,
+                color:"red"
+
+            }
+            this.props.onListCases(notification_content)
         }
-        
-        let index_to_edit = this.state.encounters.findIndex( encounter => encounter._id == edited_encounter._id);
-        
-        
-        let updated_encounters = [...this.state.encounters.slice(0, index_to_edit), edited_encounter, ...this.state.encounters.slice(index_to_edit+1)]
-
-        this.setState({
-            "encounters": updated_encounters,
-            'edit_mode':{
-                '_id':0
-            },
-            "edit_image":"",
-            "edit_sightings_description":"",
-            "edit_equipment_used":[],
-            "edit_contact_type":[],
-            "edit_number_of_entities":0,
-            "edit_time_of_encounter":""
-        })
-
 
 
     }
+
+    
+
+
+    front_end_validation=()=>{
+
+
+        let error_message=[]
+
+        let  display_name=false
+        if(this.state.display_name){
+
+            display_name=true
+
+        } else {
+
+            error_message.push((<React.Fragment>
+
+                <div>The display name is missing</div>
+
+            </React.Fragment>))
+
+
+        }
+        
+        let age=false
+        
+        
+        if(this.state.age && /\d/.test(this.state.age) && (parseInt(this.state.age)>=10 && parseInt(this.state.age)<=120)){ 
+
+            age=true
+
+        } else {
+            if(!this.state.age){
+
+                error_message.push((<React.Fragment>
+
+                    <div>The age is missing</div>
+    
+                </React.Fragment>))
+
+            }else if(!/\d/.test(this.state.age)){
+
+                error_message.push((<React.Fragment>
+
+                    <div>Age must be a number</div>
+
+                </React.Fragment>))
+
+
+            }else if (!(parseInt(this.state.age)>=10 && parseInt(this.state.age)<=120)){
+                error_message.push((<React.Fragment>
+
+                    <div>Insert a proper age from 10 to 120</div>
+
+                </React.Fragment>))
+            }
+
+        }
+
+        
+
+        let email_address=false
+        if(this.state.email_address && this.state.email_address.includes("@")){
+
+            email_address=true
+
+        } else {
+
+            if(!this.state.email_address){
+                error_message.push((<React.Fragment>
+
+                    <div>The email address is missing</div>
+    
+                </React.Fragment>))
+            } else {
+                error_message.push((<React.Fragment>
+
+                    <div>The email address is inappropriate format</div>
+    
+                </React.Fragment>))
+
+
+            }
+
+
+        }
+
+
+        let case_title=false
+        if(this.state.case_title){
+
+            case_title=true
+
+        } else {
+
+            error_message.push((<React.Fragment>
+
+                <div>The case title is missing</div>
+
+            </React.Fragment>))
+
+        }
+
+
+        let location=false
+        if(this.state.location){
+
+            location=true
+
+        } else {
+
+            error_message.push((<React.Fragment>
+
+                <div>The location is missing</div>
+
+            </React.Fragment>))
+
+        }
+
+        let date=false
+        if(this.state.date){
+
+            date=true
+
+        } else {
+
+            error_message.push((<React.Fragment>
+
+                <div>The date is missing</div>
+
+            </React.Fragment>))
+
+
+        }
+
+
+
+        let type_of_activity=false
+        if(this.state.type_of_activity){
+
+            type_of_activity=true
+
+        } else {
+
+            error_message.push((<React.Fragment>
+
+                <div>Select 1 type of activity</div>
+
+            </React.Fragment>))
+
+        }
+
+
+        
+        let entity_tags=false
+        if(this.state.entity_tags.length>0){
+
+            entity_tags=true
+
+        } else {
+
+            error_message.push((<React.Fragment>
+
+                <div>Select at least 1 entity tag</div>
+
+            </React.Fragment>))
+
+        }
+
+
+
+
+        
+        let encounters=false
+        if(this.state.encounters.length>0){
+
+            encounters=true
+
+        } else {
+
+            error_message.push((<React.Fragment>
+
+                <div>At least 1 encounter is needed</div>
+
+            </React.Fragment>))
+
+        }
+
+        
+
+
+
+        return [display_name && email_address && case_title && location && date && type_of_activity && entity_tags && encounters?true:false, error_message]
+    }
+
 
     // "witness":{
     //     "email_address":this.state.email_address,
@@ -404,68 +965,70 @@ export default class EditEachCase extends React.Component {
 
     submit= async ()=>{
 
-        let add_case = await axios.put(this.url_api + '/update_case/'+this.props.case_id, {
+        try{
+            let [validation, error_messages]=this.front_end_validation()
 
-            "case": {
-                "case_title":this.state.case_title,
-                "generic_description":this.state.generic_description,
-                "type_of_activity":this.state.type_of_activity,
-                "location":this.state.location,
-                "date":this.state.date,
-                "entity_tags":this.state.entity_tags
-                },
-            "encounters":this.state.encounters
-        })
-        
-        console.log("Submitted!")
+            let formated_error_messages= error_messages.map((error_message)=>{return(<React.Fragment><div>{error_message}</div></React.Fragment>)})
+            console.log(validation)
+            if (validation){
+                
+                let add_case = await axios.post(this.url_api + '/add_case', {
 
-        let notification_content ={
-            validation:true,
-            message:"Case Edited",
-            color:"Green"
+                    "witness":{
+                        "email_address":this.state.email_address,
+                        "display_name":this.state.display_name,
+                        "occupation":this.state.occupation,
+                        "age":this.state.age,
+                        "company_name":this.state.company_name
+                        },
+                    "case": {
+                        "case_title":this.state.case_title,
+                        "generic_description":this.state.generic_description,
+                        "type_of_activity":this.state.type_of_activity,
+                        "location":this.state.location,
+                        "date":this.state.date,
+                        "entity_tags":this.state.entity_tags
+                        },
+                    "encounters":this.state.encounters
+                })
+                
+                console.log(add_case)
 
+
+                let notification_content={
+                    validation:true,
+                    message:"Case Added",
+                    color:"green"
+
+                }
+                this.props.onListCases(notification_content)
+
+            }else{
+                let notification_content={
+                    validation:false,
+                    message:formated_error_messages,
+                    color:"red"
+
+                }
+                this.props.onListCases(notification_content)
+            }
+
+        } catch (e) {
+            let notification_content={
+                validation:false,
+                message:"Malformed input sent to server. Please contact the administrator",
+                color:"light blue"
+
+            }
+            this.props.onListCases(notification_content)         
         }
-        this.props.onEnterEachCase(notification_content,this.props.case_id)
-
 
 
     }
     
         
 
-    componentDidMount= async() => {
-        this.setState({"page_loaded":true})
-        let response = await axios.get(this.props.url_api + "/case/"+this.props.case_id)
-        this.setState({
-
-            "page_loaded":false,
-            "email_address":response.data[1].email_address,
-            "display_name":response.data[1].display_name,
-            "occupation":response.data[1].occupation,
-            "age":response.data[1].age,
-            "company_name":response.data[1].company_name,
-            "case_title":response.data[0].case_title,
-            "generic_description":response.data[0].generic_description,
-            "location":response.data[0].location,
-            "date":response.data[0].date,
-            "entity_tags":response.data[0].entity_tags.map(entity_tag=>entity_tag._id),
-            "type_of_activity":response.data[0].type_of_activity,
-            "encounters":response.data[0].encounters
-            
-
-
-        })
-
-        let entity_tags = await axios.get(this.props.url_api + "/list_entity_tags") 
-        
-        this.setState({
-
-            "entity_tags_list":entity_tags.data
-
-
-        })
-
-    }
+    
 
    
 
