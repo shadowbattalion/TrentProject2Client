@@ -357,7 +357,7 @@ export default class AddNewCase extends React.Component {
 
             error_message.push((<React.Fragment>
 
-                <div>Select at least one contact type</div>
+                <div>Select at least 1 contact type</div>
 
             </React.Fragment>))
 
@@ -374,7 +374,7 @@ export default class AddNewCase extends React.Component {
 
             error_message.push((<React.Fragment>
 
-                <div>Select at least one time of encounter</div>
+                <div>Select 1 time of encounter</div>
 
             </React.Fragment>))
 
@@ -710,7 +710,43 @@ export default class AddNewCase extends React.Component {
 
         }
 
+
+
+        let type_of_activity=false
+        if(this.state.type_of_activity){
+
+            type_of_activity=true
+
+        } else {
+
+            error_message.push((<React.Fragment>
+
+                <div>Select 1 type of activity</div>
+
+            </React.Fragment>))
+
+        }
+
+
         
+        let entity_tags=false
+        if(this.state.entity_tags.length>0){
+
+            entity_tags=true
+
+        } else {
+
+            error_message.push((<React.Fragment>
+
+                <div>Select at least 1 entity tag</div>
+
+            </React.Fragment>))
+
+        }
+
+
+
+
         
         let encounters=false
         if(this.state.encounters.length>0){
@@ -731,7 +767,7 @@ export default class AddNewCase extends React.Component {
 
 
 
-        return [display_name && email_address && case_title && location && date && encounters?true:false, error_message]
+        return [display_name && email_address && case_title && location && date && type_of_activity && entity_tags && encounters?true:false, error_message]
     }
 
 
