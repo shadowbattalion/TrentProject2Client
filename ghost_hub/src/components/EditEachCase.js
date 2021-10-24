@@ -554,14 +554,23 @@ export default class EditEachCase extends React.Component {
 
         let image=false
         
-        if(this.state.edit_image && this.state.edit_image.includes("https")){
+        if(this.state.edit_image!="" && this.state.edit_image.includes("https")){
 
             image=true
 
         } else {
 
             
-            if(!this.state.edit_image.includes("https")){
+                       
+            if(this.state.edit_image==""){
+
+                error_message.push((<React.Fragment>
+
+                    <div>Image name is missing</div>
+    
+                </React.Fragment>))
+
+            } else if(!this.state.edit_image.includes("https")){
 
                 error_message.push((<React.Fragment>
 
@@ -571,15 +580,7 @@ export default class EditEachCase extends React.Component {
 
 
 
-            } else if(!this.state.edit_image){
-
-                error_message.push((<React.Fragment>
-
-                    <div>Image name is missing</div>
-    
-                </React.Fragment>))
-
-            }
+            } 
 
 
         }
@@ -966,6 +967,10 @@ export default class EditEachCase extends React.Component {
     submit= async ()=>{
 
         try{
+
+            
+
+
             let [validation, error_messages]=this.front_end_validation()
 
             let formated_error_messages= error_messages.map((error_message)=>{return(<React.Fragment><div>{error_message}</div></React.Fragment>)})

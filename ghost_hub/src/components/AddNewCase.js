@@ -538,7 +538,15 @@ export default class AddNewCase extends React.Component {
         } else {
 
             
-            if(!this.state.edit_image.includes("https")){
+            if(!this.state.edit_image){
+
+                error_message.push((<React.Fragment>
+
+                    <div>Image name is missing</div>
+    
+                </React.Fragment>))
+
+            }else if(!this.state.edit_image.includes("https")){
 
                 error_message.push((<React.Fragment>
 
@@ -548,15 +556,7 @@ export default class AddNewCase extends React.Component {
 
 
 
-            } else if(!this.state.edit_image){
-
-                error_message.push((<React.Fragment>
-
-                    <div>Image name is missing</div>
-    
-                </React.Fragment>))
-
-            }
+            } 
 
 
         }
@@ -991,10 +991,11 @@ export default class AddNewCase extends React.Component {
             }
 
         } catch (e) {
+            console.log("TEST")
             let notification_content={
                 validation:false,
                 message:"Malformed input sent to server. Please contact the administrator",
-                color:"light blue"
+                color:"black"
 
             }
             this.props.onListCases(notification_content)         
