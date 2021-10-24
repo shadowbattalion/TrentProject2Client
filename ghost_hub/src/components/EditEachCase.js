@@ -1031,7 +1031,7 @@ export default class EditEachCase extends React.Component {
 
                 let notification_content={
                     validation:true,
-                    message:"Case Added"
+                    message:"Case Edited"
 
                 }
                 this.props.onEnterEachCase(notification_content,this.props.case_id) 

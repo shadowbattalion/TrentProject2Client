@@ -62,7 +62,7 @@ export default class GhostHubBase extends React.Component {
                     "displaying":"each_case",
                     "case_id":case_id,
                     "notification_message":notification_content.message,
-                    "notification_message_color":notification_content.color,
+                    "notification_message_color":"green",
                     "reveal":"alert-reveal"
 
                 })
@@ -70,7 +70,7 @@ export default class GhostHubBase extends React.Component {
                 this.setState({
 
                     "notification_message":notification_content.message,
-                    "notification_message_color":notification_content.color,
+                    "notification_message_color":"red",
                     "reveal":"alert-reveal"
 
                 })
@@ -116,7 +116,7 @@ export default class GhostHubBase extends React.Component {
 
                     "displaying":"list_cases",
                     "notification_message":notification_content.message,
-                    "notification_message_color":notification_content.color,
+                    "notification_message_color":"green",
                     "reveal":"alert-reveal"
 
                 })
@@ -124,7 +124,7 @@ export default class GhostHubBase extends React.Component {
                 this.setState({
 
                     "notification_message":notification_content.message,
-                    "notification_message_color":notification_content.color,
+                    "notification_message_color":"red",
                     "reveal":"alert-reveal"
 
                 })
@@ -187,7 +187,7 @@ export default class GhostHubBase extends React.Component {
     server_error=(notification_content)=>{
 
 
-        if(!notification_content.validation){
+        
             this.setState({
 
                 "notification_message":notification_content.message,
@@ -196,7 +196,7 @@ export default class GhostHubBase extends React.Component {
 
                 })
         
-        }
+        
           
     }
 
