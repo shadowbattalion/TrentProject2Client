@@ -508,9 +508,7 @@ export default class EditEachCase extends React.Component {
         }else{
             let notification_content={
                 validation:false,
-                message:formated_error_messages,
-                color:"red"
-
+                message:formated_error_messages
             }
             this.props.onEnterEachCase(notification_content,this.props.case_id) 
         }
@@ -774,9 +772,7 @@ export default class EditEachCase extends React.Component {
         }else{
             let notification_content={
                 validation:false,
-                message:formated_error_messages,
-                color:"red"
-
+                message:formated_error_messages
             }
             this.props.onEnterEachCase(notification_content,this.props.case_id) 
         }
@@ -1043,8 +1039,7 @@ export default class EditEachCase extends React.Component {
             }else{
                 let notification_content={
                     validation:false,
-                    message:formated_error_messages,
-                    color:"red"
+                    message:formated_error_messages
 
                 }
                 this.props.onEnterEachCase(notification_content,this.props.case_id) 

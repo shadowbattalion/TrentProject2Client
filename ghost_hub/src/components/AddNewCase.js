@@ -487,9 +487,7 @@ export default class AddNewCase extends React.Component {
         }else{
             let notification_content={
                 validation:false,
-                message:formated_error_messages,
-                color:"red"
-
+                message:formated_error_messages
             }
             this.props.onListCases(notification_content)
         }
@@ -752,9 +750,7 @@ export default class AddNewCase extends React.Component {
         }else{
             let notification_content={
                 validation:false,
-                message:formated_error_messages,
-                color:"red"
-
+                message:formated_error_messages
             }
             this.props.onListCases(notification_content)
         }
@@ -1016,9 +1012,7 @@ export default class AddNewCase extends React.Component {
             }else{
                 let notification_content={
                     validation:false,
-                    message:formated_error_messages,
-                    color:"red"
-
+                    message:formated_error_messages
                 }
                 this.props.onListCases(notification_content)
             }

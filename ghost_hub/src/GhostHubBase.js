@@ -26,8 +26,8 @@ export default class GhostHubBase extends React.Component {
         let active_display_panel={
 
             "list_cases":<ListCases onEnterEachCase={this.enterEachCase} onServerError={this.server_error} url_api={this.url_api}/>,
-            "each_case":<EachCase onListCases={this.listCases} onEditEachCase={this.editEachCase} onComment={this.comment_notification} url_api={this.url_api} case_id={this.state.case_id} />,
-            "edit_each_case":<EditEachCase onEnterEachCase={this.enterEachCase} url_api={this.url_api} case_id={this.state.case_id} />,
+            "each_case":<EachCase onListCases={this.listCases} onEditEachCase={this.editEachCase} onComment={this.comment_notification} onServerError={this.server_error} url_api={this.url_api} case_id={this.state.case_id} />,
+            "edit_each_case":<EditEachCase onEnterEachCase={this.enterEachCase} onServerError={this.server_error} url_api={this.url_api} case_id={this.state.case_id} />,
             "add_new_case":<AddNewCase onListCases={this.listCases} onServerError={this.server_error} url_api={this.url_api} />
             
                
