@@ -499,7 +499,7 @@ export default class EditEachCase extends React.Component {
                 color:"red"
 
             }
-            this.props.onListCases(notification_content)
+            this.props.onEnterEachCase(notification_content,this.props.case_id) 
         }
 
      
@@ -744,7 +744,7 @@ export default class EditEachCase extends React.Component {
                 color:"red"
 
             }
-            this.props.onListCases(notification_content)
+            this.props.onEnterEachCase(notification_content,this.props.case_id) 
         }
 
 
@@ -972,7 +972,7 @@ export default class EditEachCase extends React.Component {
             console.log(validation)
             if (validation){
                 
-                let add_case = await axios.post(this.url_api + '/add_case', {
+                let edit_case = await axios.put(this.url_api + '/update_case/'+this.props.case_id, {
 
                     "witness":{
                         "email_address":this.state.email_address,
@@ -992,7 +992,7 @@ export default class EditEachCase extends React.Component {
                     "encounters":this.state.encounters
                 })
                 
-                console.log(add_case)
+                console.log(edit_case)
 
 
                 let notification_content={
@@ -1001,7 +1001,7 @@ export default class EditEachCase extends React.Component {
                     color:"green"
 
                 }
-                this.props.onListCases(notification_content)
+                this.props.onEnterEachCase(notification_content,this.props.case_id) 
 
             }else{
                 let notification_content={
@@ -1010,7 +1010,7 @@ export default class EditEachCase extends React.Component {
                     color:"red"
 
                 }
-                this.props.onListCases(notification_content)
+                this.props.onEnterEachCase(notification_content,this.props.case_id) 
             }
 
         } catch (e) {
@@ -1020,7 +1020,7 @@ export default class EditEachCase extends React.Component {
                 color:"light blue"
 
             }
-            this.props.onListCases(notification_content)         
+            this.props.onEnterEachCase(notification_content,this.props.case_id)         
         }
 
 
