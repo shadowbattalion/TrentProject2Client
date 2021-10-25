@@ -61,7 +61,6 @@ export default class ListCases extends React.Component {
                             <ul>
                                 <li>Title: {each_case.case_title}</li>
                                 <li>Description: {each_case.generic_description}</li>
-                                {/* <li>Rating: {each_case.rating}</li> */}
                                 <li>Date: {each_case.date}</li>
                                 <li>{witness.occupation}</li>
                                 <li>{witness.gender}</li>

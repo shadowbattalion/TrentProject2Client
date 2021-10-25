@@ -1,6 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import ListCases from './components/ListCases.js'
+import SearchCases from './components/SearchCases.js'
 import AddNewCase from './components/AddNewCase.js'
 import EachCase from './components/EachCase.js'
 import EditEachCase from './components/EditEachCase.js'
@@ -26,6 +27,7 @@ export default class GhostHubBase extends React.Component {
         let active_display_panel={
 
             "list_cases":<ListCases onEnterEachCase={this.enterEachCase} onServerError={this.server_error} url_api={this.url_api}/>,
+            "search_cases":<SearchCases onEnterEachCase={this.enterEachCase} onServerError={this.server_error} url_api={this.url_api}/>,
             "each_case":<EachCase onListCases={this.listCases} onEditEachCase={this.editEachCase} onComment={this.comment_notification} onServerError={this.server_error} url_api={this.url_api} case_id={this.state.case_id} />,
             "edit_each_case":<EditEachCase onEnterEachCase={this.enterEachCase} onServerError={this.server_error} url_api={this.url_api} case_id={this.state.case_id} />,
             "add_new_case":<AddNewCase onListCases={this.listCases} onServerError={this.server_error} url_api={this.url_api} />
@@ -134,6 +136,19 @@ export default class GhostHubBase extends React.Component {
     }
 
 
+    searchCase=()=>{
+
+        this.setState({
+
+            "displaying": "search_cases"
+
+        })
+
+
+
+    }
+
+
     addNewCase= ()=>{
 
         this.setState({
@@ -211,6 +226,9 @@ export default class GhostHubBase extends React.Component {
             <ul className="nav nav-tabs">
                 <li className="nav-item">
                 <button className={(this.state.displaying === 'list_cases') ? 'nav-link active' : 'nav-link'} onClick={()=>{this.listCases({})}}>List Cases</button>
+                </li>
+                <li className="nav-item">
+                <button className={(this.state.displaying === 'search_cases') ? 'nav-link active' : 'nav-link'} onClick={this.searchCase}>Search Case</button>
                 </li>
                 <li className="nav-item">
                 <button className={(this.state.displaying === 'add_new_case') ? 'nav-link active' : 'nav-link'} onClick={this.addNewCase}>Add Case</button>

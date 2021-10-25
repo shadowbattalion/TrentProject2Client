@@ -83,6 +83,9 @@ export default class EditEachCase extends React.Component {
 
     }
     
+
+
+    
     display_loading_page(){
 
         return(
