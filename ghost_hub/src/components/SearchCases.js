@@ -10,6 +10,7 @@ export default class ListCases extends React.Component {
         "search_entity_tags":[],
         "from_date":"",
         "to_date":""
+
     }
 
     componentDidMount=async()=>{
@@ -156,6 +157,7 @@ export default class ListCases extends React.Component {
 
     search_case_validation=()=>{
 
+        let error_message=[]
 
         let entity_tags=false
         if(this.state.search_entity_tags.length>0){
@@ -198,7 +200,7 @@ export default class ListCases extends React.Component {
     }
 
 
-    search_case=()=>{
+    search_case= async()=>{
         try{
             let [validation, error_messages]=this.search_case_validation()
 
@@ -206,7 +208,7 @@ export default class ListCases extends React.Component {
             
             if (validation){
                 
-                let search_case = await axios.get(this.url_api + '/search_case', {
+                let search_case = await axios.get(this.url_api + '/search_cases', {
 
                     params: { 
                         "search_entity_tags":this.state.search_entity_tags,
@@ -215,6 +217,9 @@ export default class ListCases extends React.Component {
                     } 
 
                 })
+
+
+
                 
                 console.log(search_case)
 
@@ -260,7 +265,7 @@ export default class ListCases extends React.Component {
 
 
 
-    }
+    
 
 
     render() {
