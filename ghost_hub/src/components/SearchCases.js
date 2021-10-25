@@ -7,7 +7,9 @@ export default class ListCases extends React.Component {
     state = {
         "page_loaded":false,
         "entity_tags_list":[],
-        "search_entity_tags":[]
+        "search_entity_tags":[],
+        "from_date":"",
+        "to_date":""
     }
 
     componentDidMount=async()=>{
@@ -63,6 +65,11 @@ export default class ListCases extends React.Component {
             <select onChange={this.update_multivalue_field}  value={this.state.search_entity_tags} name="search_entity_tags" className="form-select" multiple aria-label="multiple select example">
                 {entity_tags_list_jsx}
             </select>
+            <label>From Date: </label>
+            <input type="date" name="from_date" className="" value={this.state.from_date} onChange={this.update_any_field} />
+            <label>To Date: </label>
+            <input type="date" name="to_date" className="" value={this.state.to_date} onChange={this.update_any_field} />
+            <button className="btn btn-success btn-sm" onClick={this.search_case}>Search</button>
 
         </React.Fragment>)
 
@@ -70,6 +77,13 @@ export default class ListCases extends React.Component {
 
 
 
+    }
+
+
+    update_any_field=(e)=>{
+        this.setState({
+            [e.target.name]: e.target.value
+        })
     }
 
 
@@ -136,6 +150,114 @@ export default class ListCases extends React.Component {
         // return cases_jsx
 
         return(<React.Fragment></React.Fragment>)
+
+
+    }
+
+    search_case_validation=()=>{
+
+
+        let entity_tags=false
+        if(this.state.search_entity_tags.length>0){
+
+            entity_tags=true
+
+        } else {
+
+            error_message.push((<React.Fragment>
+
+                <div>Select at least 1 entity tag</div>
+
+            </React.Fragment>))
+
+        }
+
+
+
+        let date=false
+        if(this.state.from_date<=this.state.to_date){
+
+            date=true
+
+        } else {
+
+            error_message.push((<React.Fragment>
+
+                <div>From Date must be earlier than To Date</div>
+
+            </React.Fragment>))
+
+        }
+
+
+
+
+        return [entity_tags && date?true:false, error_message]
+
+
+    }
+
+
+    search_case=()=>{
+        try{
+            let [validation, error_messages]=this.search_case_validation()
+
+            let formated_error_messages= error_messages.map((error_message)=>{return(<React.Fragment><div>{error_message}</div></React.Fragment>)})
+            
+            if (validation){
+                
+                let search_case = await axios.get(this.url_api + '/search_case', {
+
+                    params: { 
+                        "search_entity_tags":this.state.search_entity_tags,
+                        "from_date":this.from_date,
+                        "to_date":this.to_date 
+                    } 
+
+                })
+                
+                console.log(search_case)
+
+
+                let notification_content={
+                    validation:true,
+                    message:"Case Added"
+
+                }
+                this.props.onListCases(notification_content)
+
+            }else{
+                let notification_content={
+                    validation:false,
+                    message:formated_error_messages
+                }
+                this.props.onListCases(notification_content)
+            }
+
+        } catch (e) {
+            
+     
+
+            let notification_content={
+                validation:false,
+                message:"Server Error. Please contact the administrator"
+
+            }
+            this.props.onServerError(notification_content)
+
+       
+        }
+
+
+    }
+
+
+
+
+
+
+
+
 
 
     }
