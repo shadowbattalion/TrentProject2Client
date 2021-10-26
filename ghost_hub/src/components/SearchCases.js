@@ -60,7 +60,7 @@ export default class ListCases extends React.Component {
             entity_tags_list_jsx.push(<option value={entity_tag._id}>{entity_tag.entity}</option>)
         }
 
-        
+        // console.log(this.from_date)
         return(<React.Fragment>
             <label>Entity Tags:</label>
             <select onChange={this.update_multivalue_field}  value={this.state.search_entity_tags} name="search_entity_tags" className="form-select" multiple aria-label="multiple select example">
@@ -82,6 +82,8 @@ export default class ListCases extends React.Component {
 
 
     update_any_field=(e)=>{
+        console.log(e.target.name)
+        console.log(e.target.value)
         this.setState({
             [e.target.name]: e.target.value
         })
@@ -155,59 +157,60 @@ export default class ListCases extends React.Component {
 
     }
 
-    search_case_validation=()=>{
+    // search_case_validation=()=>{
 
-        let error_message=[]
+    //     let error_message=[]
 
-        let entity_tags=false
-        if(this.state.search_entity_tags.length>0){
+    //     let entity_tags=false
+    //     if(this.state.search_entity_tags.length>0){
 
-            entity_tags=true
+    //         entity_tags=true
 
-        } else {
+    //     } else {
 
-            error_message.push((<React.Fragment>
+    //         error_message.push((<React.Fragment>
 
-                <div>Select at least 1 entity tag</div>
+    //             <div>Select at least 1 entity tag</div>
 
-            </React.Fragment>))
+    //         </React.Fragment>))
 
-        }
-
-
-
-        let date=false
-        if(this.state.from_date<=this.state.to_date){
-
-            date=true
-
-        } else {
-
-            error_message.push((<React.Fragment>
-
-                <div>From Date must be earlier than To Date</div>
-
-            </React.Fragment>))
-
-        }
+    //     }
 
 
 
+    //     let date=false
+    //     if(this.state.from_date<=this.state.to_date){
 
-        return [entity_tags && date?true:false, error_message]
+    //         date=true
+
+    //     } else {
+
+    //         error_message.push((<React.Fragment>
+
+    //             <div>From Date must be earlier than To Date</div>
+
+    //         </React.Fragment>))
+
+    //     }
 
 
-    }
+
+
+    //     return [ date?true:false, error_message]
+
+
+    // }
 
 
     search_case= async()=>{
-        try{
-            let [validation, error_messages]=this.search_case_validation()
+        // try{
+            // let [validation, error_messages]=this.search_case_validation()
 
-            let formated_error_messages= error_messages.map((error_message)=>{return(<React.Fragment><div>{error_message}</div></React.Fragment>)})
+            // let formated_error_messages= error_messages.map((error_message)=>{return(<React.Fragment><div>{error_message}</div></React.Fragment>)})
             
-            if (validation){
-                
+            // if (validation){
+                console.log(this.from_date)
+                console.log( this.to_date)
                 let search_case = await axios.get(this.url_api + '/search_cases', {
 
                     params: { 
@@ -220,38 +223,39 @@ export default class ListCases extends React.Component {
 
 
 
+
                 
                 console.log(search_case)
 
 
-                let notification_content={
-                    validation:true,
-                    message:"Case Added"
+            //     let notification_content={
+            //         validation:true,
+            //         message:"Case Added"
 
-                }
-                this.props.onListCases(notification_content)
+            //     }
+            //     this.props.onSearchCases(notification_content)
 
-            }else{
-                let notification_content={
-                    validation:false,
-                    message:formated_error_messages
-                }
-                this.props.onListCases(notification_content)
-            }
+            // }else{
+            //     let notification_content={
+            //         validation:false,
+            //         message:formated_error_messages
+            //     }
+            //     this.props.onSearchCases(notification_content)
+            // }
 
-        } catch (e) {
+        // } catch (e) {
             
      
 
-            let notification_content={
-                validation:false,
-                message:"Server Error. Please contact the administrator"
+        //     let notification_content={
+        //         validation:false,
+        //         message:"Server Error. Please contact the administrator"
 
-            }
-            this.props.onServerError(notification_content)
+        //     }
+        //     this.props.onServerError(notification_content)
 
        
-        }
+        // }
 
 
     }
