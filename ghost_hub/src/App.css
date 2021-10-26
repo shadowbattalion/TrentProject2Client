@@ -53,7 +53,7 @@
   display:flex;
   justify-content:space-between;
   width:100%;
-  font-size: 22px;
+  
   
 }
 
@@ -63,6 +63,7 @@
   overflow: hidden; 
   text-overflow: ellipsis;
   white-space: nowrap;
+  margin-right:10px;
 
 
 }
@@ -93,6 +94,12 @@
 
   font-size: 18px;
   
+
+}
+
+.panel-date{
+
+  margin-top:15px;
   
 
 }
@@ -107,12 +114,22 @@
 }
 
 
+.panel-button-group{
+
+  display: flex;
+  justify-content:flex-end;
+
+
+}
+
+
 .panel-button{
 
   background-color: blue;
   color:white;
   box-shadow: 0px 0px 7px 5px lightgrey;
-  margin: 0% 30%;
+  margin-right:10px;
+  margin-top:10px;
 
 
 

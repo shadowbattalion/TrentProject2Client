@@ -59,15 +59,15 @@ export default class ListCases extends React.Component {
                     <React.Fragment key={each_case._id}>
                         <section className="panel">
                             <div className="panel-head">
-                                <p className="panel-title">{each_case.case_title}</p>
-                                <p className="panel-display-name">By: {witness.display_name}</p> 
+                                <h2 className="panel-title">{each_case.case_title}</h2>
+                                <h2 className="panel-display-name">By: {witness.display_name}</h2> 
                             </div>
                             <div className="panel-line"></div>
                             <div className="panel-main">
-                                <p>Date of Encounter: {each_case.date.split("T")[0]}</p>
+                                <p className="panel-date">Date of Encounter: {each_case.date.split("T")[0]}</p>
                                 <p className="panel-description">{each_case.generic_description}</p>
                             </div>
-                            <div>
+                            <div className="panel-button-group">
                                 <button className="btn btn-success btn-md panel-button" onClick={()=>{this.props.onEnterEachCase({},each_case._id)}}>Continue...</button>
                             </div>
                         </section>
@@ -93,7 +93,9 @@ export default class ListCases extends React.Component {
     render() {
         
         return (<React.Fragment>
-            <h1>List Cases</h1>
+            <section className="panel" style={{paddingTop:"5px",paddingBottom:"5px", borderRadius:"18px"}}>
+                <h1>Cases</h1>
+            </section>
             <main>
                 {this.state.page_loaded?this.display_loading_page():this.display_api_data()}
             </main>

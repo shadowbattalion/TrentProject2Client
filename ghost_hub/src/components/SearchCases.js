@@ -246,8 +246,12 @@ export default class ListCases extends React.Component {
 
 
         return (<React.Fragment>
-            <h1>Search Cases</h1>
-            {render_items}
+            <section className="panel" style={{paddingTop:"5px",paddingBottom:"5px", borderRadius:"18px"}}>
+                <h1>Search Cases</h1>
+            </section>
+            <main>
+                {render_items}
+            </main>
         </React.Fragment>)
     }
 
