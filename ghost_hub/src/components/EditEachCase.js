@@ -62,7 +62,8 @@ export default class EditEachCase extends React.Component {
             })
 
             let entity_tags = await axios.get(this.props.url_api + "/list_entity_tags") 
-            
+
+                    
             this.setState({
 
                 "entity_tags_list":entity_tags.data

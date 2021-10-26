@@ -39,7 +39,18 @@ export default class AddNewCase extends React.Component {
     componentDidMount= async() => {
 
         try{
-            let entity_tags = await axios.get(this.props.url_api + "/list_entity_tags") 
+            let entity_tags = await axios.get(this.props.url_api + "/list_entity_tags")
+            //add default tag
+            entity_tags.data.map(tag=>{
+
+                if(tag.entity=="Others"){
+                    this.setState({
+                        "entity_tags":[tag._id]
+                    })
+                }
+
+
+            }) 
             
             this.setState({
 
@@ -73,6 +84,7 @@ export default class AddNewCase extends React.Component {
             entity_tags_list_jsx.push(<option value={entity_tag._id}>{entity_tag.entity}</option>)
         }
 
+        
 
         return(
             <React.Fragment>
