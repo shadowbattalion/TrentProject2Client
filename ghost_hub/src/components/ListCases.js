@@ -68,7 +68,7 @@ export default class ListCases extends React.Component {
                                 <p className="panel-description">{each_case.generic_description}</p>
                             </div>
                             <div className="panel-button-group">
-                                <button className="btn btn-success btn-md panel-button" onClick={()=>{this.props.onEnterEachCase({},each_case._id)}}>Continue...</button>
+                                <button className="btn btn-md panel-button" onClick={()=>{this.props.onEnterEachCase({},each_case._id)}}>Continue...</button>
                             </div>
                         </section>
                     </React.Fragment>

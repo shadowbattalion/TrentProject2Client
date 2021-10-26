@@ -76,15 +76,21 @@ export default class ListCases extends React.Component {
 
         
         return(<React.Fragment>
-            <label>Entity Tags:</label>
-            <select onChange={this.update_multivalue_field}  value={this.state.search_entity_tags} name="search_entity_tags" className="form-select" multiple aria-label="multiple select example">
-                {entity_tags_list_jsx}
-            </select>
-            <label>From Date: </label>
-            <input type="date" name="from_date" className="" value={this.state.from_date} onChange={this.update_any_field} />
-            <label>To Date: </label>
-            <input type="date" name="to_date" className="" value={this.state.to_date} onChange={this.update_any_field} />
-            <button className="btn btn-success btn-sm" onClick={this.search_case}>Search</button>
+            <section className="panel">
+                <div className="panel-search">
+                    <label>Entity Tags:</label>
+                    <select onChange={this.update_multivalue_field}  value={this.state.search_entity_tags} name="search_entity_tags" className="form-select" multiple aria-label="multiple select example">
+                        {entity_tags_list_jsx}
+                    </select>
+                    <label>From Date: </label>
+                    <input type="date" name="from_date" className="" value={this.state.from_date} onChange={this.update_any_field} />
+                    <label>To Date: </label>
+                    <input type="date" name="to_date" className="" value={this.state.to_date} onChange={this.update_any_field} /> 
+                </div>
+                <div className="panel-button-group">
+                    <button className="btn btn-md panel-button" onClick={this.search_case}>Search</button>
+                </div>
+            </section>
 
         </React.Fragment>)
 
@@ -138,21 +144,21 @@ export default class ListCases extends React.Component {
                 
                 let each_case_jsx=(
                     <React.Fragment key={witness.case._id}>
-                        <div className="panel">
-                            <ul>
-                                <li>Title: {witness.case.case_title}</li>
-                                <li>Description: {witness.case.generic_description}</li>
-                                <li>Date: {witness.case.date}</li>
-                                <li>{witness.occupation}</li>
-                                <li>{witness.gender}</li>
-                                <li>{witness.age}</li>
-                                <li>{witness.display_name}</li>                                   
-                            </ul>
-                            <button className="btn btn-success btn-sm" onClick={()=>{this.props.onEnterEachCase({},witness.case._id)}}>Continue...</button>
-                        </div>
-                    </React.Fragment>
-
-                    )
+                        <section className="panel">
+                            <div className="panel-head">
+                                <h2 className="panel-title">{witness.case.case_title}</h2>
+                                <h2 className="panel-display-name">By: {witness.display_name}</h2> 
+                            </div>
+                            <div className="panel-line"></div>
+                            <div className="panel-main">
+                                <p className="panel-date">Date of Encounter: {witness.case.date.split("T")[0]}</p>
+                                <p className="panel-description">{witness.case.generic_description}</p>
+                            </div>
+                            <div className="panel-button-group">
+                                <button className="btn btn-md panel-button" onClick={()=>{this.props.onEnterEachCase({},witness.case._id)}}>Continue...</button>
+                            </div>
+                        </section>
+                    </React.Fragment>)
 
                     cases_jsx.push(each_case_jsx)
                 
