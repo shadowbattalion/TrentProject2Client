@@ -138,7 +138,7 @@ export default class ListCases extends React.Component {
                 
                 let each_case_jsx=(
                     <React.Fragment key={witness.case._id}>
-                        <div>
+                        <div className="panel">
                             <ul>
                                 <li>Title: {witness.case.case_title}</li>
                                 <li>Description: {witness.case.generic_description}</li>
@@ -167,7 +167,7 @@ export default class ListCases extends React.Component {
 
         } else {
 
-            return(<React.Fragment></React.Fragment>)
+            return(<React.Fragment></React.Fragment>)//search page
 
         }
 
