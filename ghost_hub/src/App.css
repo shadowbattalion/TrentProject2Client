@@ -148,6 +148,16 @@
 }
 
 
+.panel-printed-texts{
+
+  overflow:scroll;
+  height:100px;
+
+
+
+}
+
+
 /* search page */
 
 
@@ -156,5 +166,16 @@
   display: flex;
   flex-direction: column;
   font-size: 25px;
+
+}
+
+
+/* Each page */
+
+
+
+.panel-encounter-image{
+
+  margin:20px;
 
 }

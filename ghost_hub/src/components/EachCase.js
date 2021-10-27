@@ -49,9 +49,7 @@ export default class EachCase extends React.Component {
                 "entity_tags":response.data[0].entity_tags,
                 "type_of_activity":response.data[0].type_of_activity,
                 "encounters":response.data[0].encounters,
-                // "case":response.data[0],
                 "comments":response.data[0].comments,
-                // "witness":response.data[1],
                 "page_loaded":false
             })
 
@@ -133,7 +131,10 @@ export default class EachCase extends React.Component {
                 <section className="panel">
                     <h2>Encounter #{i}</h2>
                     <div className="panel-line"></div>
-                    <p>{encounter.sightings_description}</p>
+                    <div className="panel-encounter-image">
+                        <img src={encounter.image} className="rounded float-left img-fluid" alt="encounter.image"/>
+                    </div>
+                    <p className="panel-printed-texts">{encounter.sightings_description}</p>
 
 
                 </section>
@@ -180,10 +181,9 @@ export default class EachCase extends React.Component {
                     each_comment = (
                         <React.Fragment key={comment._id}>
                             <section className="panel">
-                                {/* <div  > */}
                                        
-                                    <p style={{"overflow":"scroll","height":"60px"}}>{comment.content} </p>
-                                {/* </div> */}
+                                <p className="panel-printed-texts">{comment.content} </p>
+                                
                                 <div className="panel-button-group">
                                     <button className="btn btn-md panel-button" onClick={()=>{this.edit_mode_activated(comment)}}>Edit</button>
                                     <button className="btn btn-md panel-button" onClick={()=>{this.delete_comment(comment)}}>Delete</button>
