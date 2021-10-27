@@ -78,13 +78,17 @@ export default class ListCases extends React.Component {
         return(<React.Fragment>
             <section className="panel">
                 <div className="panel-search">
+                    <div className="panel-line"></div>
                     <label>Entity Tags:</label>
+                    
                     <select onChange={this.update_multivalue_field}  value={this.state.search_entity_tags} name="search_entity_tags" className="form-select" multiple aria-label="multiple select example">
                         {entity_tags_list_jsx}
                     </select>
                     <label>From Date: </label>
+                    
                     <input type="date" name="from_date" className="" value={this.state.from_date} onChange={this.update_any_field} />
                     <label>To Date: </label>
+                    
                     <input type="date" name="to_date" className="" value={this.state.to_date} onChange={this.update_any_field} /> 
                 </div>
                 <div className="panel-button-group">
@@ -177,7 +181,7 @@ export default class ListCases extends React.Component {
 
             return(<React.Fragment>
                     <div>
-                        <h1 style={{"opacity":"0.3","margin":"30% 10%"}}>Search results will be displayed here.</h1>
+                        <h1 style={{"opacity":"0.3","margin":"25% 10%"}}>Search results will be displayed here.</h1>
                     </div>
                 </React.Fragment>)
 
@@ -258,7 +262,7 @@ export default class ListCases extends React.Component {
 
 
         return (<React.Fragment>
-            <section className="panel" style={{paddingTop:"5px",paddingBottom:"5px", borderRadius:"18px"}}>
+            <section className="panel panel-page-title">
                 <h1>Search Cases</h1>
             </section>
             <main>

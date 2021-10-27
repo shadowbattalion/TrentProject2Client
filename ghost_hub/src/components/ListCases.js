@@ -93,7 +93,7 @@ export default class ListCases extends React.Component {
     render() {
         
         return (<React.Fragment>
-            <section className="panel" style={{paddingTop:"5px",paddingBottom:"5px", borderRadius:"18px"}}>
+            <section className="panel panel-page-title">
                 <h1>Cases</h1>
             </section>
             <main>

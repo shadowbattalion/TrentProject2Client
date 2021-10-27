@@ -6,7 +6,18 @@ export default class EachCase extends React.Component {
     state = {
         "page_loaded":false,
         "delete_mode":false,
-        "case":{},
+        
+        "display_name":"",
+        "occupation":"",
+        "age":"",
+        "company_name":"",
+        "case_title":"",
+        "generic_description":"",
+        "location":"",
+        "date":"",
+        "entity_tags":[],
+        "type_of_activity":"",
+        "encounters":[],
         "witness":{},
         "comments":[],
         "new_content":"",
@@ -27,9 +38,20 @@ export default class EachCase extends React.Component {
             let response = await axios.get(this.props.url_api + "/case/"+this.props.case_id) 
 
             this.setState({
-                "case":response.data[0],
+                "display_name":response.data[1].display_name,
+                "occupation":response.data[1].occupation,
+                "age":response.data[1].age,
+                "company_name":response.data[1].company_name,
+                "case_title":response.data[0].case_title,
+                "generic_description":response.data[0].generic_description,
+                "location":response.data[0].location,
+                "date":response.data[0].date,
+                "entity_tags":response.data[0].entity_tags,
+                "type_of_activity":response.data[0].type_of_activity,
+                "encounters":response.data[0].encounters,
+                // "case":response.data[0],
                 "comments":response.data[0].comments,
-                "witness":response.data[1],
+                // "witness":response.data[1],
                 "page_loaded":false
             })
 
@@ -60,11 +82,14 @@ export default class EachCase extends React.Component {
     
 
     display_api_data(){
+
+
+
             
         let each_case_jsx=(
             <React.Fragment>
-                <div>
-                    <ul>
+                <section className="panel">
+                    {/* <ul>
                         <li>Title: {this.state.case.case_title}</li>
                         <li>Description: {this.state.case.generic_description}</li>
                         <li>Date: {this.state.case.date}</li>//split("T")[0]
@@ -72,11 +97,34 @@ export default class EachCase extends React.Component {
                         <li>{this.state.witness.age}</li>
                         <li>{this.state.witness.display_name}</li>
                                                           
-                    </ul>
-                    <button className="btn btn-success btn-sm" onClick={()=>{this.props.onListCases({})}}>Back</button>
-                    <button className="btn btn-success btn-sm" onClick={()=>{this.props.onEditEachCase(this.state.case._id)}}>Edit</button>
-                    <button className="btn btn-success btn-sm" onClick={this.delete_mode_activated}>Delete</button>
-                </div>
+                    </ul> */}
+                    <div className="panel-head">
+                        <h2 className="panel-title">{this.state.case_title}</h2>
+                        <h2 className="panel-display-name">By: {this.state.display_name}</h2> 
+                    </div>
+                    <div className="panel-line"></div>
+                    <div className="panel-main">
+                        <p className="panel-date">Date of Encounter: {this.state.date.split("T")[0]}</p>
+                        <p className="panel-description">{this.state.generic_description}</p>
+                    </div>
+                    <div className="panel-button-group">
+                        <button className="btn btn-sm panel-button" onClick={()=>{this.props.onListCases({})}}>Back</button>
+                        <button className="btn btn-sm panel-button" onClick={this.delete_mode_activated}>Delete</button>
+                        <button className="btn btn-sm panel-button" onClick={()=>{this.props.onEditEachCase(this.props.case_id)}}>Edit</button>
+                    </div>
+                </section>
+
+                {this.state.encounters.map(encounter=>{
+
+                    <section className="panel">
+                    
+                    <p>{encounter.sightings_description}</p>
+
+
+                    </section>
+
+                })}
+
             </React.Fragment>
 
             )
@@ -96,7 +144,10 @@ export default class EachCase extends React.Component {
 
         comment_jsx[0]=(
             <React.Fragment>
-                <h2>Comments</h2>
+                <section className="panel panel-page-title">
+                    <h2>Comments</h2>
+                </section>
+                
             </React.Fragment>
         )
         
@@ -107,22 +158,20 @@ export default class EachCase extends React.Component {
             if(comment._id==this.state.edit_mode._id && this.state.edit_mode._id != 0){
 
                 each_comment = (
-                    <React.Fragment key={comment._id}>
-                        <div>    
+                    <React.Fragment key={comment._id}>   
                             {this.display_edit_form_comments()}
-                        </div>
                     </React.Fragment>)
                 
             }else{
                 if(Object.keys(comment).length!=1){
                     each_comment = (
                         <React.Fragment key={comment._id}>
-                            <div>    
+                            <section className="panel">    
                                 {comment.content}
                                 {comment.like}
                                 <button className="btn btn-success btn-sm" onClick={()=>{this.edit_mode_activated(comment)}}>Edit</button>
                                 <button className="btn btn-danger btn-sm mx-1" onClick={()=>{this.delete_comment(comment)}}>Delete</button>
-                            </div>
+                            </section>
                         </React.Fragment>)
                 }
 
@@ -164,14 +213,16 @@ export default class EachCase extends React.Component {
         return(
             
             <React.Fragment>
-                <label>Enter your comments</label>
-                <input type="text" name="edit_content" className="form-control" value={this.state.edit_content} onChange={this.update_any_field} /> 
-                <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" name="edit_like" value={value} onChange={this.update_any_field} checked={this.state.edit_like=="1"}/>
-                    <label class="form-check-label" for="flexSwitchCheckChecked">Like</label>
-                </div>
-                <button className="btn btn-success btn-sm" onClick={this.edit_mode_cancelled}>Cancel</button>
-                <button className="btn btn-success btn-sm" onClick={this.edit_comment}>Done!</button>                
+                <section className="panel"> 
+                    <label>Enter your comments</label>
+                    <input type="text" name="edit_content" className="form-control" value={this.state.edit_content} onChange={this.update_any_field} /> 
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" name="edit_like" value={value} onChange={this.update_any_field} checked={this.state.edit_like=="1"}/>
+                        <label class="form-check-label" for="flexSwitchCheckChecked">Like</label>
+                    </div>
+                    <button className="btn btn-success btn-sm" onClick={this.edit_mode_cancelled}>Cancel</button>
+                    <button className="btn btn-success btn-sm" onClick={this.edit_comment}>Done!</button>
+                </section>                
             </React.Fragment>
 
         )
@@ -198,13 +249,15 @@ export default class EachCase extends React.Component {
 
         return(
             <React.Fragment>
-                <label>Enter your comments</label>
-                <input type="text" name="new_content" className="form-control" value={this.state.new_content} onChange={this.update_any_field} /> 
-                <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" name="new_like" value={value} onChange={this.update_any_field} checked={this.state.new_like=="1"}/>
-                    <label class="form-check-label" for="flexSwitchCheckChecked">Like</label>
-                </div>
-                <button className="btn btn-success btn-sm" onClick={this.add_comment}>Add!</button>
+                <section className="panel"> 
+                    <label>Enter your comments</label>
+                    <input type="text" name="new_content" className="form-control" value={this.state.new_content} onChange={this.update_any_field} /> 
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" name="new_like" value={value} onChange={this.update_any_field} checked={this.state.new_like=="1"}/>
+                        <label class="form-check-label" for="flexSwitchCheckChecked">Like</label>
+                    </div>
+                    <button className="btn btn-success btn-sm" onClick={this.add_comment}>Add!</button>
+                </section>
             </React.Fragment>)
 
     }
@@ -213,10 +266,14 @@ export default class EachCase extends React.Component {
     delete_form(){
         return(
             <React.Fragment>
-                <div style={{border:"10px solid black"}}>
-                    <button className="btn btn-success btn-sm" onClick={this.delete_mode_cancelled}>Cancel</button>
-                    <button className="btn btn-danger btn-sm" onClick={this.confirm_delete}>Confirm!</button>  
-                </div>
+                <section className="panel">
+                    <div className="panel-line"></div>
+                    <p>Are you sure you want to delete this case?<br/><span style={{"color":"red"}}>WARNING:</span> Action is irreversible!!</p> 
+                    <div className="panel-button-group">  
+                        <button className="btn btn-sm panel-button" onClick={this.delete_mode_cancelled}>Cancel</button>
+                        <button className="btn btn-sm panel-button" onClick={this.confirm_delete}>Confirm!</button>
+                    </div>  
+                </section>
             </React.Fragment>
         )
         
@@ -575,16 +632,20 @@ export default class EachCase extends React.Component {
             
         }else{
             render_items=(<React.Fragment>
-                <h2>Cased Number: {this.props.each_case_id}</h2>
+                {/* <h2>Cased Number: {this.props.case_id}</h2> */}
+                {this.state.delete_mode?this.delete_form():""}
                 {this.display_api_data()}
                 {this.display_added_comments()}
                 {this.display_form_comments()}
-                {this.state.delete_mode?this.delete_form():""}
+                
                 </React.Fragment>)
             
         }
         return (<React.Fragment>
-            <h1>Each Case</h1>
+            <section className="panel panel-page-title">
+                <h1>Each Case</h1>
+            </section>
+            
             {render_items}
         </React.Fragment>)
     }
