@@ -179,9 +179,11 @@ export default class EachCase extends React.Component {
                 if(Object.keys(comment).length!=1){
                     each_comment = (
                         <React.Fragment key={comment._id}>
-                            <section className="panel">    
-                                {comment.content}
-                                {comment.like}
+                            <section className="panel">
+                                {/* <div  > */}
+                                       
+                                    <p style={{"overflow":"scroll","height":"60px"}}>{comment.content} </p>
+                                {/* </div> */}
                                 <div className="panel-button-group">
                                     <button className="btn btn-md panel-button" onClick={()=>{this.edit_mode_activated(comment)}}>Edit</button>
                                     <button className="btn btn-md panel-button" onClick={()=>{this.delete_comment(comment)}}>Delete</button>
@@ -230,7 +232,7 @@ export default class EachCase extends React.Component {
             <React.Fragment>
                 <section className="panel"> 
                     <label>Enter your comments</label>
-                    <input type="text" name="edit_content" className="form-control" value={this.state.edit_content} onChange={this.update_any_field} /> 
+                    <textarea class="form-control" name="edit_content" value={this.state.edit_content} onChange={this.update_any_field} rows="2"></textarea> 
                     <div class="form-check form-switch">
                         <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" name="edit_like" value={value} onChange={this.update_any_field} checked={this.state.edit_like=="1"}/>
                         <label class="form-check-label" for="flexSwitchCheckChecked">Like</label>
@@ -268,7 +270,7 @@ export default class EachCase extends React.Component {
             <React.Fragment>
                 <section className="panel"> 
                     <label>Enter your comments</label>
-                    <input type="text" name="new_content" className="form-control" value={this.state.new_content} onChange={this.update_any_field} /> 
+                    <textarea class="form-control" name="new_content" value={this.state.new_content} onChange={this.update_any_field} rows="2"></textarea> 
                     <div class="form-check form-switch">
                         <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" name="new_like" value={value} onChange={this.update_any_field} checked={this.state.new_like=="1"}/>
                         <label class="form-check-label" for="flexSwitchCheckChecked">Like</label>
