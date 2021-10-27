@@ -52,7 +52,7 @@ export default class EditEachCase extends React.Component {
                 "case_title":response.data[0].case_title,
                 "generic_description":response.data[0].generic_description,
                 "location":response.data[0].location,
-                "date":response.data[0].date,
+                "date":response.data[0].date.split("T")[0],
                 "entity_tags":response.data[0].entity_tags.map(entity_tag=>entity_tag._id),
                 "type_of_activity":response.data[0].type_of_activity,
                 "encounters":response.data[0].encounters
@@ -170,7 +170,8 @@ export default class EditEachCase extends React.Component {
                     </React.Fragment>)
                 
             }else{
-                if(Object.keys(encounter).length!=1){
+                if(encounter.encounter_status!="deleted"){
+                    console.log("TEETESTET")
                     each_encounter = (
                         <React.Fragment key={encounter._id}>
                             <div>    
@@ -534,7 +535,12 @@ export default class EditEachCase extends React.Component {
         let index_to_delete = encounters_list.findIndex(encounter=>encounter._id==encounter_delete._id)
    
         let new_encounter_list=[...encounters_list.slice(0,index_to_delete), ...encounters_list.slice(index_to_delete+1)]
-        new_encounter_list=[...new_encounter_list, {"_id":encounter_delete._id}] // to indicate deleted encounter
+        
+        if(!encounter_delete._id.includes("front_end_id")){// front_end_id are encounters that are temporarily created in the front end
+            new_encounter_list=[...new_encounter_list, {"_id":encounter_delete._id, "encounter_status":"deleted"}] // to indicate deleted encounter
+        }
+
+        
    
         this.setState({
    
@@ -998,10 +1004,8 @@ export default class EditEachCase extends React.Component {
     // "encounters":this.state.encounters
 
     submit= async ()=>{
-
+        
         try{
-
-            
 
 
             let [validation, error_messages]=this.front_end_validation()
@@ -1030,7 +1034,7 @@ export default class EditEachCase extends React.Component {
                     "encounters":this.state.encounters
                 })
                 
-                console.log(edit_case)
+               
 
 
                 let notification_content={

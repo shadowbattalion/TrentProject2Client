@@ -67,7 +67,7 @@ export default class EachCase extends React.Component {
                     <ul>
                         <li>Title: {this.state.case.case_title}</li>
                         <li>Description: {this.state.case.generic_description}</li>
-                        <li>Date: {this.state.case.date}</li>
+                        <li>Date: {this.state.case.date}</li>//split("T")[0]
                         <li>{this.state.witness.occupation}</li>
                         <li>{this.state.witness.age}</li>
                         <li>{this.state.witness.display_name}</li>
