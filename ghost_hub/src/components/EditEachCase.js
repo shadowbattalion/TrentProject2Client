@@ -171,7 +171,7 @@ export default class EditEachCase extends React.Component {
                 
             }else{
                 if(encounter.encounter_status!="deleted"){
-                    console.log("TEETESTET")
+        
                     each_encounter = (
                         <React.Fragment key={encounter._id}>
                             <div>    
@@ -1011,7 +1011,7 @@ export default class EditEachCase extends React.Component {
             let [validation, error_messages]=this.front_end_validation()
 
             let formated_error_messages= error_messages.map((error_message)=>{return(<React.Fragment><div>{error_message}</div></React.Fragment>)})
-            console.log(validation)
+           
             if (validation){
                 
                 let edit_case = await axios.put(this.url_api + '/update_case/'+this.props.case_id, {
