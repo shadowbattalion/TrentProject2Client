@@ -137,7 +137,7 @@ export default class ListCases extends React.Component {
 
     display_api_data(){
     
-        if(this.state.api_data){
+        if(this.state.api_data.length!=0){
             let cases_jsx=[]
 
             for(let witness of this.state.api_data){
@@ -173,7 +173,13 @@ export default class ListCases extends React.Component {
 
         } else {
 
-            return(<React.Fragment></React.Fragment>)//search page
+            
+
+            return(<React.Fragment>
+                    <div>
+                        <h1 style={{"opacity":"0.3","margin":"30% 10%"}}>Search results will be displayed here.</h1>
+                    </div>
+                </React.Fragment>)
 
         }
 
