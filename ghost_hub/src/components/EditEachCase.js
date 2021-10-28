@@ -1098,7 +1098,13 @@ export default class EditEachCase extends React.Component {
 
         let render_items=""
         if(this.state.page_loaded){
-            render_items=(<React.Fragment>{this.display_loading_page()}</React.Fragment>)
+            render_items=(
+                <React.Fragment>
+                    <section className="loading-page">
+                        {/* insert logo */}
+                        <h1 style={{"opacity":"0.3"}}>Loading...</h1>
+                    </section>
+                </React.Fragment>)
             
         }else{
             render_items=(

@@ -179,9 +179,9 @@ export default class ListCases extends React.Component {
             
 
             return(<React.Fragment>
-                    <div>
-                        <h1 className="mx-5 my-5" style={{"opacity":"0.3"}}>Search results will be displayed here.</h1>
-                    </div>
+                    <section style={{"position":"relative"}}>
+                        <h1 className="loading-page" style={{"opacity":"0.3"}}>Search results will be displayed here.</h1>
+                    </section>
                 </React.Fragment>)
 
         }
@@ -249,7 +249,13 @@ export default class ListCases extends React.Component {
         
         let render_items=""
         if(this.state.page_loaded){
-            render_items=(<React.Fragment>{this.display_loading_page()}</React.Fragment>)
+            render_items=(
+                <React.Fragment>
+                    <section className="loading-page">
+                        {/* insert logo */}
+                        <h1 style={{"opacity":"0.3"}}>Loading...</h1>
+                    </section>
+                </React.Fragment>)
             
         }else{
             render_items=(<React.Fragment>

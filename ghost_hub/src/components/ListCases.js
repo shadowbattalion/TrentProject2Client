@@ -38,9 +38,10 @@ export default class ListCases extends React.Component {
 
         return(
             <React.Fragment>
-                <h1>LOADING PAGE.</h1>
-                <h2>Please Wait...</h2>
-
+                <section className="loading-page">
+                    {/* insert logo */}
+                    <h1 style={{"opacity":"0.3"}}>Loading...</h1>
+                </section>
             </React.Fragment>
         )
 
