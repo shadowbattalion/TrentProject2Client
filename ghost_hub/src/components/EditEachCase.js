@@ -113,17 +113,18 @@ export default class EditEachCase extends React.Component {
 
         return(
             <React.Fragment>
-                <main>
-                    <div id="case">
-                        <h2>Case Details</h2>
+                <section className="panel">
+                    <h2>Case Details</h2>
+                    <div className="panel-line"></div>
+                    <div className="panel-main my-4"> 
                         <label>Title</label>
-                            <input type="text" name="case_title" className="form-control" value={this.state.case_title} onChange={this.update_any_field} />
+                        <input type="text" name="case_title" className="form-control" value={this.state.case_title} onChange={this.update_any_field} />
                         <label>Description</label>
-                            <input type="text" name="generic_description" className="form-control" value={this.state.generic_description} onChange={this.update_any_field} />
+                        <input type="text" name="generic_description" className="form-control" value={this.state.generic_description} onChange={this.update_any_field} />
                         <label>Location</label>
-                            <input type="text" name="location" className="form-control" value={this.state.location} onChange={this.update_any_field} />
+                        <input type="text" name="location" className="form-control" value={this.state.location} onChange={this.update_any_field} />
                         <label>Date Of Incident: </label>
-                            <input type="date" name="date" className="" value={this.state.date} onChange={this.update_any_field} />
+                        <input type="date" name="date" className="form-control" value={this.state.date} onChange={this.update_any_field} />
                         <label>Activity:</label>
                         <select onChange={this.update_any_field}  value={this.state.type_of_activity} name="type_of_activity" className="form-select" aria-label="Default select example">   
                             <option value="accidental">Accidental</option>
@@ -136,9 +137,8 @@ export default class EditEachCase extends React.Component {
                         <select onChange={this.update_multivalue_field}  value={this.state.entity_tags} name="entity_tags" className="form-select" multiple aria-label="multiple select example">
                             {entity_tags_list_jsx}
                         </select>
-
                     </div>
-                </main>
+                </section>
             </React.Fragment>
 
         )
@@ -1083,21 +1083,33 @@ export default class EditEachCase extends React.Component {
             render_items=(<React.Fragment>{this.display_loading_page()}</React.Fragment>)
             
         }else{
-            render_items=(<React.Fragment>
-                {this.display_form_main()}
-                {this.display_added_encounters()}
-                {this.display_form_encounters()}
-                <button className="btn btn-success btn-sm" onClick={this.submit}>Submit Case!</button>
-                <button className="btn btn-success btn-sm" onClick={()=>{this.props.onEnterEachCase({},this.props.case_id)}}>Back</button>
+            render_items=(
+                <React.Fragment>
+                    <main>
+                        <section className="panel panel-page-title">
+                            <h1>Edit a Case</h1>
+                        </section>
+                        {this.display_form_main()}
+                        {this.display_added_encounters()}
+                        {this.display_form_encounters()}
+                        <section className="panel">
+                            <h2>Submit This Case</h2>
+                            <div className="panel-line"></div>
+                            <div className="panel-button-group">
+                                <button className="btn btn-success btn-sm" onClick={()=>{this.props.onEnterEachCase({},this.props.case_id)}}>Back</button>
+                                <button className="btn btn-success btn-sm" onClick={this.submit}>Submit!</button>
+                            </div>
+                        </section>
+                    </main>            
+                
                 </React.Fragment>)
             
         }
 
 
         return (<React.Fragment>
-            <h1>Edit Case</h1>
-            {render_items}            
-        </React.Fragment>)
+                {render_items}          
+            </React.Fragment>)
     }
 
 

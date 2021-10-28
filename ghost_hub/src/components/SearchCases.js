@@ -180,7 +180,7 @@ export default class ListCases extends React.Component {
 
             return(<React.Fragment>
                     <div>
-                        <h1 style={{"opacity":"0.3","margin":"25% 10%"}}>Search results will be displayed here.</h1>
+                        <h1 className="mx-5 my-5" style={{"opacity":"0.3"}}>Search results will be displayed here.</h1>
                     </div>
                 </React.Fragment>)
 
