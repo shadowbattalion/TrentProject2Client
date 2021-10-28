@@ -91,7 +91,7 @@ export default class ListCases extends React.Component {
                     
                     <input type="date" name="to_date" className="" value={this.state.to_date} onChange={this.update_any_field} /> 
                 </div>
-                <div className="panel-button-group">
+                <div className="panel-button-group justify-content-end">
                     <button className="btn btn-md panel-button" onClick={this.search_case}>Search</button>
                 </div>
             </section>
@@ -158,7 +158,7 @@ export default class ListCases extends React.Component {
                                 <p className="panel-date">Date of Encounter: {witness.case.date.split("T")[0]}</p>
                                 <p className="panel-description">{witness.case.generic_description}</p>
                             </div>
-                            <div className="panel-button-group">
+                            <div className="panel-button-group justify-content-end">
                                 <button className="btn btn-md panel-button" onClick={()=>{this.props.onEnterEachCase({},witness.case._id)}}>Continue...</button>
                             </div>
                         </section>

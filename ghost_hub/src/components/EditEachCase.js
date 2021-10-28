@@ -33,7 +33,7 @@ export default class EditEachCase extends React.Component {
         "edit_equipment_used":[],
         "edit_contact_type":[],
         "edit_number_of_entities":0,
-        "edit_time_of_encounter":""
+        "edit_time_of_encounter":"Early Morning"
 
     }
 
@@ -506,7 +506,7 @@ export default class EditEachCase extends React.Component {
                 "new_equipment_used":[],
                 "new_contact_type":[],
                 "new_number_of_entities":0,
-                "new_time_of_encounter":""
+                "new_time_of_encounter":"Early Morning"
             })
 
 

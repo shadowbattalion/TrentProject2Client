@@ -80,27 +80,12 @@ export default class EachCase extends React.Component {
     
 
     display_case(){
-        // console.log(this.state.entity_tags.map(tag=>tag["entity"]))
-        // console.log(this.state.entity_tags)
-
+       
         let each_case_jsx=(
             <React.Fragment>
                 <section className="panel">
-                    {/* <ul>
-                        <li>Title: {this.state.case.case_title}</li>
-                        <li>Description: {this.state.case.generic_description}</li>
-                        <li>Date: {this.state.case.date}</li>//split("T")[0]
-                        <li>{this.state.witness.occupation}</li>
-                        <li>{this.state.witness.age}</li>
-                        <li>{this.state.witness.display_name}</li>
-                                                          
-                    </ul> */}
-
-       
-        
-        
-                    <div className="panel-head">
-                        <h2 className="panel-title">{this.state.case_title}</h2> 
+                        <div className="panel-head">
+                        <h2>{this.state.case_title}</h2> 
                     </div>
                     <div className="panel-line"></div>
                     <div className="panel-main my-4">                        
@@ -108,7 +93,7 @@ export default class EachCase extends React.Component {
                         <p>Name: {this.state.display_name}<br/>Age: {this.state.age}<br/>{this.state.occupation?`Occupation: ${this.state.occupation}`:""}<br/>{this.state.company_name?`Paranormal Company: ${this.state.company_name}`:""}</p>
                         
                         <label className="labels">Description</label>
-                        <p className="panel-printed-texts">{this.state.generic_description}</p>
+                        <p>{this.state.generic_description}</p>
                         
                         <label className="labels">Type of Activity</label>
                         <p>{this.state.type_of_activity}</p>
@@ -166,7 +151,7 @@ export default class EachCase extends React.Component {
                         <img src={encounter.image} className="rounded float-left img-fluid" alt="encounter.image"/>
                     </div>
                     <label className="labels">Description</label>
-                    <p className="panel-printed-texts">{encounter.sightings_description}</p>
+                    <p>{encounter.sightings_description}</p>
                     <label className="labels">Equipments Used</label>
                     <p>{encounter.equipment_used.join(", ")}</p>
                     <label className="labels">Contact Type</label>
@@ -223,7 +208,7 @@ export default class EachCase extends React.Component {
                         <React.Fragment key={comment._id}>
                             <section className="panel">
                                        
-                                <p className="panel-printed-texts">{comment.content} </p>
+                                <p>{comment.content}</p>
                                 
                                 <div className="panel-button-group">
                                     <button className="btn btn-md panel-button" onClick={()=>{this.edit_mode_activated(comment)}}>Edit</button>
@@ -708,8 +693,9 @@ export default class EachCase extends React.Component {
             <section className="panel panel-page-title">
                 <h1>Each Case</h1>
             </section>
-            
-            {render_items}
+            <main>
+                {render_items}
+            </main>
         </React.Fragment>)
     }
 
