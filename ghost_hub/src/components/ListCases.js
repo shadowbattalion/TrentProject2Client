@@ -8,7 +8,7 @@ export default class ListCases extends React.Component {
         "page_loaded":false,
         "api_data": []
     }
-
+    
     componentDidMount=async()=>{
         try{
             this.setState({
