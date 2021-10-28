@@ -80,6 +80,8 @@ export default class EachCase extends React.Component {
     
 
     display_case(){
+        // console.log(this.state.entity_tags.map(tag=>tag["entity"]))
+        // console.log(this.state.entity_tags)
 
         let each_case_jsx=(
             <React.Fragment>
@@ -93,15 +95,44 @@ export default class EachCase extends React.Component {
                         <li>{this.state.witness.display_name}</li>
                                                           
                     </ul> */}
+
+       
+        
+        
                     <div className="panel-head">
-                        <h2 className="panel-title">{this.state.case_title}</h2>
-                        <h2 className="panel-display-name">By: {this.state.display_name}</h2> 
+                        <h2 className="panel-title">{this.state.case_title}</h2> 
                     </div>
                     <div className="panel-line"></div>
-                    <div className="panel-main">
-                        <p className="panel-date">Date of Encounter: {this.state.date.split("T")[0]}</p>
-                        <p className="panel-description">{this.state.generic_description}</p>
+                    <div className="panel-main my-4">                        
+                        <label className="labels">By</label>
+                        <p>Name: {this.state.display_name}<br/>Age: {this.state.age}<br/>{this.state.occupation?`Occupation: ${this.state.occupation}`:""}<br/>{this.state.company_name?`Paranormal Company: ${this.state.company_name}`:""}</p>
+                        
+                        <label className="labels">Description</label>
+                        <p className="panel-printed-texts">{this.state.generic_description}</p>
+                        
+                        <label className="labels">Type of Activity</label>
+                        <p>{this.state.type_of_activity}</p>
+
+                        <label className="labels">Date of Encounter</label>
+                        <p>{this.state.date.split("T")[0]}</p>
+                        
+                        <label className="labels">Location</label>
+                        <p>{this.state.location}</p>
+
+                        <label className="labels">Entity Tags</label>
+                        <div className="panel-line my-2" style={{"height":"2px"}}></div>
+                            <div className="container my-3">
+                                <div className="row row-cols-3 row-cols-lg-5 g-2 g-lg-3">{this.state.entity_tags.map(tag=>{return(
+                                    <React.Fragment>
+                                        <div className="col">
+                                            <div className="p-3 panel-button tags">{tag["entity"]}</div>
+                                        </div>
+                                    </React.Fragment>)})}
+                                </div>
+                            </div>
+                        <div className="panel-line" style={{"height":"2px"}}></div>          
                     </div>
+                    
                     <div className="panel-button-group">
                         <button className="btn btn-md panel-button" onClick={()=>{this.props.onListCases({})}}>Back</button>
                         <button className="btn btn-md panel-button" onClick={this.delete_mode_activated}>Delete</button>
@@ -134,7 +165,17 @@ export default class EachCase extends React.Component {
                     <div className="panel-encounter-image">
                         <img src={encounter.image} className="rounded float-left img-fluid" alt="encounter.image"/>
                     </div>
+                    <label className="labels">Description</label>
                     <p className="panel-printed-texts">{encounter.sightings_description}</p>
+                    <label className="labels">Equipments Used</label>
+                    <p>{encounter.equipment_used.join(", ")}</p>
+                    <label className="labels">Contact Type</label>
+                    <p>{encounter.contact_type.join(", ")}</p>
+                    <label className="labels">Number of Entities</label>
+                    <p>{encounter.number_of_entities}</p>
+                    <label className="labels">Time of Enconter</label>
+                    <p>{encounter.time_of_encounter}</p>
+                    
 
 
                 </section>

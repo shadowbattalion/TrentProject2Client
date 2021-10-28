@@ -63,9 +63,11 @@ export default class ListCases extends React.Component {
                                 <h2 className="panel-display-name">By: {witness.display_name}</h2> 
                             </div>
                             <div className="panel-line"></div>
-                            <div className="panel-main">
-                                <p className="panel-date">Date of Encounter: {each_case.date.split("T")[0]}</p>
+                            <div className="panel-main my-4">
+                                <label className="labels">Description</label>
                                 <p className="panel-description">{each_case.generic_description}</p>
+                                <label className="labels">Date of Encounter</label>
+                                <p>{each_case.date.split("T")[0]}</p>
                             </div>
                             <div className="panel-button-group">
                                 <button className="btn btn-md panel-button" onClick={()=>{this.props.onEnterEachCase({},each_case._id)}}>Continue...</button>

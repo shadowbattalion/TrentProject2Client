@@ -329,14 +329,22 @@ export default class AddNewCase extends React.Component {
 
         let image=false
         
-        if(this.state.new_image && this.state.new_image.includes("https")){
+        if(this.state.new_image!="" && this.state.new_image.includes("https")){
 
             image=true
 
         } else {
 
             
-            if(!this.state.new_image.includes("https")){
+            if(this.state.new_image==""){
+
+                error_message.push((<React.Fragment>
+
+                    <div>Image name is missing</div>
+    
+                </React.Fragment>))
+
+            } else if(!this.state.new_image.includes("https")){
 
                 error_message.push((<React.Fragment>
 
@@ -346,15 +354,7 @@ export default class AddNewCase extends React.Component {
 
 
 
-            } else if(!this.state.new_image){
-
-                error_message.push((<React.Fragment>
-
-                    <div>Image name is missing</div>
-    
-                </React.Fragment>))
-
-            }
+            } 
 
 
         }

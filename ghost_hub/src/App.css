@@ -109,12 +109,7 @@
 
 }
 
-.panel-date{
 
-  margin-top:15px;
-  
-
-}
 
 .panel-description{
 
@@ -158,6 +153,21 @@
 }
 
 
+.labels{
+
+
+  font-weight: bold;
+
+
+
+}
+
+
+
+
+
+
+
 /* search page */
 
 
@@ -177,5 +187,19 @@
 .panel-encounter-image{
 
   margin:20px;
+
+}
+
+
+
+
+
+.tags{
+
+  font-size: 15px;
+  margin-bottom:0px;
+  text-align: center;
+  box-sizing: border-box;
+  
 
 }
