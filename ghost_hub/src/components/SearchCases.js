@@ -77,19 +77,18 @@ export default class ListCases extends React.Component {
         
         return(<React.Fragment>
             <section className="panel">
-                <div className="panel-search">
-                    <div className="panel-line"></div>
+                <div className="panel-line"></div>
+                <div className="panel-search my-4">
                     <label>Entity Tags:</label>
-                    
                     <select onChange={this.update_multivalue_field}  value={this.state.search_entity_tags} name="search_entity_tags" className="form-select" multiple aria-label="multiple select example">
                         {entity_tags_list_jsx}
                     </select>
+                    
                     <label>From Date: </label>
+                    <input type="date" name="from_date" className="form-control" value={this.state.from_date} onChange={this.update_any_field} />
                     
-                    <input type="date" name="from_date" className="" value={this.state.from_date} onChange={this.update_any_field} />
                     <label>To Date: </label>
-                    
-                    <input type="date" name="to_date" className="" value={this.state.to_date} onChange={this.update_any_field} /> 
+                    <input type="date" name="to_date" className="form-control" value={this.state.to_date} onChange={this.update_any_field} /> 
                 </div>
                 <div className="panel-button-group justify-content-end">
                     <button className="btn btn-md panel-button" onClick={this.search_case}>Search</button>
