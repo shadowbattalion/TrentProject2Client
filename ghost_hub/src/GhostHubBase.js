@@ -10,7 +10,7 @@ import NotificationPanel from './components/NotificationPanel.js'
 
 export default class GhostHubBase extends React.Component {
 
-    url_api = "https://46659-peach-possum-1zbabb9y.ws-us18.gitpod.io"
+    url_api = "https://45667-peach-possum-1zbabb9y.ws-us18.gitpod.io"
               
 
     state = {

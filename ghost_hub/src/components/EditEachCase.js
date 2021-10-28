@@ -23,7 +23,7 @@ export default class EditEachCase extends React.Component {
         "new_sightings_description":"",
         "new_equipment_used":[],
         "new_contact_type":[],
-        "new_number_of_entities":0,
+        "new_number_of_entities":"",
         "new_time_of_encounter":"Early Morning",
         "edit_mode":{
             "_id":0
@@ -32,7 +32,7 @@ export default class EditEachCase extends React.Component {
         "edit_sightings_description":"",
         "edit_equipment_used":[],
         "edit_contact_type":[],
-        "edit_number_of_entities":0,
+        "edit_number_of_entities":"",
         "edit_time_of_encounter":"Early Morning"
 
     }
@@ -152,14 +152,18 @@ export default class EditEachCase extends React.Component {
 
         encounter_jsx[0]=(
             <React.Fragment>
-                <h2>Encounter Details</h2>
+                <section className="panel panel-page-title">
+                    <h2>Encounter Details</h2>
+                </section>
             </React.Fragment>
         )
         
+        let i=1
         for(let encounter of this.state.encounters){
 
             let each_encounter=""
 
+            
             if(encounter._id==this.state.edit_mode._id && this.state.edit_mode._id != 0){
 
                 each_encounter = (
@@ -171,29 +175,32 @@ export default class EditEachCase extends React.Component {
                 
             }else{
                 if(encounter.encounter_status!="deleted"){
-        
                     each_encounter = (
                         <React.Fragment key={encounter._id}>
-                            <div>    
-                                {encounter.image}
-                                {encounter.sightings_description}
-                                {encounter.equipment_used}
-                                {encounter.contact_type}
-                                {encounter.number_of_entities}
-                                {encounter.time_of_encounter}
-                                <button className="btn btn-success btn-sm" onClick={()=>{this.edit_mode_activated(encounter)}}>Edit</button>
-                                <button className="btn btn-danger btn-sm mx-1" onClick={()=>{this.delete_encounter(encounter)}}>Delete</button>
-                            </div>
+                            <section className="panel">    
+                                <h2>Encounter #{i}</h2>
+                                <div className="panel-line"></div>
+                                <div className="panel-button-group">
+                                    <button className="btn btn-md panel-button" onClick={()=>{this.delete_encounter(encounter)}}>Delete</button>
+                                    <button className="btn btn-md panel-button" onClick={()=>{this.edit_mode_activated(encounter)}}>Edit</button>
+                                </div>
+                            </section>
                         </React.Fragment>)
                 }
 
             }
-
+            i++
             encounter_jsx.push(each_encounter)
         
         }
 
 
+        encounter_jsx.push((
+            <React.Fragment>
+                <div>
+                    <h1 className="mx-4" style={{"opacity":"0.3"}}>+ Add an Encounter</h1>
+                </div>
+            </React.Fragment>))
 
         return encounter_jsx
 
@@ -205,49 +212,53 @@ export default class EditEachCase extends React.Component {
         return(
 
             <React.Fragment>
-                <label>Image</label>
-                <input type="text" name="edit_image" className="form-control" value={this.state.edit_image} onChange={this.update_any_field} />
-                <label>Description</label>
-                <input type="text" name="edit_sightings_description" className="form-control" value={this.state.edit_sightings_description} onChange={this.update_any_field} />
-                <label>Equipment Used</label>
-                <select onChange={this.update_multivalue_field}  value={this.state.edit_equipment_used} name="edit_equipment_used" className="form-select" multiple aria-label="multiple select example">   
-                        <option value="Phone Camera">Phone Camera</option>
-                        <option value="Camera (fixed)">Camera (fixed)</option>
-                        <option value="Camera (portable)">Camera (portable)</option>
-                        <option value="Voice Recorder">Voice Recorder</option>
-                        <option value="EMF Recorder">EMF Recorder</option>
-                        <option value="Thermal Camera">Thermal Camera</option>
-                        <option value="Spirit Box">Spirit Box</option> 
-                        <option value="Others">Others</option>
-                        <option value="None">None</option>
-                </select>
-                <label>Contact Type</label>
-                <select onChange={this.update_multivalue_field}  value={this.state.edit_contact_type} name="edit_contact_type" className="form-select" multiple aria-label="multiple select example">   
-                        <option value="Visual">Visual</option>
-                        <option value="Audio">Audio</option>
-                        <option value="Verbal">Verbal</option>
-                        <option value="Feel">Feel</option>
-                </select>
-                <label>Number of Entities Encountered</label>
-                <input type="text" name="edit_number_of_entities" className="form-control" value={this.state.edit_number_of_entities} onChange={this.update_any_field} />
-                <label>Time of Encounter</label>
-                <select onChange={this.update_any_field}  value={this.state.edit_time_of_encounter} name="edit_time_of_encounter" className="form-select" aria-label="Default select example">   
-                        <option value="Early Morning">Early Morning</option>
-                        <option value="Dawn">Dawn</option>
-                        <option value="Morning">Morning</option>
-                        <option value="Midday">Midday</option>
-                        <option value="Afternoon">Afternoon</option>
-                        <option value="Dusk">Dusk</option>
-                        <option value="Evening">Evening</option>
-                        <option value="Midnight">Midnight</option>
-                </select>
-                <button className="btn btn-success btn-sm" onClick={this.edit_mode_cancelled}>Cancel</button>
-                <button className="btn btn-success btn-sm" onClick={this.edit_encounter}>Done!</button>
-
-
-            </React.Fragment>
-
-        )
+                <section className="panel">
+                    <h2>Edit Encounter</h2>
+                    <div className="panel-line"></div>
+                    <div className="panel-main my-4"> 
+                        <label>Image</label>
+                        <input type="text" name="edit_image" className="form-control" value={this.state.edit_image} onChange={this.update_any_field} />
+                        <label>Description</label>
+                        <input type="text" name="edit_sightings_description" className="form-control" value={this.state.edit_sightings_description} onChange={this.update_any_field} />
+                        <label>Equipment Used</label>
+                        <select onChange={this.update_multivalue_field}  value={this.state.edit_equipment_used} name="edit_equipment_used" className="form-select" multiple aria-label="multiple select example">   
+                                <option value="Phone Camera">Phone Camera</option>
+                                <option value="Camera (fixed)">Camera (fixed)</option>
+                                <option value="Camera (portable)">Camera (portable)</option>
+                                <option value="Voice Recorder">Voice Recorder</option>
+                                <option value="EMF Recorder">EMF Recorder</option>
+                                <option value="Thermal Camera">Thermal Camera</option>
+                                <option value="Spirit Box">Spirit Box</option> 
+                                <option value="Others">Others</option>
+                                <option value="None">None</option>
+                        </select>
+                        <label>Contact Type</label>
+                        <select onChange={this.update_multivalue_field}  value={this.state.edit_contact_type} name="edit_contact_type" className="form-select" multiple aria-label="multiple select example">   
+                                <option value="Visual">Visual</option>
+                                <option value="Audio">Audio</option>
+                                <option value="Verbal">Verbal</option>
+                                <option value="Feel">Feel</option>
+                        </select>
+                        <label>Number of Entities Encountered</label>
+                        <input type="text" name="edit_number_of_entities" className="form-control" value={this.state.edit_number_of_entities} onChange={this.update_any_field} />
+                        <label>Time of Encounter</label>
+                        <select onChange={this.update_any_field}  value={this.state.edit_time_of_encounter} name="edit_time_of_encounter" className="form-select" aria-label="Default select example">   
+                                <option value="Early Morning">Early Morning</option>
+                                <option value="Dawn">Dawn</option>
+                                <option value="Morning">Morning</option>
+                                <option value="Midday">Midday</option>
+                                <option value="Afternoon">Afternoon</option>
+                                <option value="Dusk">Dusk</option>
+                                <option value="Evening">Evening</option>
+                                <option value="Midnight">Midnight</option>
+                        </select>
+                    </div>
+                    <div className="panel-button-group">
+                        <button className="btn btn-md panel-button" onClick={this.edit_mode_cancelled}>Cancel</button>
+                        <button className="btn btn-md panel-button" onClick={this.edit_encounter}>Done!</button>
+                    </div>           
+                </section>
+            </React.Fragment>)
 
     }
 
@@ -255,49 +266,56 @@ export default class EditEachCase extends React.Component {
 
     display_form_encounters(){
 
-        
-
         return(
             <React.Fragment>
-                <label>Image</label>
-                <input type="text" name="new_image" className="form-control" value={this.state.new_image} onChange={this.update_any_field} />
-                <label>Description</label>
-                <input type="text" name="new_sightings_description" className="form-control" value={this.state.new_sightings_description} onChange={this.update_any_field} />
-                <label>Equipment Used</label>
-                <select onChange={this.update_multivalue_field}  value={this.state.new_equipment_used} name="new_equipment_used" className="form-select" multiple aria-label="multiple select example">   
-                        <option value="Phone Camera">Phone Camera</option>
-                        <option value="Camera (fixed)">Camera (fixed)</option>
-                        <option value="Camera (portable)">Camera (portable)</option>
-                        <option value="Voice Recorder">Voice Recorder</option>
-                        <option value="EMF Recorder">EMF Recorder</option>
-                        <option value="Thermal Camera">Thermal Camera</option>
-                        <option value="Spirit Box">Spirit Box</option> 
-                        <option value="Others">Others</option>
-                        <option value="None">None</option>
-                </select>
-                <label>Contact Type</label>
-                <select onChange={this.update_multivalue_field}  value={this.state.new_contact_type} name="new_contact_type" className="form-select" multiple aria-label="multiple select example">   
-                        <option value="Visual">Visual</option>
-                        <option value="Audio">Audio</option>
-                        <option value="Verbal">Verbal</option>
-                        <option value="Feel">Feel</option>
-                </select>
-                <label>Number of Entities Encountered</label>
-                <input type="text" name="new_number_of_entities" className="form-control" value={this.state.new_number_of_entities} onChange={this.update_any_field} />
-                <label>Time of Encounter</label>
-                <select onChange={this.update_any_field}  value={this.state.new_time_of_encounter} name="new_time_of_encounter" className="form-select" aria-label="Default select example">   
-                        <option value="Early Morning">Early Morning</option>
-                        <option value="Dawn">Dawn</option>
-                        <option value="Morning">Morning</option>
-                        <option value="Midday">Midday</option>
-                        <option value="Afternoon">Afternoon</option>
-                        <option value="Dusk">Dusk</option>
-                        <option value="Evening">Evening</option>
-                        <option value="Midnight">Midnight</option>
-                </select>
-                
-                <button className="btn btn-success btn-sm" onClick={this.add_encounter}>Add!</button>
-
+                <section className="panel panel-page-title">
+                    <h2>Add an Encounter</h2>
+                </section>
+                <section className="panel">
+                    <h2>Add Encounter</h2>
+                    <div className="panel-line"></div>
+                    <div className="panel-main my-4"> 
+                        <label>Image</label>
+                        <input type="text" name="new_image" className="form-control" value={this.state.new_image} onChange={this.update_any_field} />
+                        <label>Description</label>
+                        <input type="text" name="new_sightings_description" className="form-control" value={this.state.new_sightings_description} onChange={this.update_any_field} />
+                        <label>Equipment Used</label>
+                        <select onChange={this.update_multivalue_field}  value={this.state.new_equipment_used} name="new_equipment_used" className="form-select" multiple aria-label="multiple select example">   
+                                <option value="Phone Camera">Phone Camera</option>
+                                <option value="Camera (fixed)">Camera (fixed)</option>
+                                <option value="Camera (portable)">Camera (portable)</option>
+                                <option value="Voice Recorder">Voice Recorder</option>
+                                <option value="EMF Recorder">EMF Recorder</option>
+                                <option value="Thermal Camera">Thermal Camera</option>
+                                <option value="Spirit Box">Spirit Box</option> 
+                                <option value="Others">Others</option>
+                                <option value="None">None</option>
+                        </select>
+                        <label>Contact Type</label>
+                        <select onChange={this.update_multivalue_field}  value={this.state.new_contact_type} name="new_contact_type" className="form-select" multiple aria-label="multiple select example">   
+                                <option value="Visual">Visual</option>
+                                <option value="Audio">Audio</option>
+                                <option value="Verbal">Verbal</option>
+                                <option value="Feel">Feel</option>
+                        </select>
+                        <label>Number of Entities Encountered</label>
+                        <input type="text" name="new_number_of_entities" className="form-control" value={this.state.new_number_of_entities} onChange={this.update_any_field} />
+                        <label>Time of Encounter</label>
+                        <select onChange={this.update_any_field}  value={this.state.new_time_of_encounter} name="new_time_of_encounter" className="form-select" aria-label="Default select example">   
+                                <option value="Early Morning">Early Morning</option>
+                                <option value="Dawn">Dawn</option>
+                                <option value="Morning">Morning</option>
+                                <option value="Midday">Midday</option>
+                                <option value="Afternoon">Afternoon</option>
+                                <option value="Dusk">Dusk</option>
+                                <option value="Evening">Evening</option>
+                                <option value="Midnight">Midnight</option>
+                        </select>
+                    </div>
+                    <div className="panel-button-group justify-content-end">
+                        <button className="btn btn-md panel-button" onClick={this.add_encounter}>Add!</button>
+                    </div>   
+                </section>
             </React.Fragment>)
 
     }
@@ -505,7 +523,7 @@ export default class EditEachCase extends React.Component {
                 "new_sightings_description":"",
                 "new_equipment_used":[],
                 "new_contact_type":[],
-                "new_number_of_entities":0,
+                "new_number_of_entities":"",
                 "new_time_of_encounter":"Early Morning"
             })
 
@@ -579,7 +597,7 @@ export default class EditEachCase extends React.Component {
             "edit_sightings_description":"",
             "edit_equipment_used":[],
             "edit_contact_type":[],
-            "edit_number_of_entities":0,
+            "edit_number_of_entities":"",
             "edit_time_of_encounter":""
 
         })
@@ -769,7 +787,7 @@ export default class EditEachCase extends React.Component {
                 "edit_sightings_description":"",
                 "edit_equipment_used":[],
                 "edit_contact_type":[],
-                "edit_number_of_entities":0,
+                "edit_number_of_entities":"",
                 "edit_time_of_encounter":""
             })
 
@@ -1096,8 +1114,8 @@ export default class EditEachCase extends React.Component {
                             <h2>Submit This Case</h2>
                             <div className="panel-line"></div>
                             <div className="panel-button-group">
-                                <button className="btn btn-success btn-sm" onClick={()=>{this.props.onEnterEachCase({},this.props.case_id)}}>Back</button>
-                                <button className="btn btn-success btn-sm" onClick={this.submit}>Submit!</button>
+                                <button className="btn btn-md panel-button" onClick={()=>{this.props.onEnterEachCase({},this.props.case_id)}}>Back</button>
+                                <button className="btn btn-md panel-button" onClick={this.submit}>Submit!</button>
                             </div>
                         </section>
                     </main>            

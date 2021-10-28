@@ -31,7 +31,7 @@ export default class AddNewCase extends React.Component {
         "edit_sightings_description":"",
         "edit_equipment_used":[],
         "edit_contact_type":[],
-        "edit_number_of_entities":0,
+        "edit_number_of_entities":"",
         "edit_time_of_encounter":"Early Morning"
 
    }
@@ -167,8 +167,8 @@ export default class AddNewCase extends React.Component {
                             <h2>Encounter #{i}</h2>
                             <div className="panel-line"></div>
                             <div className="panel-button-group">
+                            <button className="btn btn-md panel-button" onClick={()=>{this.delete_encounter(encounter)}}>Delete</button>
                                 <button className="btn btn-md panel-button" onClick={()=>{this.edit_mode_activated(encounter)}}>Edit</button>
-                                <button className="btn btn-md panel-button" onClick={()=>{this.delete_encounter(encounter)}}>Delete</button>
                             </div>
                             
                         </section>
@@ -186,8 +186,7 @@ export default class AddNewCase extends React.Component {
                 <div>
                     <h1 className="mx-4" style={{"opacity":"0.3"}}>+ Add an Encounter</h1>
                 </div>
-            </React.Fragment>
-        ))
+            </React.Fragment>))
 
         return encounter_jsx
 
@@ -256,14 +255,11 @@ export default class AddNewCase extends React.Component {
 
     display_form_encounters(){
 
-        
-
         return(
             <React.Fragment>
                 <section className="panel panel-page-title">
                     <h2>Add an Encounter</h2>
                 </section>
-
                 <section className="panel">
                     <h2>Add Encounter</h2>
                     <div className="panel-line"></div>
@@ -518,7 +514,7 @@ export default class AddNewCase extends React.Component {
                 "new_sightings_description":"",
                 "new_equipment_used":[],
                 "new_contact_type":[],
-                "new_number_of_entities":0,
+                "new_number_of_entities":"",
                 "new_time_of_encounter":"Early Morning"
             })
 
@@ -586,7 +582,7 @@ export default class AddNewCase extends React.Component {
             "edit_sightings_description":"",
             "edit_equipment_used":[],
             "edit_contact_type":[],
-            "edit_number_of_entities":0,
+            "edit_number_of_entities":"",
             "edit_time_of_encounter":""
 
         })
@@ -776,7 +772,7 @@ export default class AddNewCase extends React.Component {
                 "edit_sightings_description":"",
                 "edit_equipment_used":[],
                 "edit_contact_type":[],
-                "edit_number_of_entities":0,
+                "edit_number_of_entities":"",
                 "edit_time_of_encounter":""
             })
 
