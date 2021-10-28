@@ -119,7 +119,7 @@ export default class GhostHubBase extends React.Component {
                     "displaying":"list_cases",
                     "notification_message":notification_content.message,
                     "notification_message_color":"green",
-                    "reveal":"alert-reveal"
+                    "reveal":"alert-reveal panel"
 
                 })
             }else{
@@ -127,7 +127,7 @@ export default class GhostHubBase extends React.Component {
 
                     "notification_message":notification_content.message,
                     "notification_message_color":"red",
-                    "reveal":"alert-reveal"
+                    "reveal":"alert-reveal panel"
 
                 })
             }

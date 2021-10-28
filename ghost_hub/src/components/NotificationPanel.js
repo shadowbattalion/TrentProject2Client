@@ -5,11 +5,13 @@ export default function DeleteEachCase (props) {
     
     
     return (<React.Fragment>
-            {/* <h1>Are you sure you want to delete</h1> */}
-            <div className={`alert-primary alert ${props.className_reveal}`} role="alert" style={{backgroundColor:props.color}}>
-                {props.message}
-                <button className="btn btn-success btn-sm" onClick={props.onClickPanelDissappear}>Click to continue</button>
-            </div>   
+            
+                <div className={`alert ${props.className_reveal} py-3`} role="alert" style={{backgroundColor:props.color}}>
+                    {props.message}
+                    <div className="panel-button-group pb-5">
+                        <button className="btn btn-sm panel-button" onClick={props.onClickPanelDissappear}>Continue</button>
+                    </div>
+                </div>   
             
         </React.Fragment>)
     
