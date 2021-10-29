@@ -6,11 +6,11 @@ import AddNewCase from './components/AddNewCase.js'
 import EachCase from './components/EachCase.js'
 import EditEachCase from './components/EditEachCase.js'
 import NotificationPanel from './components/NotificationPanel.js'
-
+import logo from './images/logo.png'
 
 export default class GhostHubBase extends React.Component {
 
-    url_api = "https://43549-peach-possum-1zbabb9y.ws-us18.gitpod.io"
+    url_api = "https://35245-peach-possum-1zbabb9y.ws-us18.gitpod.io"
               
 
     state = {
@@ -284,7 +284,8 @@ export default class GhostHubBase extends React.Component {
 
             <div className="full-menu-space">
                 <div className="full-menu">
-                    <nav class="nav flex-column nav-button-group">
+                    <img src={logo}  className="main-logo" alt="main_logo" />
+                    <nav class="nav flex-column nav-button-group">   
                         <a class="nav-link" onClick={()=>{this.listCases({})}} style={(this.state.displaying === 'list_cases') ? {"background":'rgb(0, 247, 255)',"color":'blue', "border-radius":'18px'} : {"color":'rgb(0, 247, 255)'}} href="#"><h2>List Cases</h2></a>
                         <a class="nav-link" onClick={()=>this.searchCases({})} style={(this.state.displaying === 'search_cases') ? {"background":'rgb(0, 247, 255)',"color":'blue', "border-radius":'18px'} : {"color":'rgb(0, 247, 255)'}} href="#"><h2>Search Cases</h2></a>
                         <a class="nav-link" onClick={this.addNewCase} style={(this.state.displaying === 'add_new_case') ? {"background":'rgb(0, 247, 255)',"color":'blue', "border-radius":'18px'} : {"color":'rgb(0, 247, 255)'}}href="#"><h2>Add Case</h2></a>
