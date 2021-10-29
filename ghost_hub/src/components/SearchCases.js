@@ -267,13 +267,11 @@ export default class ListCases extends React.Component {
 
 
         return (<React.Fragment>
-            <section className="panel panel-page-title">
-                <h1>Search Cases</h1>
-            </section>
-            <main>
-                {render_items}
-            </main>
-        </React.Fragment>)
+                    <section className="panel panel-page-title">
+                        <h1>Search Cases</h1>
+                    </section>
+                    {render_items}
+                </React.Fragment>)
     }
 
 

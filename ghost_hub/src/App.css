@@ -51,7 +51,7 @@
   padding:40px 20px;
   padding-bottom:20px;
   box-shadow: 0px 0px 7px 5px lightgrey;
-  height:30%;
+  /* height:30%; */
   
 
 }
@@ -124,6 +124,7 @@
   overflow: hidden; 
   text-overflow: ellipsis;
   white-space: nowrap;
+  
 
 
 }
@@ -184,6 +185,15 @@
 
 
 
+.full-menu-space{
+
+  visibility:hidden;
+  display:none;
+  
+
+}
+
+
 
 /* search page */
 
@@ -226,3 +236,80 @@
 }
 
 
+
+
+
+
+@media (min-width:1200px) {
+
+  .App{
+
+    display:flex;
+    
+
+  }
+
+  .nav-mobile-pad-size{
+
+    visibility: hidden;
+    display:none;
+
+
+  }
+
+  .full-menu-space{
+
+    position: relative;
+    visibility:visible;
+    display: block;
+    flex:3;
+    
+    
+
+  }
+
+
+  .full-menu{
+
+    
+    position: fixed;
+    background-image: linear-gradient(black, black,black,blue);
+    border-top-right-radius: 18px;
+    border-bottom-right-radius: 18px;
+    height:100%;
+    width:30%;
+
+  }
+
+  .nav-button-group{
+
+    /* margin:50%; */
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%); 
+
+  }
+
+
+
+  .main-content{
+
+    flex: 6;
+
+  }
+
+  .panel-description{
+
+    overflow: hidden; 
+    text-overflow: ellipsis;
+    /* white-space: nowrap; */
+    /* word-wrap: break-word; */
+    
+  
+  
+  }
+
+
+
+}

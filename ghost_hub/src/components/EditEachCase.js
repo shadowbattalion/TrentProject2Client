@@ -1109,7 +1109,7 @@ export default class EditEachCase extends React.Component {
         }else{
             render_items=(
                 <React.Fragment>
-                    <main>
+                
                         <section className="panel panel-page-title">
                             <h1>Edit a Case</h1>
                         </section>
@@ -1124,7 +1124,7 @@ export default class EditEachCase extends React.Component {
                                 <button className="btn btn-md panel-button" onClick={this.submit}>Submit!</button>
                             </div>
                         </section>
-                    </main>            
+                           
                 
                 </React.Fragment>)
             

@@ -96,12 +96,10 @@ export default class ListCases extends React.Component {
     render() {
         
         return (<React.Fragment>
-            <section className="panel panel-page-title">
-                <h1>Cases</h1>
-            </section>
-            <main>
+                <section className="panel panel-page-title">
+                    <h1>Cases</h1>
+                </section>
                 {this.state.page_loaded?this.display_loading_page():this.display_api_data()}
-            </main>
         </React.Fragment>)
     }
 

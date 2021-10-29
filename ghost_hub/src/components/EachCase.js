@@ -696,12 +696,10 @@ export default class EachCase extends React.Component {
             
         }
         return (<React.Fragment>
-            <section className="panel panel-page-title">
-                <h1>Each Case</h1>
-            </section>
-            <main>
+                <section className="panel panel-page-title">
+                    <h1>Each Case</h1>
+                </section>
                 {render_items}
-            </main>
         </React.Fragment>)
     }
 

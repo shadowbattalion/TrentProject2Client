@@ -10,7 +10,7 @@ import NotificationPanel from './components/NotificationPanel.js'
 
 export default class GhostHubBase extends React.Component {
 
-    url_api = "https://42793-peach-possum-1zbabb9y.ws-us18.gitpod.io"
+    url_api = "https://43549-peach-possum-1zbabb9y.ws-us18.gitpod.io"
               
 
     state = {
@@ -259,14 +259,14 @@ export default class GhostHubBase extends React.Component {
             <React.Fragment>
             <NotificationPanel className_reveal={this.state.reveal} message={this.state.notification_message} color={this.state.notification_message_color} onClickPanelDissappear={this.notification_panel_dissapear}/>
 
-            <nav className="navbar navbar-expand-lg navbar-dark"   style={{"backgroundColor":"black"}}>
-                <a className="navbar-brand" href="#">Navbar</a>
-                <button className="navbar-toggler" type="button" data-toggle="collapse" onClick={this.burger} data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <nav className="navbar navbar-expand-lg navbar-dark nav-mobile-pad-size"   style={{ "backgroundImage": "linear-gradient(black, blue)"}}>
+                <a className="navbar-brand mx-4" href="#">Navbar</a>
+                <button className="navbar-toggler mx-4" type="button" data-toggle="collapse" onClick={this.burger} data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>
-                <div className={"collapse navbar-collapse " + ((this.state.drop_burger) ? "show" : "")} id="navbarNav">
-                    <ul className="navbar-nav">
-                        <li className="nav-item active">
+                <div className={`collapse navbar-collapse ${this.state.drop_burger ? "show" : ""}`} id="navbarNav">
+                    <ul className="navbar-nav mx-4">
+                        <li className="nav-item">
                             <a className='nav-link' onClick={()=>{this.listCases({})}}  style={(this.state.displaying === 'list_cases') ? {"background":'rgb(0, 247, 255)',"color":'blue'} : {"color":'rgb(0, 247, 255)'}} href="#">List Cases</a>
                         </li>
                         <li className="nav-item">
@@ -282,7 +282,19 @@ export default class GhostHubBase extends React.Component {
                 </div>
             </nav>
 
-            {this.displayPanel()}
+            <div className="full-menu-space">
+                <div className="full-menu">
+                    <nav class="nav flex-column nav-button-group">
+                        <a class="nav-link" onClick={()=>{this.listCases({})}} style={(this.state.displaying === 'list_cases') ? {"background":'rgb(0, 247, 255)',"color":'blue', "border-radius":'18px'} : {"color":'rgb(0, 247, 255)'}} href="#"><h2>List Cases</h2></a>
+                        <a class="nav-link" onClick={()=>this.searchCases({})} style={(this.state.displaying === 'search_cases') ? {"background":'rgb(0, 247, 255)',"color":'blue', "border-radius":'18px'} : {"color":'rgb(0, 247, 255)'}} href="#"><h2>Search Cases</h2></a>
+                        <a class="nav-link" onClick={this.addNewCase} style={(this.state.displaying === 'add_new_case') ? {"background":'rgb(0, 247, 255)',"color":'blue', "border-radius":'18px'} : {"color":'rgb(0, 247, 255)'}}href="#"><h2>Add Case</h2></a>
+                        <a class="nav-link" onClick={this.addNewCase} style={(this.state.displaying === '') ? {"background":'rgb(0, 247, 255)',"color":'blue', "border-radius":'18px'} : {"color":'rgb(0, 247, 255)'}}href="#"><h2>About Us</h2></a>
+                    </nav>
+                </div>
+            </div>
+            <main className="main-content">
+                {this.displayPanel()}
+            </main>
         </React.Fragment>)
 
     }
