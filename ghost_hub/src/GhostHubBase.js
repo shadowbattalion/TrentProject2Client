@@ -12,7 +12,7 @@ import logo_text from './images/logo-text.png'
 
 export default class GhostHubBase extends React.Component {
 
-    url_api = "https://40633-peach-possum-1zbabb9y.ws-us18.gitpod.io"
+    url_api = "https://33193-peach-possum-1zbabb9y.ws-us18.gitpod.io"
               
 
     state = {

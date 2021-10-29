@@ -88,9 +88,7 @@ export default class EachCase extends React.Component {
         let each_case_jsx=(
             <React.Fragment>
                 <section className="panel">
-                        <div className="panel-head">
-                        <h2>{this.state.case_title}</h2> 
-                    </div>
+                    <h2>{this.state.case_title}</h2> 
                     <div className="panel-line"></div>
                     <div className="panel-main my-4">                        
                         <label className="labels">By</label>
