@@ -6,11 +6,13 @@ import AddNewCase from './components/AddNewCase.js'
 import EachCase from './components/EachCase.js'
 import EditEachCase from './components/EditEachCase.js'
 import NotificationPanel from './components/NotificationPanel.js'
-import logo from './images/logo.png'
+import logo_skull from './images/logo-skull.png'
+import logo_text from './images/logo-text.png'
+
 
 export default class GhostHubBase extends React.Component {
 
-    url_api = "https://35245-peach-possum-1zbabb9y.ws-us18.gitpod.io"
+    url_api = "https://40633-peach-possum-1zbabb9y.ws-us18.gitpod.io"
               
 
     state = {
@@ -260,8 +262,8 @@ export default class GhostHubBase extends React.Component {
             <NotificationPanel className_reveal={this.state.reveal} message={this.state.notification_message} color={this.state.notification_message_color} onClickPanelDissappear={this.notification_panel_dissapear}/>
 
             <nav className="navbar navbar-expand-lg navbar-dark nav-mobile-pad-size"   style={{ "backgroundImage": "linear-gradient(black, blue)"}}>
-                <a className="navbar-brand mx-4" href="#">Navbar</a>
-                <button className="navbar-toggler mx-4" type="button" data-toggle="collapse" onClick={this.burger} data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <a className="navbar-brand mx-4" href="#"><img src={logo_skull} className="logo-skull" style={{"height":"60px"}} alt="logo_skull"/><img src={logo_text}  alt="logo-main" style={{"margin":"0px", "height":"75px"}}/></a>
+                <button className="navbar-toggler mx-1" type="button" data-toggle="collapse" onClick={this.burger} data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>
                 <div className={`collapse navbar-collapse ${this.state.drop_burger ? "show" : ""}`} id="navbarNav">
@@ -284,7 +286,9 @@ export default class GhostHubBase extends React.Component {
 
             <div className="full-menu-space">
                 <div className="full-menu">
-                    <img src={logo}  className="main-logo" alt="main_logo" />
+                    <div className="main-logo">
+                        <a className="navbar-brand mx-4" href="#"><img src={logo_skull} className="logo-skull" style={{"height":"100px"}} alt="logo_skull"/><img src={logo_text} style={{"height":"100px"}} alt="logo_text"/></a>
+                    </div>
                     <nav class="nav flex-column nav-button-group">   
                         <a class="nav-link" onClick={()=>{this.listCases({})}} style={(this.state.displaying === 'list_cases') ? {"background":'rgb(0, 247, 255)',"color":'blue', "border-radius":'18px'} : {"color":'rgb(0, 247, 255)'}} href="#"><h2>List Cases</h2></a>
                         <a class="nav-link" onClick={()=>this.searchCases({})} style={(this.state.displaying === 'search_cases') ? {"background":'rgb(0, 247, 255)',"color":'blue', "border-radius":'18px'} : {"color":'rgb(0, 247, 255)'}} href="#"><h2>Search Cases</h2></a>

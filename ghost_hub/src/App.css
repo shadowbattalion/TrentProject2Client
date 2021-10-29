@@ -178,7 +178,9 @@
   position: absolute;
   left: 50%;
   top: 50%;
-  transform: translate(-50%, 0); 
+  transform: translate(-50%, 0);
+  display: flex;
+  
 
 
 }
@@ -196,9 +198,26 @@
 
 .main-logo{
 
-  height:125px;
-  margin-top: 80px;
-  margin-left: 100px;
+  margin-top: 90px;
+  margin-left: 70px;
+}
+
+
+
+.logo-skull{
+
+    transform: rotateY(150deg);
+    animation-name: skull;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+
+@keyframes skull {
+  0%   {transform: rotateY(0deg);}
+  50%  {transform: rotateY(180deg);}
+  100%  {transform: rotateY(360deg);}
 }
 
 
@@ -322,6 +341,11 @@
   
   
   }
+  /* .loading-page{
+
+    left: 65%;
+
+  } */
 
 
 

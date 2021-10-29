@@ -1,5 +1,6 @@
 import React from 'react'
 import axios from 'axios'
+import logo_skull_loading from '../images/logo-skull-loading.png'
 export default class ListCases extends React.Component {
 
     url_api = this.props.url_api
@@ -38,9 +39,11 @@ export default class ListCases extends React.Component {
 
         return(
             <React.Fragment>
-                <section className="loading-page">
-                    {/* insert logo */}
-                    <h1 style={{"opacity":"0.3"}}>Loading...</h1>
+                <section style={{"position":"relative", "marginTop":"25%"}}>
+                    <div className="loading-page">
+                        <img src={logo_skull_loading} className="logo-skull" style={{"opacity":"0.3","height":"60px", "marginRight":"10px"}} alt="logo_skull"/>
+                        <h1 style={{"opacity":"0.3"}}>Loading...</h1>
+                    </div>
                 </section>
             </React.Fragment>
         )
