@@ -20,6 +20,7 @@ export default class GhostHubBase extends React.Component {
         "case_id":"",
         "notification_message":"",
         "notification_message_color":"",
+        "notification_message_title":"",
         "reveal":"",
         "drop_burger": false
     }
@@ -67,6 +68,7 @@ export default class GhostHubBase extends React.Component {
                     "displaying":"each_case",
                     "case_id":case_id,
                     "notification_message":notification_content.message,
+                    "notification_message_title":"Successful",
                     "notification_message_color":"green",
                     "reveal":"alert-reveal"
 
@@ -75,6 +77,7 @@ export default class GhostHubBase extends React.Component {
                 this.setState({
 
                     "notification_message":notification_content.message,
+                    "notification_message_title":"There is something wrong",
                     "notification_message_color":"red",
                     "reveal":"alert-reveal"
 
@@ -121,16 +124,18 @@ export default class GhostHubBase extends React.Component {
 
                     "displaying":"list_cases",
                     "notification_message":notification_content.message,
+                    "notification_message_title":"Successful",
                     "notification_message_color":"green",
-                    "reveal":"alert-reveal panel"
+                    "reveal":"alert-reveal"
 
                 })
             }else{
                 this.setState({
 
                     "notification_message":notification_content.message,
+                    "notification_message_title":"There is something wrong",
                     "notification_message_color":"red",
-                    "reveal":"alert-reveal panel"
+                    "reveal":"alert-reveal"
 
                 })
             }
@@ -153,6 +158,7 @@ export default class GhostHubBase extends React.Component {
                 this.setState({
 
                     "notification_message":notification_content.message,
+                    "notification_message_title":"Successful",
                     "notification_message_color":"green",
                     "reveal":"alert-reveal"
 
@@ -163,6 +169,7 @@ export default class GhostHubBase extends React.Component {
                 this.setState({
 
                     "notification_message":notification_content.message,
+                    "notification_message_title":"There is something wrong",
                     "notification_message_color":"red",
                     "reveal":"alert-reveal"
 
@@ -194,6 +201,7 @@ export default class GhostHubBase extends React.Component {
             this.setState({
 
                 "notification_message":notification_content.message,
+                "notification_message_title":"Successful",
                 "notification_message_color":"green",
                 "reveal":"alert-reveal"
 
@@ -204,6 +212,7 @@ export default class GhostHubBase extends React.Component {
             this.setState({
 
                 "notification_message":notification_content.message,
+                "notification_message_title":"There is something wrong",
                 "notification_message_color":"red",
                 "reveal":"alert-reveal"
 
@@ -237,7 +246,8 @@ export default class GhostHubBase extends React.Component {
             this.setState({
 
                 "notification_message":notification_content.message,
-                "notification_message_color":"light blue",
+                "notification_message_title":"Oops!!",
+                "notification_message_color":"yellow",
                 "reveal":"alert-reveal"
 
                 })
@@ -259,7 +269,7 @@ export default class GhostHubBase extends React.Component {
 
         return(
             <React.Fragment>
-            <NotificationPanel className_reveal={this.state.reveal} message={this.state.notification_message} color={this.state.notification_message_color} onClickPanelDissappear={this.notification_panel_dissapear}/>
+            <NotificationPanel className_reveal={this.state.reveal} message={this.state.notification_message} color={this.state.notification_message_color} title={this.state.notification_message_title} onClickPanelDissappear={this.notification_panel_dissapear}/>
 
             <nav className="navbar navbar-expand-lg navbar-dark nav-mobile-pad-size"   style={{ "backgroundImage": "linear-gradient(black, blue)"}}>
                 <a className="navbar-brand mx-4" href="#"><img src={logo_skull} className="logo-skull" style={{"height":"60px"}} alt="logo_skull"/><img src={logo_text}  alt="logo-main" style={{"margin":"0px", "height":"75px"}}/></a>

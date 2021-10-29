@@ -114,6 +114,19 @@ export default class EditEachCase extends React.Component {
             entity_tags_list_jsx.push(<option value={entity_tag._id}>{entity_tag.entity}</option>)
         }
 
+        let entity_tag_ids_list = []
+        let entity_tag_entities_list = []
+
+        for (let entity_tag of this.state.entity_tags_list){
+            entity_tag_ids_list.push(entity_tag._id)
+        }
+
+        for (let entity_tag of this.state.entity_tags_list){
+            entity_tag_entities_list.push(entity_tag.entity)
+        }
+
+
+
 
         return(
             <React.Fragment>
@@ -372,20 +385,11 @@ export default class EditEachCase extends React.Component {
             
             if(this.state.new_image==""){
 
-                error_message.push((<React.Fragment>
-
-                    <div>Image name is missing</div>
-    
-                </React.Fragment>))
+                error_message.push("Image name is missing")
 
             } else if(!this.state.new_image.includes("https")){
 
-                error_message.push((<React.Fragment>
-
-                    <div>Image must have URL name</div>
-    
-                </React.Fragment>))
-
+                error_message.push("Image must have URL name")
 
 
             } 
@@ -401,11 +405,7 @@ export default class EditEachCase extends React.Component {
 
         } else {
 
-            error_message.push((<React.Fragment>
-
-                <div>Select at least one equipment</div>
-
-            </React.Fragment>))
+            error_message.push("Select at least one equipment")
 
         }
 
@@ -418,11 +418,7 @@ export default class EditEachCase extends React.Component {
 
         } else {
 
-            error_message.push((<React.Fragment>
-
-                <div>Select at least 1 contact type</div>
-
-            </React.Fragment>))
+            error_message.push("Select at least 1 contact type")
 
         }
 
@@ -435,11 +431,7 @@ export default class EditEachCase extends React.Component {
 
         } else {
 
-            error_message.push((<React.Fragment>
-
-                <div>Select 1 time of encounter</div>
-
-            </React.Fragment>))
+            error_message.push("Select 1 time of encounter")
 
         }
 
@@ -459,29 +451,17 @@ export default class EditEachCase extends React.Component {
 
             if(!this.state.new_number_of_entities){
 
-                error_message.push((<React.Fragment>
-
-                    <div>Number of entities is missing</div>
-    
-                </React.Fragment>))
+                error_message.push("Number of entities is missing")
 
             }else if(!/\d/.test(this.state.new_number_of_entities)){
 
-                error_message.push((<React.Fragment>
-
-                    <div>Number of entities must be in numbers</div>
-    
-                </React.Fragment>))
+                error_message.push("Number of entities must be in numbers")
 
 
 
             }else if(!parseInt(this.state.new_number_of_entities)>=1){
 
-                error_message.push((<React.Fragment>
-
-                    <div>There should be at least 1 entity</div>
-    
-                </React.Fragment>))
+                error_message.push("There should be at least 1 entity")
 
 
 
@@ -627,19 +607,11 @@ export default class EditEachCase extends React.Component {
                        
             if(this.state.edit_image==""){
 
-                error_message.push((<React.Fragment>
-
-                    <div>Image name is missing</div>
-    
-                </React.Fragment>))
+                error_message.push("Image name is missing")
 
             } else if(!this.state.edit_image.includes("https")){
 
-                error_message.push((<React.Fragment>
-
-                    <div>Image must have URL name</div>
-    
-                </React.Fragment>))
+                error_message.push("Image must have URL name")
 
 
 
@@ -656,11 +628,7 @@ export default class EditEachCase extends React.Component {
 
         } else {
 
-            error_message.push((<React.Fragment>
-
-                <div>Select at least one equipment</div>
-
-            </React.Fragment>))
+            error_message.push("Select at least one equipment")
 
         }
 
@@ -673,11 +641,7 @@ export default class EditEachCase extends React.Component {
 
         } else {
 
-            error_message.push((<React.Fragment>
-
-                <div>Select at least 1 contact type</div>
-
-            </React.Fragment>))
+            error_message.push("Select at least 1 contact type")
 
         }
 
@@ -690,11 +654,7 @@ export default class EditEachCase extends React.Component {
 
         } else {
 
-            error_message.push((<React.Fragment>
-
-                <div>Select 1 time of encounter</div>
-
-            </React.Fragment>))
+            error_message.push("Select 1 time of encounter")
 
         }
 
@@ -714,29 +674,17 @@ export default class EditEachCase extends React.Component {
 
             if(!this.state.edit_number_of_entities){
 
-                error_message.push((<React.Fragment>
-
-                    <div>Number of entities is missing</div>
-    
-                </React.Fragment>))
+                error_message.push("Number of entities is missing")
 
             }else if(!/\d/.test(this.state.edit_number_of_entities)){
 
-                error_message.push((<React.Fragment>
-
-                    <div>Number of entities must be in numbers</div>
-    
-                </React.Fragment>))
+                error_message.push("Number of entities must be in numbers")
 
 
 
             }else if(!parseInt(this.state.edit_number_of_entities)>=1){
 
-                error_message.push((<React.Fragment>
-
-                    <div>There should be at least 1 entity</div>
-    
-                </React.Fragment>))
+                error_message.push("There should be at least 1 entity")
 
 
 
@@ -827,11 +775,7 @@ export default class EditEachCase extends React.Component {
 
         } else {
 
-            error_message.push((<React.Fragment>
-
-                <div>The display name is missing</div>
-
-            </React.Fragment>))
+            error_message.push("The display name is missing")
 
 
         }
@@ -846,27 +790,15 @@ export default class EditEachCase extends React.Component {
         } else {
             if(!this.state.age){
 
-                error_message.push((<React.Fragment>
-
-                    <div>The age is missing</div>
-    
-                </React.Fragment>))
+                error_message.push("The age is missing")
 
             }else if(!/\d/.test(this.state.age)){
 
-                error_message.push((<React.Fragment>
-
-                    <div>Age must be a number</div>
-
-                </React.Fragment>))
+                error_message.push("Age must be a number")
 
 
             }else if (!(parseInt(this.state.age)>=10 && parseInt(this.state.age)<=120)){
-                error_message.push((<React.Fragment>
-
-                    <div>Insert a proper age from 10 to 120</div>
-
-                </React.Fragment>))
+                error_message.push("Insert a proper age from 10 to 120")
             }
 
         }
@@ -881,17 +813,9 @@ export default class EditEachCase extends React.Component {
         } else {
 
             if(!this.state.email_address){
-                error_message.push((<React.Fragment>
-
-                    <div>The email address is missing</div>
-    
-                </React.Fragment>))
+                error_message.push("The email address is missing")
             } else {
-                error_message.push((<React.Fragment>
-
-                    <div>The email address is inappropriate format</div>
-    
-                </React.Fragment>))
+                error_message.push("The email address is inappropriate format")
 
 
             }
@@ -907,11 +831,7 @@ export default class EditEachCase extends React.Component {
 
         } else {
 
-            error_message.push((<React.Fragment>
-
-                <div>The case title is missing</div>
-
-            </React.Fragment>))
+            error_message.push("The case title is missing")
 
         }
 
@@ -923,11 +843,7 @@ export default class EditEachCase extends React.Component {
 
         } else {
 
-            error_message.push((<React.Fragment>
-
-                <div>The location is missing</div>
-
-            </React.Fragment>))
+            error_message.push("The location is missing")
 
         }
 
@@ -938,11 +854,7 @@ export default class EditEachCase extends React.Component {
 
         } else {
 
-            error_message.push((<React.Fragment>
-
-                <div>The date is missing</div>
-
-            </React.Fragment>))
+            error_message.push("The date is missing")
 
 
         }
@@ -956,11 +868,7 @@ export default class EditEachCase extends React.Component {
 
         } else {
 
-            error_message.push((<React.Fragment>
-
-                <div>Select 1 type of activity</div>
-
-            </React.Fragment>))
+            error_message.push("Select 1 type of activity")
 
         }
 
@@ -973,11 +881,7 @@ export default class EditEachCase extends React.Component {
 
         } else {
 
-            error_message.push((<React.Fragment>
-
-                <div>Select at least 1 entity tag</div>
-
-            </React.Fragment>))
+            error_message.push("Select at least 1 entity tag")
 
         }
 
@@ -992,11 +896,7 @@ export default class EditEachCase extends React.Component {
 
         } else {
 
-            error_message.push((<React.Fragment>
-
-                <div>At least 1 encounter is needed</div>
-
-            </React.Fragment>))
+            error_message.push("At least 1 encounter is needed")
 
         }
 
