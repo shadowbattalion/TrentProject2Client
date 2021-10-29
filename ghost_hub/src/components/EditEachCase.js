@@ -485,7 +485,7 @@ export default class EditEachCase extends React.Component {
         
         let [validation, error_messages]=this.add_encounter_validation()
 
-        let formated_error_messages= error_messages.map((error_message)=>{return(<React.Fragment><div>Encounter: {error_message}</div></React.Fragment>)})
+        let formated_error_messages= error_messages.map((error_message)=>{return(<React.Fragment><div>Encounter: {error_message}</div></React.Fragment>)})//list rendering using array of primitive(string). Will be rendered in the notification page
         
 
         if (validation){
@@ -705,7 +705,7 @@ export default class EditEachCase extends React.Component {
 
         let [validation, error_messages]=this.edit_encounter_validation()
 
-        let formated_error_messages = error_messages.map((error_message)=>{return(<React.Fragment><div>Encounter: {error_message}</div></React.Fragment>)})
+        let formated_error_messages = error_messages.map((error_message)=>{return(<React.Fragment><div>Encounter: {error_message}</div></React.Fragment>)})//list rendering using array of primitive(string). Will be rendered in the notification page
 
         if (validation){
 
@@ -932,7 +932,7 @@ export default class EditEachCase extends React.Component {
 
             let [validation, error_messages]=this.front_end_validation()
 
-            let formated_error_messages= error_messages.map((error_message)=>{return(<React.Fragment><div>{error_message}</div></React.Fragment>)})
+            let formated_error_messages= error_messages.map((error_message)=>{return(<React.Fragment><div>{error_message}</div></React.Fragment>)})//list rendering using array of primitive(string). Will be rendered in the notification page
            
             if (validation){
                 
