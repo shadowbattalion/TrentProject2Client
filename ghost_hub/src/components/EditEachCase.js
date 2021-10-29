@@ -769,13 +769,18 @@ export default class EditEachCase extends React.Component {
         let error_message=[]
 
         let  display_name=false
-        if(this.state.display_name){
+        if(this.state.display_name && this.state.display_name.length<=25){
 
             display_name=true
 
         } else {
+            if(!this.state.display_name){
+                error_message.push("The display name is missing")
+            }else if(!this.state.display_name.length<=25){
 
-            error_message.push("The display name is missing")
+                error_message.push("Display name must be 25 characters or less")
+
+            }
 
 
         }
@@ -825,13 +830,17 @@ export default class EditEachCase extends React.Component {
 
 
         let case_title=false
-        if(this.state.case_title){
+        if(this.state.case_title && this.state.case_title.length<=50){
 
             case_title=true
 
         } else {
 
-            error_message.push("The case title is missing")
+            if(!this.state.case_title){
+                error_message.push("The case title is missing")
+            }else if(!this.state.case_title.length<=50){
+                error_message.push("Case title must be 50 characters or less")
+            }
 
         }
 
