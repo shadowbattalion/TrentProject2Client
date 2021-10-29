@@ -10,7 +10,7 @@ import NotificationPanel from './components/NotificationPanel.js'
 
 export default class GhostHubBase extends React.Component {
 
-    url_api = "https://44131-peach-possum-1zbabb9y.ws-us18.gitpod.io"
+    url_api = "https://42793-peach-possum-1zbabb9y.ws-us18.gitpod.io"
               
 
     state = {
@@ -18,10 +18,12 @@ export default class GhostHubBase extends React.Component {
         "case_id":"",
         "notification_message":"",
         "notification_message_color":"",
-        "reveal":""
+        "reveal":"",
+        "drop_burger": false
     }
 
-
+    
+    //conditional rendering
     displayPanel(){
 
         let active_display_panel={
@@ -35,7 +37,6 @@ export default class GhostHubBase extends React.Component {
                
         
         }
-
 
         return active_display_panel[this.state.displaying]
     }
@@ -244,36 +245,46 @@ export default class GhostHubBase extends React.Component {
     }
 
 
+    burger = () => {
+        this.setState({
+          drop_burger: !this.state.drop_burger
+        })
+    }
+
+
     render(){
 
-        
 
         return(
             <React.Fragment>
             <NotificationPanel className_reveal={this.state.reveal} message={this.state.notification_message} color={this.state.notification_message_color} onClickPanelDissappear={this.notification_panel_dissapear}/>
-            <ul className="nav nav-tabs">
-                <li className="nav-item">
-                <button className={(this.state.displaying === 'list_cases') ? 'nav-link active' : 'nav-link'} onClick={()=>{this.listCases({})}}>List Cases</button>
-                </li>
-                <li className="nav-item">
-                <button className={(this.state.displaying === 'search_cases') ? 'nav-link active' : 'nav-link'} onClick={()=>this.searchCases({})}>Search Case</button>
-                </li>
-                <li className="nav-item">
-                <button className={(this.state.displaying === 'add_new_case') ? 'nav-link active' : 'nav-link'} onClick={this.addNewCase}>Add Case</button>
-                </li>
-                <li className="nav-item">
-                    <button className="nav-link">About Us</button>
-                </li>               
-            </ul>
+
+            <nav className="navbar navbar-expand-lg navbar-dark"   style={{"backgroundColor":"black"}}>
+                <a className="navbar-brand" href="#">Navbar</a>
+                <button className="navbar-toggler" type="button" data-toggle="collapse" onClick={this.burger} data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span className="navbar-toggler-icon"></span>
+                </button>
+                <div className={"collapse navbar-collapse " + ((this.state.drop_burger) ? "show" : "")} id="navbarNav">
+                    <ul className="navbar-nav">
+                        <li className="nav-item active">
+                            <a className='nav-link' onClick={()=>{this.listCases({})}}  style={(this.state.displaying === 'list_cases') ? {"background":'rgb(0, 247, 255)',"color":'blue'} : {"color":'rgb(0, 247, 255)'}} href="#">List Cases</a>
+                        </li>
+                        <li className="nav-item">
+                            <a className='nav-link' onClick={()=>this.searchCases({})} style={(this.state.displaying === 'search_cases') ? {"background":'rgb(0, 247, 255)',"color":'blue'} : {"color":'rgb(0, 247, 255)'}} href="#">Search Case</a>
+                        </li>
+                        <li className="nav-item">
+                            <a className='nav-link' onClick={this.addNewCase} style={(this.state.displaying === 'add_new_case') ? {"background":'rgb(0, 247, 255)',"color":'blue'} : {"color":'rgb(0, 247, 255)'}} href="#">Add Case</a>
+                        </li>
+                        <li className="nav-item">
+                            <a className='nav-link' onClick={this.addNewCase} style={(this.state.displaying === '') ? {"background":'rgb(0, 247, 255)',"color":'blue'} : {"color":'rgb(0, 247, 255)'}} href="#">About Us</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
             {this.displayPanel()}
-        </React.Fragment>
-        )
-
-
-
+        </React.Fragment>)
 
     }
-
-
 
 }
