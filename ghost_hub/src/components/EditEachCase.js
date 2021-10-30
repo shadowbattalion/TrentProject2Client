@@ -144,10 +144,10 @@ export default class EditEachCase extends React.Component {
                         <input type="date" name="date" className="form-control" value={this.state.date} onChange={this.update_any_field} />
                         <label>Activity:</label>
                         <select onChange={this.update_any_field}  value={this.state.type_of_activity} name="type_of_activity" className="form-select" aria-label="Default select example">   
-                            <option value="accidental">Accidental</option>
-                            <option value="urbex">UrbEx</option>
-                            <option value="solo">Solo</option>
-                            <option value="paranormal_investigation">Paranormal Investigation</option>
+                            <option value="Accidental">Accidental</option>
+                            <option value="Urbex">UrbEx</option>
+                            <option value="Solo">Solo</option>
+                            <option value="Paranormal Investigation">Paranormal Investigation</option>
                             <option value="others">Others</option>
                         </select>
                         <label>Entity Tags:</label>
@@ -942,7 +942,7 @@ export default class EditEachCase extends React.Component {
 
     submit= async ()=>{
         
-        // try{
+        try{
 
 
             let [validation, error_messages]=this.front_end_validation()
@@ -990,18 +990,18 @@ export default class EditEachCase extends React.Component {
                 this.props.onEnterEachCase(notification_content,this.props.case_id) 
             }
 
-        // } catch (e) {
+        } catch (e) {
         
 
-        //     let notification_content={
-        //         validation:false,
-        //         message:"Server Error. Please contact the administrator"
+            let notification_content={
+                validation:false,
+                message:"Server Error. Please contact the administrator"
 
-        //     }
-        //     this.props.onServerError(notification_content)
+            }
+            this.props.onServerError(notification_content)
 
                 
-        // }
+        }
 
 
     }

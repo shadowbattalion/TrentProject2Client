@@ -109,7 +109,7 @@ export default class EachCase extends React.Component {
                         <label className="labels">Entity Tags</label>
                         <div className="panel-line my-2" style={{"height":"2px"}}></div>
                             <div className="container my-3">
-                                <div className="row row-cols-3 row-cols-lg-5 g-4 g-lg-3">{this.state.entity_tags.map(tag=>{return(
+                                <div className="row row-cols-3 row-cols-md-5 row-cols-lg-6 g-4 g-lg-5 ">{this.state.entity_tags.map(tag=>{return(
                                     <React.Fragment>
                                         <div className="col">
                                             <div className="p-0 panel-button tags">{tag["entity"]}</div>
