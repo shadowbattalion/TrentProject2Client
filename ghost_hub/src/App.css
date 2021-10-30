@@ -282,7 +282,69 @@
 
 
 
+@media (min-width:768px) {
 
+
+  .panel-button{
+
+    width: 125px;
+    font-size: 25px;
+
+
+  }
+
+
+  .tags{
+
+    font-size: 20px;
+
+
+  }
+
+
+  .font-size-section-divider{
+
+
+    font-size:50px;
+  
+  
+  }
+
+  .font-labels{
+
+
+    
+    font-size: 23px;
+  
+  
+  }
+
+  .font-description{
+
+  
+    font-size:23px;
+    
+  }
+
+  .font-title{
+  
+    
+    font-size:35px;
+  
+  }
+
+
+  font-display-name{
+
+  
+    
+    font-size:27px;
+  
+  
+  
+  }
+
+}
 
 
 
@@ -390,22 +452,8 @@
   
   }
 
-  .tags{
-
-    font-size: 20px;
-
-
-  }
-
-
-  .panel-button{
-
-  
-    width:125px;
-    font-size:25px;
   
   
-  }
   
 
   .nav-button-group{
