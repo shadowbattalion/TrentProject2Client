@@ -371,7 +371,7 @@ export default class AddNewCase extends React.Component {
 
                 error_message.push((<React.Fragment>
 
-                    <div>The URL of image is inappropriate</div>
+                    <div>The URL of image is inappropriate format</div>
     
                 </React.Fragment>))
 
@@ -618,7 +618,7 @@ export default class AddNewCase extends React.Component {
 
                 error_message.push((<React.Fragment>
 
-                    <div>The URL of image is inappropriate</div>
+                    <div>The URL of image is inappropriate format</div>
     
                 </React.Fragment>))
 

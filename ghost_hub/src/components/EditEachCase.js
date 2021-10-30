@@ -389,7 +389,7 @@ export default class EditEachCase extends React.Component {
 
             } else if(!(/https?:\/\/[^\s].[^\s]*$/.test(this.state.new_image))){
 
-                error_message.push("The URL of image is inappropriate")
+                error_message.push("The URL of image is inappropriate format")
 
 
 
@@ -612,7 +612,7 @@ export default class EditEachCase extends React.Component {
 
             } else if(!(/https?:\/\/[^\s].[^\s]*$/.test(this.state.edit_image))){
 
-                error_message.push("The URL of image is inappropriate")
+                error_message.push("The URL of image is inappropriate format")
 
 
 
