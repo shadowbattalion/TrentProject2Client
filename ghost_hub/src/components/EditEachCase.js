@@ -442,7 +442,7 @@ export default class EditEachCase extends React.Component {
 
 
         let number_of_entities=false
-        if(this.state.new_number_of_entities && /\d/.test(this.state.new_number_of_entities) && parseInt(this.state.new_number_of_entities)>=1){
+        if(this.state.new_number_of_entities && !isNaN(this.state.new_number_of_entities) && parseInt(this.state.new_number_of_entities)>=1){
 
             number_of_entities=true
 
@@ -454,7 +454,7 @@ export default class EditEachCase extends React.Component {
 
                 error_message.push("Number of entities is missing")
 
-            }else if(!/\d/.test(this.state.new_number_of_entities)){
+            }else if(isNaN(this.state.new_number_of_entities)){
 
                 error_message.push("Number of entities must be in numbers")
 
@@ -666,7 +666,7 @@ export default class EditEachCase extends React.Component {
 
 
         let number_of_entities=false
-        if(this.state.edit_number_of_entities && /\d/.test(this.state.edit_number_of_entities) && parseInt(this.state.edit_number_of_entities)>=1){
+        if(this.state.edit_number_of_entities && !isNaN(this.state.edit_number_of_entities) && parseInt(this.state.edit_number_of_entities)>=1){
 
             number_of_entities=true
 
@@ -678,7 +678,7 @@ export default class EditEachCase extends React.Component {
 
                 error_message.push("Number of entities is missing")
 
-            }else if(!/\d/.test(this.state.edit_number_of_entities)){
+            }else if(isNaN(this.state.edit_number_of_entities)){
 
                 error_message.push("Number of entities must be in numbers")
 
@@ -790,7 +790,7 @@ export default class EditEachCase extends React.Component {
         let age=false
         
         
-        if(this.state.age && /\d/.test(this.state.age) && (parseInt(this.state.age)>=10 && parseInt(this.state.age)<=120)){ 
+        if(this.state.age && !isNaN(this.state.age) && (parseInt(this.state.age)>=10 && parseInt(this.state.age)<=120)){ 
 
             age=true
 
@@ -799,7 +799,7 @@ export default class EditEachCase extends React.Component {
 
                 error_message.push("The age is missing")
 
-            }else if(!/\d/.test(this.state.age)){
+            }else if(isNaN(this.state.age)){
 
                 error_message.push("Age must be a number")
 
