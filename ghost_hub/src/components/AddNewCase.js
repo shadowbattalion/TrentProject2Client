@@ -352,7 +352,7 @@ export default class AddNewCase extends React.Component {
 
         let image=false
         
-        if(this.state.new_image!="" && this.state.new_image.includes("https")){
+        if(this.state.new_image!="" && /https?:\/\/[^\s].[^\s]*$/.test(this.state.new_image)){
 
             image=true
 
@@ -367,11 +367,11 @@ export default class AddNewCase extends React.Component {
     
                 </React.Fragment>))
 
-            } else if(!this.state.new_image.includes("https")){
+            } else if(!(/https?:\/\/[^\s].[^\s]*$/.test(this.state.new_image))){
 
                 error_message.push((<React.Fragment>
 
-                    <div>Image must have URL name</div>
+                    <div>The URL of image is inappropriate</div>
     
                 </React.Fragment>))
 
@@ -599,14 +599,14 @@ export default class AddNewCase extends React.Component {
 
         let image=false
         
-        if(this.state.edit_image && this.state.edit_image.includes("https")){
+        if(this.state.edit_image!="" && /https?:\/\/[^\s].[^\s]*$/.test(this.state.edit_image)){
 
             image=true
 
         } else {
 
             
-            if(!this.state.edit_image){
+            if(this.state.edit_image==""){
 
                 error_message.push((<React.Fragment>
 
@@ -614,11 +614,11 @@ export default class AddNewCase extends React.Component {
     
                 </React.Fragment>))
 
-            }else if(!this.state.edit_image.includes("https")){
+            } else if(!(/https?:\/\/[^\s].[^\s]*$/.test(this.state.edit_image))){
 
                 error_message.push((<React.Fragment>
 
-                    <div>Image must have URL name</div>
+                    <div>The URL of image is inappropriate</div>
     
                 </React.Fragment>))
 
@@ -800,21 +800,33 @@ export default class AddNewCase extends React.Component {
 
         let error_message=[]
 
+
         let  display_name=false
-        if(this.state.display_name){
+        if(this.state.display_name && this.state.display_name.length<=25){
 
             display_name=true
 
         } else {
+            if(!this.state.display_name){
+                error_message.push((<React.Fragment>
 
-            error_message.push((<React.Fragment>
+                    <div>The display name is missing</div>
+    
+                </React.Fragment>))
+            }else if(!this.state.display_name.length<=25){
+                error_message.push((<React.Fragment>
 
-                <div>The display name is missing</div>
-
-            </React.Fragment>))
-
+                    <div>Display name must be 25 characters or less</div>
+    
+                </React.Fragment>))
+                
+            }
 
         }
+
+
+
+        
         
         let age=false
         
@@ -853,7 +865,7 @@ export default class AddNewCase extends React.Component {
         
 
         let email_address=false
-        if(this.state.email_address && this.state.email_address.includes("@")){
+        if(this.state.email_address && /\w*@\w*(\.\w{2,3})+/.test(this.state.email_address)){
 
             email_address=true
 
@@ -865,50 +877,71 @@ export default class AddNewCase extends React.Component {
                     <div>The email address is missing</div>
     
                 </React.Fragment>))
-            } else {
+
+            } else if(!(/\w*@\w*(\.\w{2,3})+/.test(this.state.email_address))){
                 error_message.push((<React.Fragment>
 
                     <div>The email address is inappropriate format</div>
     
                 </React.Fragment>))
 
-
-            }
+            } 
 
 
         }
 
-
+        
         let case_title=false
-        if(this.state.case_title){
+        if(this.state.case_title && this.state.case_title.length<=50){
 
             case_title=true
 
         } else {
 
-            error_message.push((<React.Fragment>
+            if(!this.state.case_title){
+                error_message.push((<React.Fragment>
 
-                <div>The case title is missing</div>
+                    <div>The case title is missing</div>
+    
+                </React.Fragment>))
+            }else if(!this.state.case_title.length<=50){
+                error_message.push((<React.Fragment>
 
-            </React.Fragment>))
+                    <div>Case title must be 50 characters or less</div>
+    
+                </React.Fragment>))
+            }
 
         }
 
 
         let location=false
-        if(this.state.location){
+        if(this.state.location && this.state.location.length<=100){
 
             location=true
 
         } else {
 
-            error_message.push((<React.Fragment>
+            if(!this.state.location){
+                error_message.push((<React.Fragment>
 
-                <div>The location is missing</div>
+                    <div>The location is missing</div>
+    
+                </React.Fragment>))
+            } else if(!this.state.location<=100){
+                error_message.push((<React.Fragment>
 
-            </React.Fragment>))
+                    <div>Location must be 100 characters or less</div>
+    
+                </React.Fragment>))
+            }
 
         }
+
+
+        
+
+
 
         let date=false
         if(this.state.date){

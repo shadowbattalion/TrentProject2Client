@@ -376,7 +376,7 @@ export default class EditEachCase extends React.Component {
 
         let image=false
         
-        if(this.state.new_image!="" && this.state.new_image.includes("https")){
+        if(this.state.new_image!="" && /https?:\/\/[^\s].[^\s]*$/.test(this.state.new_image)){
 
             image=true
 
@@ -385,11 +385,12 @@ export default class EditEachCase extends React.Component {
             
             if(this.state.new_image==""){
 
-                error_message.push("Image name is missing")
+                error_message.push( "Image name is missing")
 
-            } else if(!this.state.new_image.includes("https")){
+            } else if(!(/https?:\/\/[^\s].[^\s]*$/.test(this.state.new_image))){
 
-                error_message.push("Image must have URL name")
+                error_message.push("The URL of image is inappropriate")
+
 
 
             } 
@@ -594,24 +595,24 @@ export default class EditEachCase extends React.Component {
 
         let error_message=[]
 
+             
 
         let image=false
         
-        if(this.state.edit_image!="" && this.state.edit_image.includes("https")){
+        if(this.state.edit_image!="" && /https?:\/\/[^\s].[^\s]*$/.test(this.state.edit_image)){
 
             image=true
 
         } else {
 
             
-                       
             if(this.state.edit_image==""){
 
-                error_message.push("Image name is missing")
+                error_message.push( "Image name is missing")
 
-            } else if(!this.state.edit_image.includes("https")){
+            } else if(!(/https?:\/\/[^\s].[^\s]*$/.test(this.state.edit_image))){
 
-                error_message.push("Image must have URL name")
+                error_message.push("The URL of image is inappropriate")
 
 
 
@@ -619,7 +620,8 @@ export default class EditEachCase extends React.Component {
 
 
         }
-
+        
+       
 
         let equipment_used=false
         if(this.state.edit_equipment_used.length>0){
@@ -811,7 +813,7 @@ export default class EditEachCase extends React.Component {
         
 
         let email_address=false
-        if(this.state.email_address && this.state.email_address.includes("@")){
+        if(this.state.email_address && /\w*@\w*(\.\w{2,3})+/.test(this.state.email_address)){
 
             email_address=true
 
@@ -819,11 +821,11 @@ export default class EditEachCase extends React.Component {
 
             if(!this.state.email_address){
                 error_message.push("The email address is missing")
-            } else {
+
+            } else if(!(/\w*@\w*(\.\w{2,3})+/.test(this.state.email_address))){
                 error_message.push("The email address is inappropriate format")
 
-
-            }
+            } 
 
 
         }
@@ -846,13 +848,17 @@ export default class EditEachCase extends React.Component {
 
 
         let location=false
-        if(this.state.location){
+        if(this.state.location && this.state.location.length<=100){
 
             location=true
 
         } else {
 
-            error_message.push("The location is missing")
+            if(!this.state.location){
+                error_message.push("The location is missing")
+            } else if(!this.state.location<=100){
+                error_message.push("Location must be 100 characters or less")
+            }
 
         }
 
