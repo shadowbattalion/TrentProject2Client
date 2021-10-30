@@ -121,9 +121,9 @@ export default class EachCase extends React.Component {
                     </div>
                     
                     <div className="panel-button-group">
-                        <button className="btn btn-md panel-button font-primary" onClick={()=>{this.props.onListCases({})}}>Back</button>
-                        <button className="btn btn-md panel-button font-primary" onClick={this.delete_mode_activated}>Delete</button>
-                        <button className="btn btn-md panel-button font-primary" onClick={()=>{this.props.onEditEachCase(this.props.case_id)}}>Edit</button>
+                        <button className="btn panel-button font-primary" onClick={()=>{this.props.onListCases({})}}>Back</button>
+                        <button className="btn panel-button font-primary" onClick={this.delete_mode_activated}>Delete</button>
+                        <button className="btn panel-button font-primary" onClick={()=>{this.props.onEditEachCase(this.props.case_id)}}>Edit</button>
                     </div>
                 </section>
 
@@ -213,7 +213,7 @@ export default class EachCase extends React.Component {
                                 <p  className="font-description font-secondary">{comment.content}</p>
                                 
                                 <div className="panel-button-group">
-                                    <button className="btn btn-md panel-button font-primary" onClick={()=>{this.edit_mode_activated(comment)}}>Edit</button>
+                                    <button className="btn panel-button font-primary" onClick={()=>{this.edit_mode_activated(comment)}}>Edit</button>
                                     <button className="btn btn-md panel-button font-primary" onClick={()=>{this.delete_comment(comment)}}>Delete</button>
                                 </div>
                             </section>
@@ -266,8 +266,8 @@ export default class EachCase extends React.Component {
                         <label class="form-check-label" for="flexSwitchCheckChecked">Like</label>
                     </div>
                     <div className="panel-button-group">
-                        <button className="btn btn-md panel-button font-primary" onClick={this.edit_mode_cancelled}>Cancel</button>
-                        <button className="btn btn-md panel-button font-primary" onClick={this.edit_comment}>Done!</button>
+                        <button className="btn panel-button font-primary" onClick={this.edit_mode_cancelled}>Cancel</button>
+                        <button className="btn panel-button font-primary" onClick={this.edit_comment}>Done!</button>
                     </div>
                 </section>                
             </React.Fragment>
@@ -304,7 +304,7 @@ export default class EachCase extends React.Component {
                         <label class="form-check-label" for="flexSwitchCheckChecked">Like</label>
                     </div>
                     <div className="panel-button-group">
-                        <button className="btn btn-md panel-button font-primary" onClick={this.add_comment}>Add!</button>
+                        <button className="btn panel-button font-primary" onClick={this.add_comment}>Add!</button>
                     </div>
                 </section>
             </React.Fragment>)
@@ -319,8 +319,8 @@ export default class EachCase extends React.Component {
                     <div className="panel-line"></div>
                     <p className="font-description font-secondary">Are you sure you want to delete this case?<br/><span style={{"color":"red"}}>WARNING:</span> Action is irreversible!!</p> 
                     <div className="panel-button-group">  
-                        <button className="btn btn-md panel-button font-primary" onClick={this.delete_mode_cancelled}>Cancel</button>
-                        <button className="btn btn-md panel-button font-primary" onClick={this.confirm_delete}>Confirm!</button>
+                        <button className="btn panel-button font-primary" onClick={this.delete_mode_cancelled}>Cancel</button>
+                        <button className="btn panel-button font-primary" onClick={this.confirm_delete}>Confirm!</button>
                     </div>  
                 </section>
             </React.Fragment>

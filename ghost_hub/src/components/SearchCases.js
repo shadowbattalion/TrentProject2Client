@@ -96,7 +96,7 @@ export default class ListCases extends React.Component {
                     <input type="date" name="to_date" className="form-control font-description font-secondary" value={this.state.to_date} onChange={this.update_any_field} /> 
                 </div>
                 <div className="panel-button-group justify-content-end">
-                    <button className="btn btn-md panel-button font-primary" onClick={this.search_case}>Search</button>
+                    <button className="btn panel-button font-primary" onClick={this.search_case}>Search</button>
                 </div>
             </section>
 
@@ -165,7 +165,7 @@ export default class ListCases extends React.Component {
                                 <p className="font-description font-secondary">{witness.case.date.split("T")[0]}</p>
                             </div>
                             <div className="panel-button-group justify-content-end">
-                                <button className="btn btn-md panel-button font-primary" onClick={()=>{this.props.onEnterEachCase({},witness.case._id)}}>Continue...</button>
+                                <button className="btn panel-button font-primary" onClick={()=>{this.props.onEnterEachCase({},witness.case._id)}}>Continue...</button>
                             </div>
                         </section>
                     </React.Fragment>)

@@ -14,7 +14,7 @@ export default function DeleteEachCase (props) {
                                 <p className="font-description font-secondary">{props.message}</p>
                             </div>
                             <div className="modal-footer">
-                                <button type="button" className="btn btn-md panel-button font-primary" onClick={props.onClickPanelDissappear} data-dismiss="modal">Close</button>
+                                <button type="button" className="btn panel-button font-primary" onClick={props.onClickPanelDissappear} data-dismiss="modal">Close</button>
                             </div>
                         </div>
                     </div>

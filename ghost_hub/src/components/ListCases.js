@@ -74,7 +74,7 @@ export default class ListCases extends React.Component {
                                 <p className="font-description font-secondary">{each_case.date.split("T")[0]}</p>
                             </div>
                             <div className="panel-button-group justify-content-end">
-                                <button className="btn btn-md panel-button font-primary" onClick={()=>{this.props.onEnterEachCase({},each_case._id)}}>Continue...</button>
+                                <button className="btn panel-button font-primary" onClick={()=>{this.props.onEnterEachCase({},each_case._id)}}>Continue...</button>
                             </div>
                         </section>
                     </React.Fragment>
