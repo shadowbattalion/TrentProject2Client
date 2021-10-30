@@ -73,7 +73,7 @@ export default class EachCase extends React.Component {
                 <section style={{"position":"relative", "marginTop":"25%"}}>
                     <div className="loading-page">
                         <img src={logo_skull_loading} className="logo-skull" style={{"opacity":"0.3","height":"60px", "marginRight":"10px"}} alt="logo_skull"/>
-                        <h1 style={{"opacity":"0.3"}}>Loading...</h1>
+                        <h1 className="font-primary font-size-section-divider" style={{"opacity":"0.3"}}>Loading...</h1>
                     </div>
                 </section>
             </React.Fragment>
@@ -88,31 +88,31 @@ export default class EachCase extends React.Component {
         let each_case_jsx=(
             <React.Fragment>
                 <section className="panel">
-                    <h2>{this.state.case_title}</h2> 
+                    <h2 className="font-title font-primary">{this.state.case_title}</h2> 
                     <div className="panel-line"></div>
                     <div className="panel-main my-4">                        
-                        <label className="labels">By</label>
-                        <p>Name: {this.state.display_name}<br/>Age: {this.state.age}<br/>{this.state.occupation?`Occupation: ${this.state.occupation}`:""}<br/>{this.state.company_name?`Paranormal Company: ${this.state.company_name}`:""}</p>
+                        <label className="font-labels font-primary">By</label>
+                        <p className="font-description font-secondary">Name: {this.state.display_name}<br/>Age: {this.state.age}<br/>{this.state.occupation?`Occupation: ${this.state.occupation}`:""}<br/>{this.state.company_name?`Paranormal Company: ${this.state.company_name}`:""}</p>
                         
-                        <label className="labels">Description</label>
-                        <p>{this.state.generic_description}</p>
+                        <label className="font-labels font-primary">Description</label>
+                        <p className="font-description font-secondary">{this.state.generic_description}</p>
                         
-                        <label className="labels">Type of Activity</label>
-                        <p>{this.state.type_of_activity}</p>
+                        <label className="font-labels font-primary">Type of Activity</label>
+                        <p className="font-description font-secondary">{this.state.type_of_activity}</p>
 
-                        <label className="labels">Date of Encounter</label>
-                        <p>{this.state.date.split("T")[0]}</p>
+                        <label className="font-labels font-primary">Date of Encounter</label>
+                        <p className="font-description font-secondary">{this.state.date.split("T")[0]}</p>
                         
-                        <label className="labels">Location</label>
-                        <p>{this.state.location}</p>
+                        <label className="font-labels font-primary">Location</label>
+                        <p className="font-description font-secondary">{this.state.location}</p>
 
-                        <label className="labels">Entity Tags</label>
+                        <label className="font-labels font-primary">Entity Tags</label>
                         <div className="panel-line my-2" style={{"height":"2px"}}></div>
                             <div className="container my-3">
                                 <div className="row row-cols-3 row-cols-md-5 row-cols-lg-6 g-4 g-lg-5 ">{this.state.entity_tags.map(tag=>{return(
                                     <React.Fragment>
                                         <div className="col">
-                                            <div className="p-0 panel-button tags">{tag["entity"]}</div>
+                                            <div className="tags font-secondary">{tag["entity"]}</div>
                                         </div>
                                     </React.Fragment>)})}
                                 </div>
@@ -121,9 +121,9 @@ export default class EachCase extends React.Component {
                     </div>
                     
                     <div className="panel-button-group">
-                        <button className="btn btn-md panel-button" onClick={()=>{this.props.onListCases({})}}>Back</button>
-                        <button className="btn btn-md panel-button" onClick={this.delete_mode_activated}>Delete</button>
-                        <button className="btn btn-md panel-button" onClick={()=>{this.props.onEditEachCase(this.props.case_id)}}>Edit</button>
+                        <button className="btn btn-md panel-button font-primary" onClick={()=>{this.props.onListCases({})}}>Back</button>
+                        <button className="btn btn-md panel-button font-primary" onClick={this.delete_mode_activated}>Delete</button>
+                        <button className="btn btn-md panel-button font-primary" onClick={()=>{this.props.onEditEachCase(this.props.case_id)}}>Edit</button>
                     </div>
                 </section>
 
@@ -138,7 +138,7 @@ export default class EachCase extends React.Component {
         let encounters_jsx=[]
         encounters_jsx.push((<React.Fragment>
                 <section className="panel panel-page-title">
-                    <h1>Encounters</h1>
+                    <h1 className="font-primary font-size-section-divider">Encounters</h1>
                 </section>
             </React.Fragment>))
         let i = 1
@@ -147,21 +147,21 @@ export default class EachCase extends React.Component {
 
             let encounter_jsx=(<React.Fragment>                
                 <section className="panel">
-                    <h2>Encounter #{i}</h2>
+                    <h2 className="font-title font-primary">Encounter #{i}</h2>
                     <div className="panel-line"></div>
                     <div className="panel-encounter-image">
-                        <img src={encounter.image} className="rounded float-left img-fluid" alt="encounter.image"/>
+                        <img src={encounter.image} className="rounded float-left img-fluid" alt="image"/>
                     </div>
-                    <label className="labels">Description</label>
-                    <p>{encounter.sightings_description}</p>
-                    <label className="labels">Equipments Used</label>
-                    <p>{encounter.equipment_used.join(", ")}</p>
-                    <label className="labels">Contact Type</label>
-                    <p>{encounter.contact_type.join(", ")}</p>
-                    <label className="labels">Number of Entities</label>
-                    <p>{encounter.number_of_entities}</p>
-                    <label className="labels">Time of Enconter</label>
-                    <p>{encounter.time_of_encounter}</p>
+                    <label className="font-labels font-primary">Description</label>
+                    <p className="font-description font-secondary">{encounter.sightings_description}</p>
+                    <label className="font-labels font-primary">Equipments Used</label>
+                    <p className="font-description font-secondary">{encounter.equipment_used.join(", ")}</p>
+                    <label className="font-labels font-primary">Contact Type</label>
+                    <p className="font-description font-secondary">{encounter.contact_type.join(", ")}</p>
+                    <label className="font-labels font-primary">Number of Entities</label>
+                    <p className="font-description font-secondary">{encounter.number_of_entities}</p>
+                    <label className="font-labels font-primary">Time of Enconter</label>
+                    <p className="font-description font-secondary">{encounter.time_of_encounter}</p>
                     
 
 
@@ -187,7 +187,7 @@ export default class EachCase extends React.Component {
         comment_jsx[0]=(
             <React.Fragment>
                 <section className="panel panel-page-title">
-                    <h2>Comments</h2>
+                    <h1 className="font-primary font-size-section-divider">Comments</h1>
                 </section>
                 
             </React.Fragment>
@@ -210,11 +210,11 @@ export default class EachCase extends React.Component {
                         <React.Fragment key={comment._id}>
                             <section className="panel">
                                        
-                                <p>{comment.content}</p>
+                                <p  className="font-description font-secondary">{comment.content}</p>
                                 
                                 <div className="panel-button-group">
-                                    <button className="btn btn-md panel-button" onClick={()=>{this.edit_mode_activated(comment)}}>Edit</button>
-                                    <button className="btn btn-md panel-button" onClick={()=>{this.delete_comment(comment)}}>Delete</button>
+                                    <button className="btn btn-md panel-button font-primary" onClick={()=>{this.edit_mode_activated(comment)}}>Edit</button>
+                                    <button className="btn btn-md panel-button font-primary" onClick={()=>{this.delete_comment(comment)}}>Delete</button>
                                 </div>
                             </section>
                         </React.Fragment>)
@@ -259,15 +259,15 @@ export default class EachCase extends React.Component {
             
             <React.Fragment>
                 <section className="panel"> 
-                    <label>Enter your comments</label>
+                    <label className="font-labels font-secondary">Enter your comments</label>
                     <textarea class="form-control" name="edit_content" value={this.state.edit_content} onChange={this.update_any_field} rows="2"></textarea> 
                     <div class="form-check form-switch">
                         <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" name="edit_like" value={value} onChange={this.update_any_field} checked={this.state.edit_like=="1"}/>
                         <label class="form-check-label" for="flexSwitchCheckChecked">Like</label>
                     </div>
                     <div className="panel-button-group">
-                        <button className="btn btn-md panel-button" onClick={this.edit_mode_cancelled}>Cancel</button>
-                        <button className="btn btn-md panel-button" onClick={this.edit_comment}>Done!</button>
+                        <button className="btn btn-md panel-button font-primary" onClick={this.edit_mode_cancelled}>Cancel</button>
+                        <button className="btn btn-md panel-button font-primary" onClick={this.edit_comment}>Done!</button>
                     </div>
                 </section>                
             </React.Fragment>
@@ -297,14 +297,14 @@ export default class EachCase extends React.Component {
         return(
             <React.Fragment>
                 <section className="panel"> 
-                    <label>Enter your comments</label>
+                    <label className="font-labels font-secondary">Enter your comments</label>
                     <textarea class="form-control" name="new_content" value={this.state.new_content} onChange={this.update_any_field} rows="2"></textarea> 
                     <div class="form-check form-switch">
                         <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" name="new_like" value={value} onChange={this.update_any_field} checked={this.state.new_like=="1"}/>
                         <label class="form-check-label" for="flexSwitchCheckChecked">Like</label>
                     </div>
                     <div className="panel-button-group">
-                        <button className="btn btn-md panel-button" onClick={this.add_comment}>Add!</button>
+                        <button className="btn btn-md panel-button font-primary" onClick={this.add_comment}>Add!</button>
                     </div>
                 </section>
             </React.Fragment>)
@@ -319,8 +319,8 @@ export default class EachCase extends React.Component {
                     <div className="panel-line"></div>
                     <p>Are you sure you want to delete this case?<br/><span style={{"color":"red"}}>WARNING:</span> Action is irreversible!!</p> 
                     <div className="panel-button-group">  
-                        <button className="btn btn-md panel-button" onClick={this.delete_mode_cancelled}>Cancel</button>
-                        <button className="btn btn-md panel-button" onClick={this.confirm_delete}>Confirm!</button>
+                        <button className="btn btn-md panel-button font-primary" onClick={this.delete_mode_cancelled}>Cancel</button>
+                        <button className="btn btn-md panel-button font-primary" onClick={this.confirm_delete}>Confirm!</button>
                     </div>  
                 </section>
             </React.Fragment>
@@ -696,7 +696,7 @@ export default class EachCase extends React.Component {
         }
         return (<React.Fragment>
                 <section className="panel panel-page-title">
-                    <h1>Each Case</h1>
+                    <h1 className="font-primary font-size-section-divider">Case Details</h1>
                 </section>
                 {render_items}
         </React.Fragment>)

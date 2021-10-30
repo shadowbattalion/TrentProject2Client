@@ -1,4 +1,43 @@
 
+        
+.font-primary {
+  font-family: 'Bebas Neue', cursive;
+}
+
+
+.font-secondary {
+  font-family: 'Abel', sans-serif;
+}
+
+
+.font-size-section-divider{
+
+
+  font-size:60px;
+
+
+}
+
+
+.font-labels{
+
+
+  font-weight: bold;
+
+
+}
+
+
+
+.font-description{
+
+  overflow: hidden; 
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size:30px;
+  
+}
+
 .alert-reveal{
 
   display:block;
@@ -74,7 +113,7 @@
   
 }
 
-.panel-title{
+.font-title{
 
   padding:2px 0px;
   overflow: hidden; 
@@ -86,7 +125,7 @@
 
 
 
-.panel-display-name{
+.font-display-name{
 
   
   overflow: hidden; 
@@ -115,13 +154,7 @@
 
 
 
-.panel-description{
 
-  overflow: hidden; 
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  
-}
 
 
 .panel-button-group{
@@ -156,14 +189,7 @@
 }
 
 
-.labels{
 
-
-  font-weight: bold;
-
-
-
-}
 
 
 
@@ -241,7 +267,7 @@
   margin-bottom:0px;
   text-align: center;
   box-sizing: border-box;
-
+  border-radius: 18px;
   color: blue;
   background-color:rgb(0, 247, 255);
   
@@ -263,6 +289,7 @@
 
   }
 
+  
   .nav-mobile-pad-size{
 
     visibility: hidden;
@@ -293,6 +320,63 @@
     box-shadow: 0px 0px 7px 5px lightgrey;
     height:100%;
     width:25%;
+
+  }
+
+  .font-size-section-divider{
+
+
+    font-size:60px;
+  
+  
+  }
+
+  .font-labels{
+
+
+    font-size: 25px;
+  
+  
+  }
+
+  .font-description{
+
+    
+    width:1000px;
+    font-size:25px;
+  
+  
+  }
+
+  .font-title{
+
+    padding:2px 0px;
+    overflow: hidden; 
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size:40px;
+   
+  
+  }
+  
+  
+  
+  .font-display-name{
+  
+    
+    overflow: hidden; 
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size:30px;
+  
+  
+  
+  }
+
+  .tags{
+
+    font-size: 20px;
+
 
   }
 
@@ -328,15 +412,7 @@
   }
 
 
-  .panel-description{
-
-    
-    width:1000px;
   
-  
-  }
-
-
   .main-logo{
 
     margin-top: 10%;

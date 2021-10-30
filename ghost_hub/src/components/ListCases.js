@@ -42,7 +42,7 @@ export default class ListCases extends React.Component {
                 <section style={{"position":"relative", "marginTop":"25%"}}>
                     <div className="loading-page">
                         <img src={logo_skull_loading} className="logo-skull" style={{"opacity":"0.3","height":"60px", "marginRight":"10px"}} alt="logo_skull"/>
-                        <h1 style={{"opacity":"0.3"}}>Loading...</h1>
+                        <h1 className="font-primary font-size-section-divider" style={{"opacity":"0.3"}}>Loading...</h1>
                     </div>
                 </section>
             </React.Fragment>
@@ -63,18 +63,18 @@ export default class ListCases extends React.Component {
                     <React.Fragment key={each_case._id}>
                         <section className="panel">
                             <div className="panel-head">
-                                <h2 className="panel-title">{each_case.case_title}</h2>
-                                <h3 className="panel-display-name">{witness.display_name}</h3> 
+                                <h2 className="font-title font-primary">{each_case.case_title}</h2>
+                                <h3 className="font-display-name font-secondary">{witness.display_name}</h3> 
                             </div>
                             <div className="panel-line"></div>
                             <div className="panel-main my-4">
-                                <label className="labels">Description</label>
-                                <p className="panel-description">{each_case.generic_description}</p>
-                                <label className="labels">Date of Encounter</label>
-                                <p>{each_case.date.split("T")[0]}</p>
+                                <label className="font-labels font-primary">Description</label>
+                                <p className="font-description font-secondary">{each_case.generic_description}</p>
+                                <label className="font-labels font-primary">Date of Encounter</label>
+                                <p className="font-description font-secondary">{each_case.date.split("T")[0]}</p>
                             </div>
                             <div className="panel-button-group justify-content-end">
-                                <button className="btn btn-md panel-button" onClick={()=>{this.props.onEnterEachCase({},each_case._id)}}>Continue...</button>
+                                <button className="btn btn-md panel-button font-primary" onClick={()=>{this.props.onEnterEachCase({},each_case._id)}}>Continue...</button>
                             </div>
                         </section>
                     </React.Fragment>
@@ -100,7 +100,7 @@ export default class ListCases extends React.Component {
         
         return (<React.Fragment>
                 <section className="panel panel-page-title">
-                    <h1>Cases</h1>
+                    <h1 className="font-primary font-size-section-divider">Cases</h1>
                 </section>
                 {this.state.page_loaded?this.display_loading_page():this.display_api_data()}
         </React.Fragment>)

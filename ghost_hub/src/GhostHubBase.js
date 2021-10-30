@@ -276,10 +276,10 @@ export default class GhostHubBase extends React.Component {
                 <button className="navbar-toggler mx-1" type="button" data-toggle="collapse" onClick={this.burger} data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>
-                <div className={`collapse navbar-collapse ${this.state.drop_burger ? "show" : ""}`} id="navbarNav">
+                <div className={`collapse navbar-collapse ${this.state.drop_burger ? "show" : ""} font-primary`} style={{"fontSize":"20px"}}>
                     <ul className="navbar-nav mx-4">
                         <li className="nav-item">
-                            <a className='nav-link' onClick={()=>{this.listCases({})}}  style={(this.state.displaying === 'list_cases') ? {"background":'rgb(0, 247, 255)',"color":'blue'} : {"color":'rgb(0, 247, 255)'}} href="#">List Cases</a>
+                            <a className='nav-link' onClick={()=>{this.listCases({})}}  style={(this.state.displaying === 'list_cases') ? {"background":'rgb(0, 247, 255)',"color":'blue'} : {"color":'rgb(0, 247, 255)'}} href="#">Cases</a>
                         </li>
                         <li className="nav-item">
                             <a className='nav-link' onClick={()=>this.searchCases({})} style={(this.state.displaying === 'search_cases') ? {"background":'rgb(0, 247, 255)',"color":'blue'} : {"color":'rgb(0, 247, 255)'}} href="#">Search Case</a>
@@ -299,11 +299,11 @@ export default class GhostHubBase extends React.Component {
                     <div className="main-logo">
                         <a className="navbar-brand mx-4" href="#"><img src={logo_skull} className="logo-skull" style={{"width":"20%"}} alt="logo_skull"/><img src={logo_text} style={{"width":"70%"}} alt="logo_text"/></a>
                     </div>
-                    <nav class="nav flex-column nav-button-group">   
-                        <a class="nav-link" onClick={()=>{this.listCases({})}} style={(this.state.displaying === 'list_cases') ? {"background":'rgb(0, 247, 255)',"color":'blue', "border-radius":'18px'} : {"color":'rgb(0, 247, 255)'}} href="#"><h2>List Cases</h2></a>
-                        <a class="nav-link" onClick={()=>this.searchCases({})} style={(this.state.displaying === 'search_cases') ? {"background":'rgb(0, 247, 255)',"color":'blue', "border-radius":'18px'} : {"color":'rgb(0, 247, 255)'}} href="#"><h2>Search Cases</h2></a>
-                        <a class="nav-link" onClick={this.addNewCase} style={(this.state.displaying === 'add_new_case') ? {"background":'rgb(0, 247, 255)',"color":'blue', "border-radius":'18px'} : {"color":'rgb(0, 247, 255)'}}href="#"><h2>Add Case</h2></a>
-                        <a class="nav-link" onClick={this.addNewCase} style={(this.state.displaying === '') ? {"background":'rgb(0, 247, 255)',"color":'blue', "border-radius":'18px'} : {"color":'rgb(0, 247, 255)'}}href="#"><h2>About Us</h2></a>
+                    <nav className="nav flex-column nav-button-group font-primary" style={{"fontSize":"35px"}}>   
+                        <a class="nav-link" onClick={()=>{this.listCases({})}} style={(this.state.displaying === 'list_cases') ? {"background":'rgb(0, 247, 255)',"color":'blue', "border-radius":'18px'} : {"color":'rgb(0, 247, 255)'}} href="#">Cases</a>
+                        <a class="nav-link" onClick={()=>this.searchCases({})} style={(this.state.displaying === 'search_cases') ? {"background":'rgb(0, 247, 255)',"color":'blue', "border-radius":'18px'} : {"color":'rgb(0, 247, 255)'}} href="#">Search Cases</a>
+                        <a class="nav-link" onClick={this.addNewCase} style={(this.state.displaying === 'add_new_case') ? {"background":'rgb(0, 247, 255)',"color":'blue', "border-radius":'18px'} : {"color":'rgb(0, 247, 255)'}}href="#">Add Case</a>
+                        <a class="nav-link" onClick={this.addNewCase} style={(this.state.displaying === '') ? {"background":'rgb(0, 247, 255)',"color":'blue', "border-radius":'18px'} : {"color":'rgb(0, 247, 255)'}}href="#">About Us</a>
                     </nav>
                 </div>
             </div>
