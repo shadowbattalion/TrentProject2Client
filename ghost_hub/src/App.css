@@ -113,6 +113,7 @@
 .alert-reveal{
 
   display:block;
+  position: fixed;
   
 }
 
