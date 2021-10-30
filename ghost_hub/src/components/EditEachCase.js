@@ -942,7 +942,7 @@ export default class EditEachCase extends React.Component {
 
     submit= async ()=>{
         
-        try{
+        // try{
 
 
             let [validation, error_messages]=this.front_end_validation()
@@ -990,18 +990,18 @@ export default class EditEachCase extends React.Component {
                 this.props.onEnterEachCase(notification_content,this.props.case_id) 
             }
 
-        } catch (e) {
+        // } catch (e) {
         
 
-            let notification_content={
-                validation:false,
-                message:"Server Error. Please contact the administrator"
+        //     let notification_content={
+        //         validation:false,
+        //         message:"Server Error. Please contact the administrator"
 
-            }
-            this.props.onServerError(notification_content)
+        //     }
+        //     this.props.onServerError(notification_content)
 
                 
-        }
+        // }
 
 
     }
