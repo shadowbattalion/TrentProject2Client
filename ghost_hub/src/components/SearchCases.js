@@ -59,7 +59,7 @@ export default class ListCases extends React.Component {
                 <section style={{"position":"relative", "marginTop":"25%"}}>
                     <div className="loading-page">
                         <img src={logo_skull_loading} className="logo-skull" style={{"opacity":"0.3","height":"60px", "marginRight":"10px"}} alt="logo_skull"/>
-                        <h1 style={{"opacity":"0.3"}}>Loading...</h1>
+                        <h1 className="font-primary font-size-section-divider" style={{"opacity":"0.3"}}>Loading...</h1>
                     </div>
                 </section>
             </React.Fragment>
@@ -84,19 +84,19 @@ export default class ListCases extends React.Component {
             <section className="panel">
                 <div className="panel-line"></div>
                 <div className="panel-search my-4">
-                    <label>Entity Tags:</label>
-                    <select onChange={this.update_multivalue_field}  value={this.state.search_entity_tags} name="search_entity_tags" className="form-select" multiple aria-label="multiple select example">
+                    <label className="font-description font-secondary">Entity Tags:</label>
+                    <select onChange={this.update_multivalue_field}  value={this.state.search_entity_tags} name="search_entity_tags" className="form-select font-description font-secondary" multiple aria-label="multiple select example">
                         {entity_tags_list_jsx}
                     </select>
                     
-                    <label>From Date: </label>
-                    <input type="date" name="from_date" className="form-control" value={this.state.from_date} onChange={this.update_any_field} />
+                    <label className="font-description font-secondary">From Date: </label>
+                    <input type="date" name="from_date" className="form-control font-description font-secondary" value={this.state.from_date} onChange={this.update_any_field} />
                     
-                    <label>To Date: </label>
-                    <input type="date" name="to_date" className="form-control" value={this.state.to_date} onChange={this.update_any_field} /> 
+                    <label className="font-description font-secondary">To Date: </label>
+                    <input type="date" name="to_date" className="form-control font-description font-secondary" value={this.state.to_date} onChange={this.update_any_field} /> 
                 </div>
                 <div className="panel-button-group justify-content-end">
-                    <button className="btn btn-md panel-button" onClick={this.search_case}>Search</button>
+                    <button className="btn btn-md panel-button font-primary" onClick={this.search_case}>Search</button>
                 </div>
             </section>
 
@@ -154,18 +154,18 @@ export default class ListCases extends React.Component {
                     <React.Fragment key={witness.case._id}>
                         <section className="panel">
                             <div className="panel-head">
-                                <h2 className="panel-title">{witness.case.case_title}</h2>
-                                <h3 className="panel-display-name">{witness.display_name}</h3> 
+                                <h2 className="font-title font-primary">{witness.case.case_title}</h2>
+                                <h3 className="font-display-name font-secondary">{witness.display_name}</h3> 
                             </div>
                             <div className="panel-line"></div>
                             <div className="panel-main my-4">
-                                <label className="labels">Description</label>
-                                <p className="panel-description">{witness.case.generic_description}</p>
-                                <label className="labels">Date of Encounter</label>
-                                <p>{witness.case.date.split("T")[0]}</p>
+                                <label className="font-labels font-primary">Description</label>
+                                <p className="font-description font-secondary">{witness.case.generic_description}</p>
+                                <label className="font-labels font-primary">Date of Encounter</label>
+                                <p className="font-description font-secondary">{witness.case.date.split("T")[0]}</p>
                             </div>
                             <div className="panel-button-group justify-content-end">
-                                <button className="btn btn-md panel-button" onClick={()=>{this.props.onEnterEachCase({},witness.case._id)}}>Continue...</button>
+                                <button className="btn btn-md panel-button font-primary" onClick={()=>{this.props.onEnterEachCase({},witness.case._id)}}>Continue...</button>
                             </div>
                         </section>
                     </React.Fragment>)
@@ -187,7 +187,7 @@ export default class ListCases extends React.Component {
 
             return(<React.Fragment>
                     <section style={{"position":"relative"}}>
-                        <h1 className="loading-page" style={{"opacity":"0.3"}}>Search results will be displayed here.</h1>
+                        <h1 className="loading-page font-primary" style={{"opacity":"0.3"}}>Search results will be displayed here.</h1>
                     </section>
                 </React.Fragment>)
 
@@ -272,7 +272,7 @@ export default class ListCases extends React.Component {
 
         return (<React.Fragment>
                     <section className="panel panel-page-title">
-                        <h1>Search Cases</h1>
+                        <h1 className="font-primary font-size-section-divider">Search Cases</h1>
                     </section>
                     {render_items}
                 </React.Fragment>)

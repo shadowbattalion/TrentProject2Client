@@ -259,8 +259,8 @@ export default class EachCase extends React.Component {
             
             <React.Fragment>
                 <section className="panel"> 
-                    <label className="font-labels font-secondary">Enter your comments</label>
-                    <textarea class="form-control" name="edit_content" value={this.state.edit_content} onChange={this.update_any_field} rows="2"></textarea> 
+                    <label className="font-description font-secondary">Enter your comments</label>
+                    <textarea class="form-control font-description font-secondary" name="edit_content" value={this.state.edit_content} onChange={this.update_any_field} rows="2"></textarea> 
                     <div class="form-check form-switch">
                         <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" name="edit_like" value={value} onChange={this.update_any_field} checked={this.state.edit_like=="1"}/>
                         <label class="form-check-label" for="flexSwitchCheckChecked">Like</label>
@@ -297,8 +297,8 @@ export default class EachCase extends React.Component {
         return(
             <React.Fragment>
                 <section className="panel"> 
-                    <label className="font-labels font-secondary">Enter your comments</label>
-                    <textarea class="form-control" name="new_content" value={this.state.new_content} onChange={this.update_any_field} rows="2"></textarea> 
+                    <label className="font-description font-secondary">Enter your comments</label>
+                    <textarea class="form-control font-description font-secondary" name="new_content" value={this.state.new_content} onChange={this.update_any_field} rows="2"></textarea> 
                     <div class="form-check form-switch">
                         <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" name="new_like" value={value} onChange={this.update_any_field} checked={this.state.new_like=="1"}/>
                         <label class="form-check-label" for="flexSwitchCheckChecked">Like</label>
@@ -317,7 +317,7 @@ export default class EachCase extends React.Component {
             <React.Fragment>
                 <section className="panel">
                     <div className="panel-line"></div>
-                    <p>Are you sure you want to delete this case?<br/><span style={{"color":"red"}}>WARNING:</span> Action is irreversible!!</p> 
+                    <p className="font-description font-secondary">Are you sure you want to delete this case?<br/><span style={{"color":"red"}}>WARNING:</span> Action is irreversible!!</p> 
                     <div className="panel-button-group">  
                         <button className="btn btn-md panel-button font-primary" onClick={this.delete_mode_cancelled}>Cancel</button>
                         <button className="btn btn-md panel-button font-primary" onClick={this.confirm_delete}>Confirm!</button>

@@ -13,7 +13,7 @@
 .font-size-section-divider{
 
 
-  font-size:30px;
+  font-size:40px;
 
 
 }
@@ -29,23 +29,38 @@
 }
 
 
-
-.font-description{
+.font-description-limit{
 
   overflow: hidden; 
   text-overflow: ellipsis;
   white-space: nowrap;
+
+
+}
+
+
+.font-description{
+
+  
   font-size:20px;
   
 }
 
 
-.font-title{
+.font-title-limit{
 
-  padding:2px 0px;
+  
   overflow: hidden; 
   text-overflow: ellipsis;
   white-space: nowrap;
+
+
+}
+
+
+.font-title{
+  
+  padding:2px 0px;
   font-size:30px;
 
 }
@@ -333,10 +348,20 @@
   
   }
 
+
+  .font-description-limit{
+
+    overflow: hidden; 
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width:1000px;
+  
+  }
+
   .font-description{
 
     
-    width:1000px;
+    
     font-size:25px;
   
   
@@ -344,10 +369,7 @@
 
   .font-title{
 
-    padding:2px 0px;
-    overflow: hidden; 
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    
     font-size:40px;
    
   

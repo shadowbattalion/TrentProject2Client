@@ -63,13 +63,13 @@ export default class ListCases extends React.Component {
                     <React.Fragment key={each_case._id}>
                         <section className="panel">
                             <div className="panel-head">
-                                <h2 className="font-title font-primary">{each_case.case_title}</h2>
+                                <h2 className="font-title font-title-limit font-primary">{each_case.case_title}</h2>
                                 <h3 className="font-display-name font-secondary">{witness.display_name}</h3> 
                             </div>
                             <div className="panel-line"></div>
                             <div className="panel-main my-4">
                                 <label className="font-labels font-primary">Description</label>
-                                <p className="font-description font-secondary">{each_case.generic_description}</p>
+                                <p className="font-description font-description-limit font-secondary">{each_case.generic_description}</p>
                                 <label className="font-labels font-primary">Date of Encounter</label>
                                 <p className="font-description font-secondary">{each_case.date.split("T")[0]}</p>
                             </div>
