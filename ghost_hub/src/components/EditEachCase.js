@@ -95,7 +95,7 @@ export default class EditEachCase extends React.Component {
                 <section style={{"position":"relative", "marginTop":"25%"}}>
                     <div className="loading-page">
                         <img src={logo_skull_loading} className="logo-skull" style={{"opacity":"0.3","height":"60px", "marginRight":"10px"}} alt="logo_skull"/>
-                        <h1 style={{"opacity":"0.3"}}>Loading...</h1>
+                        <h1 className="font-primary font-size-section-divider" style={{"opacity":"0.3"}}>Loading...</h1>
                     </div>
                 </section>
             </React.Fragment>
@@ -131,27 +131,27 @@ export default class EditEachCase extends React.Component {
         return(
             <React.Fragment>
                 <section className="panel">
-                    <h2>Case Details</h2>
+                    <h2 className="font-title font-primary">Case Details</h2>
                     <div className="panel-line"></div>
                     <div className="panel-main my-4"> 
-                        <label>Title</label>
-                        <input type="text" name="case_title" className="form-control" value={this.state.case_title} onChange={this.update_any_field} />
-                        <label>Description</label>
-                        <input type="text" name="generic_description" className="form-control" value={this.state.generic_description} onChange={this.update_any_field} />
-                        <label>Location</label>
-                        <input type="text" name="location" className="form-control" value={this.state.location} onChange={this.update_any_field} />
-                        <label>Date Of Incident: </label>
-                        <input type="date" name="date" className="form-control" value={this.state.date} onChange={this.update_any_field} />
-                        <label>Activity:</label>
-                        <select onChange={this.update_any_field}  value={this.state.type_of_activity} name="type_of_activity" className="form-select" aria-label="Default select example">   
+                        <label className="font-labels font-secondary">Title</label>
+                        <input type="text" name="case_title" className="form-control font-description font-secondary" value={this.state.case_title} onChange={this.update_any_field} />
+                        <label className="font-labels font-secondary">Description</label>
+                        <input type="text" name="generic_description" className="form-control font-description font-secondary" value={this.state.generic_description} onChange={this.update_any_field} />
+                        <label className="font-labels font-secondary">Location</label>
+                        <input type="text" name="location" className="form-control font-description font-secondary" value={this.state.location} onChange={this.update_any_field} />
+                        <label className="font-labels font-secondary">Date Of Incident: </label>
+                        <input type="date" name="date" className="form-control font-description font-secondary" value={this.state.date} onChange={this.update_any_field} />
+                        <label className="font-labels font-secondary">Activity:</label>
+                        <select onChange={this.update_any_field}  value={this.state.type_of_activity} name="type_of_activity" className="form-select font-description font-secondary" aria-label="Default select example">   
                             <option value="Accidental">Accidental</option>
                             <option value="Urbex">UrbEx</option>
                             <option value="Solo">Solo</option>
                             <option value="Paranormal Investigation">Paranormal Investigation</option>
                             <option value="others">Others</option>
                         </select>
-                        <label>Entity Tags:</label>
-                        <select onChange={this.update_multivalue_field}  value={this.state.entity_tags} name="entity_tags" className="form-select" multiple aria-label="multiple select example">
+                        <label className="font-labels font-secondary">Entity Tags:</label>
+                        <select onChange={this.update_multivalue_field}  value={this.state.entity_tags} name="entity_tags" className="form-select font-description font-secondary" multiple aria-label="multiple select example">
                             {entity_tags_list_jsx}
                         </select>
                     </div>
@@ -170,7 +170,7 @@ export default class EditEachCase extends React.Component {
         encounter_jsx[0]=(
             <React.Fragment>
                 <section className="panel panel-page-title">
-                    <h2>Encounter Details</h2>
+                    <h1 className="font-primary font-size-section-divider">Encounter Details</h1>
                 </section>
             </React.Fragment>
         )
@@ -195,11 +195,11 @@ export default class EditEachCase extends React.Component {
                     each_encounter = (
                         <React.Fragment key={encounter._id}>
                             <section className="panel">    
-                                <h2>Encounter #{i}</h2>
+                                <h2 className="font-title font-primary">Encounter #{i}</h2>
                                 <div className="panel-line"></div>
                                 <div className="panel-button-group">
-                                    <button className="btn btn-md panel-button" onClick={()=>{this.delete_encounter(encounter)}}>Delete</button>
-                                    <button className="btn btn-md panel-button" onClick={()=>{this.edit_mode_activated(encounter)}}>Edit</button>
+                                    <button className="btn panel-button font-primary" onClick={()=>{this.delete_encounter(encounter)}}>Delete</button>
+                                    <button className="btn panel-button font-primary" onClick={()=>{this.edit_mode_activated(encounter)}}>Edit</button>
                                 </div>
                             </section>
                         </React.Fragment>)
@@ -215,7 +215,7 @@ export default class EditEachCase extends React.Component {
         encounter_jsx.push((
             <React.Fragment>
                 <div>
-                    <h1 className="mx-4" style={{"opacity":"0.3"}}>+ Add an Encounter</h1>
+                    <h1 className="font-primary mx-4" style={{"opacity":"0.3"}}>+ Add an Encounter</h1>
                 </div>
             </React.Fragment>))
 
@@ -230,15 +230,15 @@ export default class EditEachCase extends React.Component {
 
             <React.Fragment>
                 <section className="panel">
-                    <h2>Edit Encounter</h2>
+                    <h2 className="font-title font-primary">Edit Encounter</h2>
                     <div className="panel-line"></div>
                     <div className="panel-main my-4"> 
-                        <label>Image</label>
-                        <input type="text" name="edit_image" className="form-control" value={this.state.edit_image} onChange={this.update_any_field} />
-                        <label>Description</label>
-                        <input type="text" name="edit_sightings_description" className="form-control" value={this.state.edit_sightings_description} onChange={this.update_any_field} />
-                        <label>Equipment Used</label>
-                        <select onChange={this.update_multivalue_field}  value={this.state.edit_equipment_used} name="edit_equipment_used" className="form-select" multiple aria-label="multiple select example">   
+                        <label className="font-labels font-secondary">Image</label>
+                        <input type="text" name="edit_image" className="form-control font-description font-secondary" value={this.state.edit_image} onChange={this.update_any_field} />
+                        <label className="font-labels font-secondary">Description</label>
+                        <input type="text" name="edit_sightings_description" className="form-control font-description font-secondary" value={this.state.edit_sightings_description} onChange={this.update_any_field} />
+                        <label className="font-labels font-secondary">Equipment Used</label>
+                        <select onChange={this.update_multivalue_field}  value={this.state.edit_equipment_used} name="edit_equipment_used" className="form-select font-description font-secondary" multiple aria-label="multiple select example">   
                                 <option value="Phone Camera">Phone Camera</option>
                                 <option value="Camera (fixed)">Camera (fixed)</option>
                                 <option value="Camera (portable)">Camera (portable)</option>
@@ -249,17 +249,17 @@ export default class EditEachCase extends React.Component {
                                 <option value="Others">Others</option>
                                 <option value="None">None</option>
                         </select>
-                        <label>Contact Type</label>
-                        <select onChange={this.update_multivalue_field}  value={this.state.edit_contact_type} name="edit_contact_type" className="form-select" multiple aria-label="multiple select example">   
+                        <label className="font-labels font-secondary">Contact Type</label>
+                        <select onChange={this.update_multivalue_field}  value={this.state.edit_contact_type} name="edit_contact_type" className="form-select font-description font-secondary" multiple aria-label="multiple select example">   
                                 <option value="Visual">Visual</option>
                                 <option value="Audio">Audio</option>
                                 <option value="Verbal">Verbal</option>
                                 <option value="Feel">Feel</option>
                         </select>
-                        <label>Number of Entities Encountered</label>
-                        <input type="text" name="edit_number_of_entities" className="form-control" value={this.state.edit_number_of_entities} onChange={this.update_any_field} />
-                        <label>Time of Encounter</label>
-                        <select onChange={this.update_any_field}  value={this.state.edit_time_of_encounter} name="edit_time_of_encounter" className="form-select" aria-label="Default select example">   
+                        <label className="font-labels font-secondary">Number of Entities Encountered</label>
+                        <input type="text" name="edit_number_of_entities" className="form-control font-description font-secondary" value={this.state.edit_number_of_entities} onChange={this.update_any_field} />
+                        <label className="font-labels font-secondary">Time of Encounter</label>
+                        <select onChange={this.update_any_field}  value={this.state.edit_time_of_encounter} name="edit_time_of_encounter" className="form-select font-description font-secondary" aria-label="Default select example">   
                                 <option value="Early Morning">Early Morning</option>
                                 <option value="Dawn">Dawn</option>
                                 <option value="Morning">Morning</option>
@@ -271,8 +271,8 @@ export default class EditEachCase extends React.Component {
                         </select>
                     </div>
                     <div className="panel-button-group">
-                        <button className="btn btn-md panel-button" onClick={this.edit_mode_cancelled}>Cancel</button>
-                        <button className="btn btn-md panel-button" onClick={this.edit_encounter}>Done!</button>
+                        <button className="btn panel-button font-primary" onClick={this.edit_mode_cancelled}>Cancel</button>
+                        <button className="btn panel-button font-primary" onClick={this.edit_encounter}>Done!</button>
                     </div>           
                 </section>
             </React.Fragment>)
@@ -286,18 +286,18 @@ export default class EditEachCase extends React.Component {
         return(
             <React.Fragment>
                 <section className="panel panel-page-title">
-                    <h2>Add an Encounter</h2>
+                    <h1 className="font-primary font-size-section-divider">Add an Encounter</h1>
                 </section>
                 <section className="panel">
-                    <h2>Add Encounter</h2>
+                    <h2 className="font-title font-primary">Add Encounter</h2>
                     <div className="panel-line"></div>
                     <div className="panel-main my-4"> 
-                        <label>Image</label>
-                        <input type="text" name="new_image" className="form-control" value={this.state.new_image} onChange={this.update_any_field} />
-                        <label>Description</label>
-                        <input type="text" name="new_sightings_description" className="form-control" value={this.state.new_sightings_description} onChange={this.update_any_field} />
-                        <label>Equipment Used</label>
-                        <select onChange={this.update_multivalue_field}  value={this.state.new_equipment_used} name="new_equipment_used" className="form-select" multiple aria-label="multiple select example">   
+                        <label className="font-labels font-secondary">Image</label>
+                        <input type="text" name="new_image" className="form-control font-description font-secondary" value={this.state.new_image} onChange={this.update_any_field} />
+                        <label className="font-labels font-secondary">Description</label>
+                        <input type="text" name="new_sightings_description" className="form-control font-description font-secondary" value={this.state.new_sightings_description} onChange={this.update_any_field} />
+                        <label className="font-labels font-secondary">Equipment Used</label>
+                        <select onChange={this.update_multivalue_field}  value={this.state.new_equipment_used} name="new_equipment_used" className="form-select font-description font-secondary" multiple aria-label="multiple select example">   
                                 <option value="Phone Camera">Phone Camera</option>
                                 <option value="Camera (fixed)">Camera (fixed)</option>
                                 <option value="Camera (portable)">Camera (portable)</option>
@@ -308,17 +308,17 @@ export default class EditEachCase extends React.Component {
                                 <option value="Others">Others</option>
                                 <option value="None">None</option>
                         </select>
-                        <label>Contact Type</label>
-                        <select onChange={this.update_multivalue_field}  value={this.state.new_contact_type} name="new_contact_type" className="form-select" multiple aria-label="multiple select example">   
+                        <label className="font-labels font-secondary">Contact Type</label>
+                        <select onChange={this.update_multivalue_field}  value={this.state.new_contact_type} name="new_contact_type" className="form-select font-description font-secondary" multiple aria-label="multiple select example">   
                                 <option value="Visual">Visual</option>
                                 <option value="Audio">Audio</option>
                                 <option value="Verbal">Verbal</option>
                                 <option value="Feel">Feel</option>
                         </select>
-                        <label>Number of Entities Encountered</label>
-                        <input type="text" name="new_number_of_entities" className="form-control" value={this.state.new_number_of_entities} onChange={this.update_any_field} />
-                        <label>Time of Encounter</label>
-                        <select onChange={this.update_any_field}  value={this.state.new_time_of_encounter} name="new_time_of_encounter" className="form-select" aria-label="Default select example">   
+                        <label className="font-labels font-secondary">Number of Entities Encountered</label>
+                        <input type="text" name="new_number_of_entities" className="form-control font-description font-secondary" value={this.state.new_number_of_entities} onChange={this.update_any_field} />
+                        <label className="font-labels font-secondary">Time of Encounter</label>
+                        <select onChange={this.update_any_field}  value={this.state.new_time_of_encounter} name="new_time_of_encounter" className="form-select font-description font-secondary" aria-label="Default select example">   
                                 <option value="Early Morning">Early Morning</option>
                                 <option value="Dawn">Dawn</option>
                                 <option value="Morning">Morning</option>
@@ -330,7 +330,7 @@ export default class EditEachCase extends React.Component {
                         </select>
                     </div>
                     <div className="panel-button-group justify-content-end">
-                        <button className="btn btn-md panel-button" onClick={this.add_encounter}>Add!</button>
+                        <button className="btn panel-button font-primary" onClick={this.add_encounter}>Add!</button>
                     </div>   
                 </section>
             </React.Fragment>)
@@ -1027,17 +1027,17 @@ export default class EditEachCase extends React.Component {
                 <React.Fragment>
                 
                         <section className="panel panel-page-title">
-                            <h1>Edit a Case</h1>
+                            <h1 className="font-primary font-size-section-divider">Edit a Case</h1>
                         </section>
                         {this.display_form_main()}
                         {this.display_added_encounters()}
                         {this.display_form_encounters()}
                         <section className="panel">
-                            <h2>Submit This Case</h2>
+                            <h2 className="font-title font-primary">Submit This Case</h2>
                             <div className="panel-line"></div>
                             <div className="panel-button-group">
-                                <button className="btn btn-md panel-button" onClick={()=>{this.props.onEnterEachCase({},this.props.case_id)}}>Back</button>
-                                <button className="btn btn-md panel-button" onClick={this.submit}>Submit!</button>
+                                <button className="btn panel-button font-primary" onClick={()=>{this.props.onEnterEachCase({},this.props.case_id)}}>Back</button>
+                                <button className="btn panel-button font-primary" onClick={this.submit}>Submit!</button>
                             </div>
                         </section>
                            

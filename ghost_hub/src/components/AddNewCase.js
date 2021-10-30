@@ -92,29 +92,29 @@ export default class AddNewCase extends React.Component {
                     <h2 className="font-title font-primary">Witness Particulars</h2>
                     <div className="panel-line"></div>
                     <div className="panel-main my-4"> 
-                        <label className="font-labels font-primary">Display Name</label>
+                        <label className="font-labels font-secondary">Display Name</label>
                         <input type="text" name="display_name" className="form-control font-description font-secondary" value={this.state.display_name} onChange={this.update_any_field} />
-                        <label className="font-labels font-primary">Occupation</label>
+                        <label className="font-labels font-secondary">Occupation</label>
                         <input type="text" name="occupation" className="form-control font-description font-secondary" value={this.state.occupation} onChange={this.update_any_field} />
-                        <label className="font-labels font-primary">Age</label>
+                        <label className="font-labels font-secondary">Age</label>
                         <input type="text" name="age" className="form-control font-description font-secondary" value={this.state.age} onChange={this.update_any_field} />
-                        <label className="font-labels font-primary">Paranormal Company Name</label>
+                        <label className="font-labels font-secondary">Paranormal Company Name</label>
                         <input type="text" name="company_name" className="form-control font-description font-secondary" value={this.state.company_name} onChange={this.update_any_field} />
-                        <label className="font-labels font-primary">Email address</label>
+                        <label className="font-labels font-secondary">Email address</label>
                         <input type="text" name="email_address" className="form-control font-description font-secondary" value={this.state.email_address} onChange={this.update_any_field} />
                     </div>
                     <h2 className="font-title font-primary">Case Details</h2>
                     <div className="panel-line"></div>
                     <div className="panel-main my-4"> 
-                        <label className="font-labels font-primary">Title</label>
+                        <label className="font-labels font-secondary">Title</label>
                             <input type="text" name="case_title" className="form-control font-description font-secondary" value={this.state.case_title} onChange={this.update_any_field} />
-                        <label className="font-labels font-primary">Description</label>
+                        <label className="font-labels font-secondary">Description</label>
                             <input type="text" name="generic_description" className="form-control font-description font-secondary" value={this.state.generic_description} onChange={this.update_any_field} />
-                        <label className="font-labels font-primary">Location</label>
+                        <label className="font-labels font-secondary">Location</label>
                             <input type="text" name="location" className="form-control font-description font-secondary" value={this.state.location} onChange={this.update_any_field} />
-                        <label className="font-labels font-primary">Date Of Incident: </label>
+                        <label className="font-labels font-secondary">Date Of Incident: </label>
                             <input type="date" name="date" className="form-control font-description font-secondary" value={this.state.date} onChange={this.update_any_field} style={{"display":"block"}}/>
-                        <label className="font-labels font-primary">Activity:</label>
+                        <label className="font-labels font-secondary">Activity:</label>
                         <select onChange={this.update_any_field}  value={this.state.type_of_activity} name="type_of_activity" className="form-select font-description font-secondary" aria-label="Default select example">   
                             <option value="Accidental">Accidental</option>
                             <option value="Urbex">UrbEx</option>
@@ -122,7 +122,7 @@ export default class AddNewCase extends React.Component {
                             <option value="Paranormal Investigation">Paranormal Investigation</option>
                             <option value="others">Others</option>
                         </select>
-                        <label className="font-labels font-primary">Entity Tags:</label>
+                        <label className="font-labels font-secondary">Entity Tags:</label>
                         <select onChange={this.update_multivalue_field}  value={this.state.entity_tags} name="entity_tags" className="form-select font-description font-secondary" multiple aria-label="multiple select example">
                             {entity_tags_list_jsx}
                         </select>
@@ -199,14 +199,14 @@ export default class AddNewCase extends React.Component {
 
             <React.Fragment>
                 <section className="panel">
-                    <h2>Edit Encounter</h2>
+                    <h2 className="font-title font-primary">Edit Encounter</h2>
                     <div className="panel-line"></div>
                     <div className="panel-main my-4"> 
-                        <label className="font-labels font-primary">Image</label>
+                        <label className="font-labels font-secondary">Image</label>
                         <input type="text" name="edit_image" className="form-control font-description font-secondary" value={this.state.edit_image} onChange={this.update_any_field} />
-                        <label className="font-labels font-primary">Description</label>
+                        <label className="font-labels font-secondary">Description</label>
                         <input type="text" name="edit_sightings_description" className="form-control font-description font-secondary" value={this.state.edit_sightings_description} onChange={this.update_any_field} />
-                        <label className="font-labels font-primary">Equipment Used</label>
+                        <label className="font-labels font-secondary">Equipment Used</label>
                         <select onChange={this.update_multivalue_field}  value={this.state.edit_equipment_used} name="edit_equipment_used" className="form-select font-description font-secondary" multiple aria-label="multiple select example">   
                                 <option value="Phone Camera">Phone Camera</option>
                                 <option value="Camera (fixed)">Camera (fixed)</option>
@@ -218,16 +218,16 @@ export default class AddNewCase extends React.Component {
                                 <option value="Others">Others</option>
                                 <option value="None">None</option>
                         </select>
-                        <label className="font-labels font-primary">Contact Type</label>
+                        <label className="font-labels font-secondary">Contact Type</label>
                         <select onChange={this.update_multivalue_field}  value={this.state.edit_contact_type} name="edit_contact_type" className="form-select font-description font-secondary" multiple aria-label="multiple select example">   
                                 <option value="Visual">Visual</option>
                                 <option value="Audio">Audio</option>
                                 <option value="Verbal">Verbal</option>
                                 <option value="Feel">Feel</option>
                         </select>
-                        <label className="font-labels font-primary">Number of Entities Encountered</label>
+                        <label className="font-labels font-secondary">Number of Entities Encountered</label>
                         <input type="text" name="edit_number_of_entities" className="form-control font-description font-secondary" value={this.state.edit_number_of_entities} onChange={this.update_any_field} />
-                        <label className="font-labels font-primary">Time of Encounter</label>
+                        <label className="font-labels font-secondary">Time of Encounter</label>
                         <select onChange={this.update_any_field}  value={this.state.edit_time_of_encounter} name="edit_time_of_encounter" className="form-select font-description font-secondary" aria-label="Default select example">   
                                 <option value="Early Morning">Early Morning</option>
                                 <option value="Dawn">Dawn</option>
@@ -264,11 +264,11 @@ export default class AddNewCase extends React.Component {
                     <h2 className="font-title font-primary">Add Encounter</h2>
                     <div className="panel-line"></div>
                     <div className="panel-main my-4"> 
-                        <label className="font-labels font-primary">Image</label>
+                        <label className="font-labels font-secondary">Image</label>
                         <input type="text" name="new_image" className="form-control font-description font-secondary" value={this.state.new_image} onChange={this.update_any_field} />
-                        <label className="font-labels font-primary">Description</label>
+                        <label className="font-labels font-secondary">Description</label>
                         <input type="text" name="new_sightings_description" className="form-control font-description font-secondary" value={this.state.new_sightings_description} onChange={this.update_any_field} />
-                        <label className="font-labels font-primary">Equipment Used</label>
+                        <label className="font-labels font-secondary">Equipment Used</label>
                         <select onChange={this.update_multivalue_field}  value={this.state.new_equipment_used} name="new_equipment_used" className="form-select font-description font-secondary" multiple aria-label="multiple select example">   
                                 <option value="Phone Camera">Phone Camera</option>
                                 <option value="Camera (fixed)">Camera (fixed)</option>
@@ -280,16 +280,16 @@ export default class AddNewCase extends React.Component {
                                 <option value="Others">Others</option>
                                 <option value="None">None</option>
                         </select>
-                        <label className="font-labels font-primary">Contact Type</label>
+                        <label className="font-labels font-secondary">Contact Type</label>
                         <select onChange={this.update_multivalue_field}  value={this.state.new_contact_type} name="new_contact_type" className="form-select font-description font-secondary" multiple aria-label="multiple select example">   
                                 <option value="Visual">Visual</option>
                                 <option value="Audio">Audio</option>
                                 <option value="Verbal">Verbal</option>
                                 <option value="Feel">Feel</option>
                         </select>
-                        <label className="font-labels font-primary">Number of Entities Encountered</label>
+                        <label className="font-labels font-secondary">Number of Entities Encountered</label>
                         <input type="text" name="new_number_of_entities" className="form-control font-description font-secondary" value={this.state.new_number_of_entities} onChange={this.update_any_field} />
-                        <label className="font-labels font-primary">Time of Encounter</label>
+                        <label className="font-labels font-secondary">Time of Encounter</label>
                         <select onChange={this.update_any_field}  value={this.state.new_time_of_encounter} name="new_time_of_encounter" className="form-select font-description font-secondary" aria-label="Default select example">   
                                 <option value="Early Morning">Early Morning</option>
                                 <option value="Dawn">Dawn</option>
