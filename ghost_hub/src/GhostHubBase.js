@@ -12,7 +12,7 @@ import logo_text from './images/logo-text.png'
 
 export default class GhostHubBase extends React.Component {
 
-    url_api = "https://33193-peach-possum-1zbabb9y.ws-us18.gitpod.io"
+    url_api = "https://37801-peach-possum-1zbabb9y.ws-us18.gitpod.io"
               
 
     state = {
@@ -272,7 +272,7 @@ export default class GhostHubBase extends React.Component {
             <NotificationPanel className_reveal={this.state.reveal} message={this.state.notification_message} color={this.state.notification_message_color} title={this.state.notification_message_title} onClickPanelDissappear={this.notification_panel_dissapear}/>
 
             <nav className="navbar navbar-expand-lg navbar-dark nav-mobile-pad-size"   style={{ "backgroundImage": "linear-gradient(black, blue)"}}>
-                <a className="navbar-brand mx-4" href="#"><img src={logo_skull} className="logo-skull" style={{"height":"60px"}} alt="logo_skull"/><img src={logo_text}  alt="logo-main" style={{"margin":"0px", "height":"75px"}}/></a>
+                <a className="navbar-brand mx-4" href="#"><img src={logo_skull} className="logo-skull" style={{"height":"60px"}} alt="logo_skull"/><img src={logo_text}  alt="logo-text" style={{"margin":"0px", "height":"75px"}}/></a>
                 <button className="navbar-toggler mx-1" type="button" data-toggle="collapse" onClick={this.burger} data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>
@@ -297,7 +297,7 @@ export default class GhostHubBase extends React.Component {
             <div className="full-menu-space">
                 <div className="full-menu">
                     <div className="main-logo">
-                        <a className="navbar-brand mx-4" href="#"><img src={logo_skull} className="logo-skull" style={{"height":"100px"}} alt="logo_skull"/><img src={logo_text} style={{"height":"100px"}} alt="logo_text"/></a>
+                        <a className="navbar-brand mx-4" href="#"><img src={logo_skull} className="logo-skull" style={{"width":"20%"}} alt="logo_skull"/><img src={logo_text} style={{"width":"70%"}} alt="logo_text"/></a>
                     </div>
                     <nav class="nav flex-column nav-button-group">   
                         <a class="nav-link" onClick={()=>{this.listCases({})}} style={(this.state.displaying === 'list_cases') ? {"background":'rgb(0, 247, 255)',"color":'blue', "border-radius":'18px'} : {"color":'rgb(0, 247, 255)'}} href="#"><h2>List Cases</h2></a>

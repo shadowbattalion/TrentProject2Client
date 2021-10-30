@@ -190,13 +190,6 @@
 }
 
 
-.main-logo{
-
-  margin-top: 90px;
-  margin-left: 70px;
-}
-
-
 
 .logo-skull{
 
@@ -342,5 +335,13 @@
   
   
   }
+
+
+  .main-logo{
+
+    margin-top: 10%;
+    margin-left: 5%;
+  }
+
 
 }
