@@ -1016,7 +1016,7 @@ export default class AddNewCase extends React.Component {
 
 
 
-        return [display_name && email_address && case_title && location && date && type_of_activity && entity_tags && encounters?true:false, error_message]
+        return [display_name && age && email_address && case_title && location && date && type_of_activity && entity_tags && encounters?true:false, error_message]
     }
 
 

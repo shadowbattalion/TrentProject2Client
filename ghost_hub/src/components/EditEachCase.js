@@ -919,7 +919,7 @@ export default class EditEachCase extends React.Component {
 
 
 
-        return [display_name && email_address && case_title && location && date && type_of_activity && entity_tags && encounters?true:false, error_message]
+        return [display_name && age && email_address && case_title && location && date && type_of_activity && entity_tags && encounters?true:false, error_message]
     }
 
 
@@ -951,7 +951,7 @@ export default class EditEachCase extends React.Component {
            
             if (validation){
                 
-                let edit_case = await axios.put(this.url_api + '/update_case/'+this.props.case_id, {
+                let edit_case = await axios.put(this.url_api + '/edit_case/'+this.props.case_id, {
 
                     "witness":{
                         "email_address":this.state.email_address,
