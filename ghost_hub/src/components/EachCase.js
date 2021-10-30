@@ -362,10 +362,10 @@ export default class EachCase extends React.Component {
     confirm_delete= async()=>{
 
         try{
-            console.log(this.props.case_id)
+            
             let outcome = await axios.delete(this.props.url_api + "/delete_case/"+this.props.case_id)
 
-            console.log(outcome)
+            
 
             let notification_content ={
                 validation:true,
@@ -439,7 +439,7 @@ export default class EachCase extends React.Component {
             let [validation, error_messages]=this.add_comment_validation()
 
             let formated_error_messages= error_messages.map((error_message)=>{return(<React.Fragment><div>{error_message}</div></React.Fragment>)}) 
-            console.log(error_messages[0])
+            
             if (validation){
                 let outcome = await axios.post(this.props.url_api + "/post_comment",{
                     "case_id":this.props.case_id,
@@ -450,7 +450,7 @@ export default class EachCase extends React.Component {
 
                 
                 let new_comment_id=outcome.data.insertedId
-                console.log(new_comment_id)
+                
 
                 let new_comment={
                     "_id":new_comment_id,
@@ -512,7 +512,7 @@ export default class EachCase extends React.Component {
     delete_comment = async (comment_delete) =>{
 
         let outcome = await axios.delete(this.props.url_api + "/delete_comment/"+comment_delete._id) 
-        console.log(outcome)
+        
 
 
         let comments_list=this.state.comments
@@ -527,7 +527,7 @@ export default class EachCase extends React.Component {
            "comments":new_comment_list
    
         })
-        console.log(comment_delete._id)
+        
 
         
         let notification_content ={
@@ -604,7 +604,7 @@ export default class EachCase extends React.Component {
             let [validation, error_messages]=this.edit_comment_validation()
 
             let formated_error_messages= error_messages.map((error_message)=>{return(<React.Fragment><div>{error_message}</div></React.Fragment>)}) 
-            console.log(error_messages[0])
+            
             if (validation){
                 let outcome = await axios.put(this.props.url_api + "/edit_comment/"+this.state.edit_mode._id,{
                     "content":this.state.edit_content,

@@ -120,7 +120,7 @@ export default class ListCases extends React.Component {
 
         let entity_tags_chosen=this.state[e.target.name]
 
-        console.log(entity_tags_chosen)
+        
 
         let updated_entity_tags_chosen = []
 

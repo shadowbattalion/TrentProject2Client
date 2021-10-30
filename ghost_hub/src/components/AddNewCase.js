@@ -1067,7 +1067,7 @@ export default class AddNewCase extends React.Component {
                     "encounters":this.state.encounters
                 })
                 
-                console.log(add_case)
+                
 
 
                 let notification_content={
