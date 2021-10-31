@@ -250,3 +250,20 @@ Information is organised in a way that the user can read the content as much as 
 			<li>Purpose: to send and receive HTTP communications via the built-in GET, POST , PUT, etc</li>
 			<li>https://expressjs.com/</li>
 		</ul>
+
+
+
+
+
+
+## Credits
+
+| Acknowledgements | Link |
+|--|--|
+| Axios | https://github.com/axios/axios|
+|Bootstrap CSS|https://getbootstrap.com/|
+|Google Fonts|https://fonts.google.com/|
+|Express|https://expressjs.com/|
+|NodeJS|https://nodejs.org/en/|
+|Mongodb|https://www.mongodb.com/|
+|React|https://reactjs.org/|
