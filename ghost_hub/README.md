@@ -125,17 +125,22 @@ As a **viewer** I want to **paranormal case classified based on certain characte
 
 ### Structure
 Structure used:
+
 Linear Network Hybrid
+
 ![](readme_images/feature_flow.png)
 
 Information organisation:
+
 Information is organised in a way that the user can read the content as much as possible. That is why, in the laptop size, the navbar is put to the side so that the user have as much vertical space as possible to scroll up and down. As illustrated in the Skeleton section
 
 ### Skeleton
 <ins>Desktop Mockup</ins>
+
 ![](readme_images/desktop_mockup.png)
 
 <ins>Mobile Mockup</ins>
+
 ![](readme_images/mobile_mockup.png)
 
 ### Surface
@@ -181,6 +186,7 @@ Information is organised in a way that the user can read the content as much as 
 </ul>
 
 ### Feature Flow
+
 ![](readme_images/feature_flow.png)
 
 <ul>
