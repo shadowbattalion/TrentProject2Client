@@ -204,3 +204,49 @@ Information is organised in a way that the user can read the content as much as 
 <ul>
 	<li>About Us page: For now it cannot work as the page isn't ready for now</li>
 </ul>
+
+
+## Technology used
+
+<ul>
+	<li>Axios</li>
+	    <ul>
+		    <li>It is a technology used to give the program HTTP client capability</li>
+			<li>Purpose: It used to make HTTP requests to APIs/URLs to retrieve data from the server</li>
+			<li> https://github.com/axios/axios</li>
+		</ul>
+	<li>Bootstrap CSS</li>
+	    <ul>
+		    <li>A library which has pre-made css components</li>
+			<li>Purpose: for fast building of CSS on websites</li>
+			<li>https://getbootstrap.com/</li>
+		</ul>
+	<li>Google Fonts</li>
+	    <ul>
+			<li> Additional fonts for HTML</li>
+			 <li>https://fonts.google.com/</li>
+		</ul>
+	<li>React</li>
+		<ul>
+			<li> Front end framework based on JS</li>
+			<li>Purpose: A framework which uses state to manipulate frontend webpages</li>
+			<li>https://reactjs.org/</li>
+		</ul>
+	<li>Mongodb </li>
+		<ul>
+			<li> A document based database using NoSQL</li>
+			<li>Purpose: The database behind the backend server to store data from users</li>
+			<li>https://www.mongodb.com/</li>
+		</ul>
+	<li>Nodejs </li>
+		<ul>
+			<li> It is a JS backend runtime environment</li>
+			<li>Purpose: The basic building block for the backend server</li>
+			<li>https://nodejs.org/en/</li>
+		</ul>
+	<li>Express</li>
+		<ul>
+			<li> A backend framework for node.js</li>
+			<li>Purpose: to send and receive HTTP communications via the built-in GET, POST , PUT, etc</li>
+			<li>https://expressjs.com/</li>
+		</ul>
