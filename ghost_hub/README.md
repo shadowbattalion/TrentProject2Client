@@ -77,3 +77,44 @@ As a **viewer** I want to **paranormal case classified based on certain characte
 	<li>Witnesses can see edit delete and create encounters within each cases</li>
 	<li>Commenters can see edit delete and create their comments about certain cases</li>
 		<li>Viewers can see images, case title, equipment used, etc as some important attributes of cases and encounters are made compulsory for input</li>
+</ul>
+
+
+<ins>Functional requirements</ins>
+
+<ul>
+	<li>Case Reports</li>
+	<ul>
+		<li>User can create a case</li>
+		<li>User can delete a case</li>
+		<li>User can edit a case</li>
+		<li>User can read a case</li>
+		<li>User can like a case through their comments</li>
+	</ul>
+	<li>Encounters</li>
+	<ul>
+		<li>User can create an encounter while creating a case</li>
+		<li>User can delete an encounter while creating a case</li>
+		<li>User can edit an encounter while creating a case</li>
+		<li>User can read an encounter while creating a case</li>
+		<li>User can create an encounter while editing a case</li>
+		<li>User can delete an encounter while editing a case</li>
+		<li>User can edit an encounter while editing a case</li>
+		<li>User can read an encounter while editing a case</li>
+	</ul>
+	<li>Comments</li>
+	<ul>
+		<li>User can post a comment</li>
+		<li>User can edit a comment</li>
+		<li>User can delete a comment</li>
+		<li>User can read a comment</li>
+	</ul>
+
+
+<ins>Non-functional requirements</ins>
+<ul>
+	<li>Mobile responsiveness: As the website will have many texts, a proper size anc font is needed for mobile users to have ease of reading.</li>
+	<li>Localization criteria: As of now it can only be used in local context as different cultures have their own sets of paranormal entities. This is a requirement for the entity tags used in the website which classifies the paranormal encounters.</li>
+	<li>Accessibility criteria: Only for those who are not visually impaired</li>
+	<li>Security: The client and backend inputs are validated. Passwords are not stored in the server. Mongodb is used</li>
+</ul>
