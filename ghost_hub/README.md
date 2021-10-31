@@ -257,7 +257,13 @@ Information is organised in a way that the user can read the content as much as 
 
 | Test Case # | Test Case Description |Test Steps|Expected Result|
 |--|--|--|--|
-|||||
+|1|User accesses the main URL|1. Go to URL (under Summary section)|A list of cases will appear|
+|2|User looks into Case Details|1. Click on "Continue button"|Case details will appear showing at least on encounter and comments if available.|
+|3|User wants to edit a case|1. Click on "Continue button"<br>2. Click on "Edit" button. Edit page will appear and change the case title to "A haunting"<br>3. Click on the "Submit!" button.|The website will bring user back to the Case Details page with a change to the Case title|
+||Prerequisite: Needs to be in Edit Case page|||
+|4|User wants to add an Encounter|1. Scroll down to Add an Encounter.Fill the form Image:https://images.unsplash.com/photo-1593642632559...., Description: This is a picture, Equipment Used: Phone Camera, Contact Type: Visual, Number of entities encountered:1, Time of Encounter: Morning<br>2. Click on "Add!"<br>3. Click on "Submit!"|The website will bring user back to the Case Details page with a new encounter|
+|5|User wants to edit an Encounter|||
+|6|User wants to delete an Encounter|||
 
 
 ## Deployment
