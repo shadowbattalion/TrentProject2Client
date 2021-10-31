@@ -253,8 +253,13 @@ Information is organised in a way that the user can read the content as much as 
 </ul>
 
 
+## Tests
 
-
+## Deployment
+<ul>
+	<li>Backend:</li>
+	<li>Frontend:</li>
+</ul>
 
 ## Credits
 
