@@ -183,3 +183,24 @@ Information is organised in a way that the user can read the content as much as 
 
 ### Feature Flow
 <img>
+
+<ul>
+	<li>Case List: When the user access the website, the user will see a list of cases. User can select on one of the cases</li>
+	<li>Case Details: The use will then be presented with a case details where all the data about a user's paranormal enconters will be displayed. From there, he can either delete the case or edit the case.</li>
+	<li>Edit Case: User can edit the case and also add delete or edit encounters. After that they will come back to the Case Details page </li>
+	<li>Add Cases: Allows user to input a set of data and also add delete or edit encounters. After they click submit, the website will bring the user to the Case List page, where the user can see his added case</li>
+	<li>Search Cases: Allows users to input search criterias, which is the tags, date to and date from. After clicking on the search button, a set of result will be returned to the user. From there, users can access each case in the Case Details page</li>
+</ul>
+
+
+### Future Implementations
+<ul>
+	<li>A rating system. It was implemented halfway, users can save their likes for cases but for now the display of ratings is not implemented</li>
+	<li>Using a map to choose location. Users can use the map to show the place of encounters. The map should also be displayed in the Cases Details page.</li>
+	<li>Authentication and authorisation. For now, email is used to tie cases to the users who created it.</li>
+</ul>
+
+### Bugs
+<ul>
+	<li>About Us page: For now it cannot work as the page isn't ready for now</li>
+</ul>
