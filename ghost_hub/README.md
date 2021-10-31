@@ -257,17 +257,17 @@ Information is organised in a way that the user can read the content as much as 
 
 | Test Case # | Test Case Description |Test Steps|Expected Result|
 |--|--|--|--|
-|1|User accesses the main URL|1. Go to URL (under Summary section)|A list of cases will appear|
+|1|User accesses the main URL|1. Go to URL (under Summary section)|A list of cases will appear in the Cases List page|
 |2|User looks into Case Details|1. Click on "Continue button"|Case details will appear showing at least on encounter and comments if available.|
 |3|User wants to edit a Case|1. Click on "Continue button"<br>2. Click on "Edit" button. Edit page will appear and change the case title to "A haunting"<br>3. Click on the "Submit!" button.|The website will bring user back to the Case Details page with a change to the Case title|
-|4|User wants to delete a Case|Done(delete, confirm buttons)||
-|5|User wants to add a Case|Done||
+|4|User wants to delete a Case|1. Click on "Continue" button<br>2. Click on "delete" button<br>3. A prompt will appear above. Click on "Confirm!" |The  Website will bring the user to the  Cases List page|
+|5|User wants to add a Case|1. Click on "Add Case" button on the side nav bar<br>2. Fill up the form -> Display Name: Bob, Occupation:Engineer, Age:30, Paranormal Encounter: <can be empty>, email address: test@gmail.com, title:A haunting, description:Scary house, Location: Creepy house, date:23/3/2021, Activity: Accidental, Entity Tags: Pocong, Pontianak. Fill up form for Encounter as well -> Image:https://images.unsplash.com/photo-1593642632559...., Description: This is a picture, Equipment Used: Phone Camera, Contact Type: Visual, Number of entities encountered:1, Time of Encounter: Morning<br>2. Click on "Add!"<br>3. Click on "Submit!"|The website will bring user back to the Cases List page with a new Case at the bottom of the list|
 |6|User wants to post comment|Done||
 |7|User wants to edit comment|Done||
 |8|User wants to delete comment|Done||
 |9|User wants to search cases|Done||
 ||Prerequisite: Needs to be in Edit Case page or Add Case page|||
-||User wants to add an Encounter|1. Scroll down to Add an Encounter.Fill the form Image:https://images.unsplash.com/photo-1593642632559...., Description: This is a picture, Equipment Used: Phone Camera, Contact Type: Visual, Number of entities encountered:1, Time of Encounter: Morning<br>2. Click on "Add!"<br>3. Click on "Submit!", Done|The website will bring user back to the Case Details page with a new encounter|
+||User wants to add an Encounter|1. Scroll down to Add an Encounter. Fill the form -> Image:https://images.unsplash.com/photo-1593642632559...., Description: This is a picture, Equipment Used: Phone Camera, Contact Type: Visual, Number of entities encountered:1, Time of Encounter: Morning<br>2. Click on "Add!"<br>3. Click on "Submit!"|The website will bring user back to the Case Details page with a new Encounter|
 ||User wants to edit an Encounter|Done,Done||
 ||User wants to delete an Encounter|Done, Done||
 
