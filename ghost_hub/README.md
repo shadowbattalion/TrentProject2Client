@@ -21,3 +21,17 @@ This project is where users can share their paranormal encounters with others, b
 	</ul>
 
 <ins>Motivation</ins>
+ After looking at "It must be the hantu" Facebook page, there are actually many Singaporeans who have their paranormal stories to tell.
+
+About some years ago, a new hobby emerged. It is called urban exploration (UrbEx), where people explore abandoned locations so that they get a view of how it was like back in the days. It may not necessarily be a paranormal investigation but there some reports of UrbEx explorers who made contact with the unseen. 
+
+There are some paranormal investigators who would go to the extreme by going into haunted places alone, so they need to capture all images as evidence.
+
+ This project aims to be a main base for people to share their paranormal encounters 
+ and for paranormal research and references. The whole idea is inspired from the SCP (Secure, Contain, Protect) Foundation, a fictional foundation where people share details of anomalous creatures online and classify each of them according to its characteristics. For example: SCP-457 (Burning Man) (https://vocal.media/horror/10-dangerous-sc-ps-that-must-never-escape-part-2)
+
+<ins>Project Links:</ins>
+	<ul>
+		<li></li>
+		<li></li>
+	</ul>
