@@ -184,6 +184,7 @@ Information is organised in a way that the user can read the content as much as 
 	<li>Search function based on tags and date range</li>
 	<li>Display cases, encounters and comments</li>
 </ul>
+
 ### ERD Diagram
 
 ![](readme_images/ghost_hub_erd.png)
