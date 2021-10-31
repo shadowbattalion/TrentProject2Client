@@ -118,9 +118,25 @@ As a **viewer** I want to **paranormal case classified based on certain characte
 	<li>Mobile responsiveness: As the website will have many texts, a proper size anc font is needed for mobile users to have ease of reading.</li>
 	<li>Localization criteria: As of now it can only be used in local context as different cultures have their own sets of paranormal entities. This is a requirement for the entity tags used in the website which classifies the paranormal encounters.</li>
 	<li>Accessibility criteria: Only for those who are not visually impaired</li>
-	<li>Security: The client and backend inputs are validated. Passwords are not stored in the server. Mongodb is used</li>
+	<li>Security: The client and backend inputs are validated. Passwords are not stored in the server.</li>
+	<li>Privacy: Only emails will be stored for case identification purposes</li>
+	<li>Not Applicable: Performance</li>
 </ul>
 
 
+### Structure
+Structure used:
+Linear Network Hybrid
+<img>
 
+Information organisation:
+Information is organised in a way that the user can read the content as much as possible. That is why, in the laptop size, the navbar is put to the side so that the user have as much vertical space as possible to scroll up and down. As illustrated in the Skeleton section
 
+### Skeleton
+<ins>Desktop Mockup</ins>
+<img>
+
+<ins>Mobile Mockup</ins>
+<img>
+
+### Surface
