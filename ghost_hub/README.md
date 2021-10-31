@@ -33,8 +33,7 @@ There are some paranormal investigators who would go to the extreme by going int
 
 <ins>Project Links:</ins>
 	<ul>
-		<li></li>
-		<li></li>
+		<li>https://affectionate-wescoff-87accd.netlify.app</li>
 	</ul>
 
 ## UI/UX 
