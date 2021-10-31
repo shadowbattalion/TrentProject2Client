@@ -6,11 +6,14 @@ This project is where users can share their paranormal encounters with others, b
 
 
 <ins>Organisation goals:</ins>
-	 - Promote awareness of haunted locations so that users can safely avoid the area
-	 - Provide thrill seekers a venue to explore the unknown
-	 -  Some Singaporeans do paranormal investigation in creepy locations as a hobby. With this platform, it can encourage them to turn their activity into a business opportunity by increasing their visibility and rating. In a way, this platform serves as an advertising platform
+<ul>
+	<li>Promote awareness of haunted locations so that users can safely avoid the area</li>
+	<li>Provide thrill seekers a venue to explore the unknown</li>
+	 <li> Some Singaporeans do paranormal investigation in creepy locations as a hobby. With this platform, it can encourage them to turn their activity into a business opportunity by increasing their visibility and rating. In a way, this platform serves as an advertising platform</li>
 	 
 <ins>User goals:</ins>
-	- Users
+	<ul>
+		<li> Users</li>
+	</ul>
 
 <ins>Motivation</ins>
