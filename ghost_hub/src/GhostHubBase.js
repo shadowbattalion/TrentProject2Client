@@ -1,5 +1,4 @@
 import React from 'react'
-import axios from 'axios'
 import ListCases from './components/ListCases.js'
 import SearchCases from './components/SearchCases.js'
 import AddNewCase from './components/AddNewCase.js'
@@ -12,7 +11,7 @@ import logo_text from './images/logo-text.png'
 
 export default class GhostHubBase extends React.Component {
 
-    url_api = "https://45877-peach-possum-1zbabb9y.ws-us18.gitpod.io"
+    url_api = "https://3000-peach-possum-1zbabb9y.ws-us18.gitpod.io"
               
 
     state = {
