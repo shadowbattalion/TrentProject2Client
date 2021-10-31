@@ -133,7 +133,7 @@ Information is organised in a way that the user can read the content as much as 
 
 ### Skeleton
 <ins>Desktop Mockup</ins>
-![](readme_images/)
+![](readme_images/desktop_mockup.png)
 
 <ins>Mobile Mockup</ins>
 ![](readme_images/)
