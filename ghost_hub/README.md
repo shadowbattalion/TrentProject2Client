@@ -265,11 +265,11 @@ Information is organised in a way that the user can read the content as much as 
 |6|User wants to post comment|1. From the Cases List page, click on "Continue" button on one of the cases. Scroll down to the "Comments" section, enter in the textbox: This is very scary!<br>2. Click on "Add!"|A popup box in green will appear saying that "Comment Added"|
 |7|User wants to edit comment|1. From the Cases List page, click on "Continue" button on one of the cases. Scroll down to the "Comments" section.<br>2. Click on "Edit" on the comment added earlier, enter in the textbox: This is not so scary!<br>3. Click on "Done!"|A popup box in green will appear saying that "Comment Edited" and the earlier added comment has been changed|
 |8|User wants to delete comment|1. From the Cases List page, click on "Continue" button on one of the cases. Scroll down to the "Comments" section.<br>2. Click on "Delete" on an available comment|A popup box in green will appear saying that "Comment Deleted"|
-|9|User wants to search cases|Done||
-||Prerequisite: Needs to be in Edit Case page or Add Case page|||
-||User wants to add an Encounter|1. Scroll down to Add an Encounter. Fill the form -> Image:https://images.unsplash.com/photo-1593642632559...., Description: This is a picture, Equipment Used: Phone Camera, Contact Type: Visual, Number of entities encountered:1, Time of Encounter: Morning<br>2. Click on "Add!"<br>3. Click on "Submit!"|The website will bring user back to the Case Details page with a new Encounter|
-||User wants to edit an Encounter|Done,Done||
-||User wants to delete an Encounter|Done, Done||
+|9|User wants to search cases|1.Click on "Search Cases" button on the side nav bar. For the Entity tag, select Pontianak, then select the dates<br>2. Click on "Search". A list of cases will be returned to user.<br>3. Click on the "Continue" button on one of the searched cases|The website will return a list of cases and user can choose which cases he want to look into by clicking on the "Continue" buttons on one of the cases.|
+|10|Prerequisite: Needs to be in Edit Case page or Add Case page|||
+|11|User wants to add an Encounter|1. Scroll down to Add an Encounter section. Fill the form -> Image:https://images.unsplash.com/photo-1593642632559...., Description: This is a picture, Equipment Used: Phone Camera, Contact Type: Visual, Number of entities encountered:1, Time of Encounter: Morning<br>2. Click on "Add!"<br>3. Click on "Submit!"|The website will bring user back to the Case Details page with a new Encounter|
+|12|User wants to edit an Encounter|1. Scroll down to Encounter Details section and click on "Edit" on one of the encounters.<br>2.Change the Description to "This is a scary place"<br>2. Click on "Done!"<br>3. Click on "Submit!"|The website will bring the user back to the Case Details page with a change in the Descripton of and Encounter|
+|13|User wants to delete an Encounter|1. Scroll down to Encounter Details section and click on "delete" on one of the encounters.<br>2.Click on "Submit!"|The website will bring the user back to the Case Details page with the deleted Encounter removed|
 
 
 ## Deployment
