@@ -40,20 +40,34 @@ There are some paranormal investigators who would go to the extreme by going int
 ## UI/UX 
 ### Stratergy
 <ins>User Stories</ins>
+
 As a **paranormal witness** I want to **create my paranormal case report** So that **share it with others**
+
 As a **paranormal witness** I want to **delete my paranormal case report** So that **in case the case report is no longer relevant**
+
 As a **paranormal witness** I want to **edit my paranormal case report** So that **I can make some changes to the case report**
+
 As a **paranormal witness** I want to **see my paranormal case report** So that **I can share my case report with others and others can see my report**
+
 As a **paranormal witness** I want to **create one or more paranormal encounter in each case report** So that **I can attach different paranormal encounters for the same case report**
+
 As a **paranormal witness** I want to **delete one or more paranormal encounter in each case report** So that **remove encounters that are no longer relevant**
+
 As a **paranormal witness** I want to **edit one or more paranormal encounter in each case report** So that **I can make changes to each encounters**
+
 As a **paranormal witness** I want to **see one or more paranormal encounter in each case report** So that **I can share my encounters in the case report with others and others can see my encounters**
+
 As a **paranormal witness** I want to **share images of my encounter** So that **I can provide evidence of my encounter**
 
+
 As a **commentor** I want to **add a comment** So that **share my opinion about certain cases**
+
 As a **commentor** I want to **delete a comment** So that **remove statements that I regret typing**
+
 As a **commentor** I want to **edit a comment** So that **change my opinions regarding certain cases**
+
 As a **commentor** I want to **see a comment** So that **share my opinions and see the opinions of others regarding certain cases**
+
 
 As a **viewer** I want to **paranormal case classified based on certain characteristics** So that **can understand the paranormal experiences of others**
 
