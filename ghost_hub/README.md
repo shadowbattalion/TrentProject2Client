@@ -109,7 +109,7 @@ As a **viewer** I want to **paranormal case classified based on certain characte
 		<li>User can delete a comment</li>
 		<li>User can read a comment</li>
 	</ul>
-<ul>
+</ul>
 
 
 
