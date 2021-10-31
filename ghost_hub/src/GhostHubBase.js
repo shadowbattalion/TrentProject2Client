@@ -25,7 +25,7 @@ export default class GhostHubBase extends React.Component {
     }
 
     
-    //conditional rendering
+    //conditional   rendering
     displayPanel(){
 
         let active_display_panel={
