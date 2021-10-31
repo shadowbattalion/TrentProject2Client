@@ -115,7 +115,7 @@ As a **viewer** I want to **paranormal case classified based on certain characte
 
 <ins>Non-functional requirements</ins>
 <ul>
-	<li>Mobile responsiveness: As the website will have many texts, a proper size anc font is needed for mobile users to have ease of reading.</li>
+	<li>Mobile responsiveness: As the website will have many texts, a proper size and font is needed for mobile users to have ease of reading.</li>
 	<li>Localization criteria: As of now it can only be used in local context as different cultures have their own sets of paranormal entities. This is a requirement for the entity tags used in the website which classifies the paranormal encounters.</li>
 	<li>Accessibility criteria: Only for those who are not visually impaired</li>
 	<li>Security: The client and backend inputs are validated. Passwords are not stored in the server.</li>
@@ -141,3 +141,31 @@ Information is organised in a way that the user can read the content as much as 
 
 ### Surface
 
+<ul>
+	<li>Appearance</li>
+		<ul>
+			<li>Typography: </li>
+				<ul>
+				<li>Bebas Neue. For main titles because it is very eye-catching.</li>
+				<li>Abel: For contents. It looks easy on the eyes and modern. Good for long texts that users might post</li>
+				</ul>
+			<li>Color:</li>
+				<ul>
+				<li>Blue: Primary color. A lot of bank websites use blue. It gives the impression of trust. The idea is to show that our website means serious business and hopefully can convey the message to the public to contribute seriously to the database. </li>
+				<li>rgb(0, 247, 255): Secondary color. Using a color neighbor of blue to prevent too much contrast. This color is used for highlighting buttons and tags.  </li>
+				<li>Black: To add a tinge of mystery to the overall look.</li>
+				</ul>
+			<li>Font Size:</li>
+				<ul>
+				<li>Big texts are to catch the users attention. Mostly used in titles. Smaller texts are used for the 			contents</li>
+				</ul>
+			<li>Layout:</li>
+				<ul>
+				<li>Since it will be text heavy due to user input, the space will be expanded vertically downward.</li>
+				</ul>
+		</ul>
+	<li>Mobile Requirement:</li>
+		<ul>
+				<li>This is achieved by starting from the mobile layout. The most important thing to keep track is the size of components, like words, icons etc. Because this will change when the website runs on a bigger screen, therefore the size of the components and the screens must be proportionate.</li>
+	 </ul>
+</ul>
