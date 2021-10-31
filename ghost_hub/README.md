@@ -171,4 +171,15 @@ Information is organised in a way that the user can read the content as much as 
 </ul>
 
 
-##Feature
+## Features
+### Feature List
+<ul>
+	<li>Create, read, update and delete cases</li>
+	<li>Create, read, update and delete encounters</li>
+	<li>Create, read, update and delete comments</li>
+	<li>Search function based on tags and date range</li>
+	<li>Display cases, encounters and comments</li>
+</ul>
+
+### Feature Flow
+<img>
