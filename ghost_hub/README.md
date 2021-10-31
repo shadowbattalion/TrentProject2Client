@@ -79,7 +79,7 @@ As a **viewer** I want to **paranormal case classified based on certain characte
 		<li>Viewers can see images, case title, equipment used, etc as some important attributes of cases and encounters are made compulsory for input</li>
 </ul>
 
-
+### Scope
 <ins>Functional requirements</ins>
 
 <ul>
@@ -140,3 +140,4 @@ Information is organised in a way that the user can read the content as much as 
 <img>
 
 ### Surface
+
