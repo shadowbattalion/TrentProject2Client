@@ -161,7 +161,7 @@ Information is organised in a way that the user can read the content as much as 
 				</ul>
 			<li>Layout:</li>
 				<ul>
-				<li>Since it will be text heavy due to user input, the space will be expanded vertically downward.</li>
+				<li>Since it will be text heavy due to user input, the space will be expanded vertically downward. All the layout decisions considered will be based on what are the possible inputs from the user. For example, nothing should be put besides the image as images comes in various dimensions. So, to be safe, all texts will be placed at the bottom of the image. Some texts might be very long so care has been taken to ensure that there is nothing on left or the right of the text as everything is created to expand downwards. The nav bar is put on the  side in laptop screen so that it gives the user full view of the contents.</li>
 				</ul>
 		</ul>
 	<li>Mobile Requirement:</li>
@@ -169,3 +169,6 @@ Information is organised in a way that the user can read the content as much as 
 				<li>This is achieved by starting from the mobile layout. The most important thing to keep track is the size of components, like words, icons etc. Because this will change when the website runs on a bigger screen, therefore the size of the components and the screens must be proportionate.</li>
 	 </ul>
 </ul>
+
+
+##Feature
