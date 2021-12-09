@@ -135,13 +135,21 @@ Information organisation:
 Information is organised in a way that the user can read the content as much as possible. That is why, in the laptop size, the navbar is put to the side so that the user have as much vertical space as possible to scroll up and down. As illustrated in the Skeleton section
 
 ### Skeleton
-<ins>Desktop Mockup</ins>
+<ins>Game List Mockup</ins>
 
-![](readme_images/desktop_mockup.png)
+![](readme_images/game_list_mockup.png)
 
-<ins>Mobile Mockup</ins>
+<ins>Game Detail Mockup</ins>
 
-![](readme_images/mobile_mockup.png)
+![](readme_images/game_detail_mockup.png)
+
+<ins>Cart Mockup</ins>
+
+![](readme_images/cart_mockup.png)
+
+<ins>History Mockup</ins>
+
+![](readme_images/cart_mockup.png)
 
 ### Surface
 
