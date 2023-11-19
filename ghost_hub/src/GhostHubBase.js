@@ -11,7 +11,7 @@ import logo_text from './images/logo-text.png'
 
 export default class GhostHubBase extends React.Component {
 
-    url_api = "https://ghost-hub.herokuapp.com"
+    url_api = "https://trentproject2api.onrender.com"
               
 
     state = {
