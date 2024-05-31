@@ -42,7 +42,7 @@ export default class ListCases extends React.Component {
                 <section style={{"position":"relative", "marginTop":"25%"}}>
                     <div className="loading-page">
                         <img src={logo_skull_loading} className="logo-skull" style={{"opacity":"0.3","height":"60px", "marginRight":"10px"}} alt="logo_skull"/>
-                        <h1 className="font-primary font-size-section-divider" style={{"opacity":"0.3"}}>Loading...</h1>
+                        <h1 className="font-primary font-size-section-divider" style={{"opacity":"0.3", "fontSize":"40px"}}>Starting up the backend (using free version of Render)...</h1>
                     </div>
                 </section>
             </React.Fragment>
@@ -102,7 +102,7 @@ export default class ListCases extends React.Component {
                 <section className="panel panel-page-title">
                     <h1 className="font-primary font-size-section-divider">Cases</h1>
                 </section>
-                {this.state.page_loaded?this.display_loading_page():this.display_api_data()}
+                {this.state.page_loaded?this.display_loading_page():this.display_loading_page()}
         </React.Fragment>)
     }
 
